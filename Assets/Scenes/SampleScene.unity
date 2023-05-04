@@ -218,9 +218,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1fc7d97a16dc34dbf6ae4101e4b89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveForce: 20
-  _jumpHeight: 5
-  _targetVelocity: 5
+  Rb: {fileID: 658057047}
+  Collider: {fileID: 658057046}
+  MoveForce: 15
+  JumpHeight: 3
+  TargetVelocity: 3
+  MoveDir: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -745,7 +748,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: f3304b502bfd1064bb7799c8baa10d0f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
