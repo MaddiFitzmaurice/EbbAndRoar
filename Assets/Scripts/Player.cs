@@ -9,9 +9,11 @@ public class Player : MonoBehaviour
     public Collider Collider;
 
     // Data
-    public float MoveForce;
+    public float Speed;
+    public float VelocityPower;
+    public float Acceleration;
+    public float Decceleration;
     public float JumpHeight;
-    public float TargetVelocity;
 
     // Movement
     [HideInInspector] public Vector3 MoveDir;

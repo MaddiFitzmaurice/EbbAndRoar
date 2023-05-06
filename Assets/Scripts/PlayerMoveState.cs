@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerMoveState : BaseState
 {
     Player _player;
+
+    private float _xInput;
+
     public PlayerMoveState(Player player)
     {
         _player = player;
@@ -32,9 +35,7 @@ public class PlayerMoveState : BaseState
 
     void PlayerInput()
     {
-        float xInput = Input.GetAxisRaw("Horizontal");
-
-        _player.MoveDir = Vector3.right * xInput;
+        _xInput = Input.GetAxisRaw("Horizontal");
 
         // Jump 
         if (Input.GetButtonDown("Jump") && _player.Rb.velocity.y == 0)
@@ -45,9 +46,20 @@ public class PlayerMoveState : BaseState
 
     void PlayerMovement()
     {
-        if (_player.Rb.velocity.magnitude < _player.TargetVelocity)
-        {
-            _player.Rb.AddForce(_player.MoveDir * _player.MoveForce, ForceMode.Acceleration);
-        }
+        // Calculate desired velocity
+        float targetVelocity = _xInput * _player.Speed;
+
+        // Find diff between desired velocity and current velocity
+        float velocityDif = targetVelocity - _player.Rb.velocity.x;
+
+        // Check whether to accel or deccel
+        float accelRate = (Mathf.Abs(targetVelocity) > 0.01f) ? _player.Acceleration :
+            _player.Decceleration;
+
+        // Calc force by multiplying accel and velocity diff, and applying velocity power
+        float movement = Mathf.Pow(Mathf.Abs(velocityDif) * accelRate, _player.VelocityPower)
+            * Mathf.Sign(velocityDif);
+
+        _player.Rb.AddForce(movement * Vector3.right);
     }
 }

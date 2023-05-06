@@ -177,7 +177,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1.5}
+  m_Size: {x: 1.5, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &658057047
 Rigidbody:
@@ -220,9 +220,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Rb: {fileID: 658057047}
   Collider: {fileID: 658057046}
-  MoveForce: 15
+  Speed: 10
+  VelocityPower: 2
+  Acceleration: 1
+  Decceleration: 1.7
   JumpHeight: 3
-  TargetVelocity: 3
   MoveDir: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
