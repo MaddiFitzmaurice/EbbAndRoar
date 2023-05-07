@@ -1,13 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class PlayerMoveState : BaseState
 {
     Player _player;
 
     private float _xInput;
+    private bool _isFacingRight;
 
+    // Events
+    public static Action<bool> DirectionChangeEvent;
+    
     public PlayerMoveState(Player player)
     {
         _player = player;
@@ -37,6 +42,17 @@ public class PlayerMoveState : BaseState
     void PlayerInput()
     {
         _xInput = Input.GetAxisRaw("Horizontal");
+
+        if (_xInput == 1)
+        {
+            _isFacingRight = true;
+        }
+        else if (_xInput == -1)
+        {
+            _isFacingRight = false;
+        }
+        
+        DirectionChangeEvent?.Invoke(_isFacingRight);
 
         // Jump 
         if (Input.GetButtonDown("Jump") && _player.Rb.velocity.y == 0)
