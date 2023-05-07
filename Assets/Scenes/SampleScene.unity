@@ -218,14 +218,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1fc7d97a16dc34dbf6ae4101e4b89b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Rb: {fileID: 658057047}
-  Collider: {fileID: 658057046}
-  Speed: 10
-  VelocityPower: 2
-  Acceleration: 1
-  Decceleration: 1.7
+  MSpeed: 10
+  MVelocityPower: 2
+  MAcceleration: 1
+  MDecceleration: 2
   JumpHeight: 3
-  MoveDir: {x: 0, y: 0, z: 0}
+  JSpeed: 8
+  JVelocityPower: 1.5
+  JAcceleration: 1
+  JDecceleration: 2
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
