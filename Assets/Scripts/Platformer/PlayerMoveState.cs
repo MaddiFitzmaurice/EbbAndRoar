@@ -43,6 +43,7 @@ public class PlayerMoveState : BaseState
     {
         _xInput = Input.GetAxisRaw("Horizontal");
 
+        // Check facing direction and update camera blend
         if (_xInput == 1)
         {
             _isFacingRight = true;
@@ -51,7 +52,7 @@ public class PlayerMoveState : BaseState
         {
             _isFacingRight = false;
         }
-        
+
         DirectionChangeEvent?.Invoke(_isFacingRight);
 
         // Jump 
