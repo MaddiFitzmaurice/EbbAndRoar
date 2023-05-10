@@ -51,10 +51,12 @@ public class PlayerMoveState : BaseState
         if (Player.XInput == 1)
         {
             Player.IsFacingRight = true;
+            Player.Sprite.flipX = false;
         }
         else if (Player.XInput == -1)
         {
             Player.IsFacingRight = false;
+            Player.Sprite.flipX = true;
         }
 
         DirectionChangeEvent?.Invoke(Player.IsFacingRight);

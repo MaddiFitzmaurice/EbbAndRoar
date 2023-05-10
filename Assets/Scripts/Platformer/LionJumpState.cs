@@ -16,9 +16,10 @@ public class LionJumpState : PlayerMoveState
 
     public override void LogicUpdate()
     {
-        if (Physics.BoxCast(Player.transform.position, Player.Collider.bounds.extents * 2, Vector3.down,
-            out RaycastHit hit, Player.transform.rotation, 0.1f) && Player.Rb.velocity.y < 0.01f)
+        if (Physics.BoxCast(Player.transform.position, Player.Collider.bounds.extents, Vector3.down,
+            out RaycastHit hit, Player.transform.rotation, 0.1f))
         {
+            Debug.Log("landed");
             if (hit.collider.tag == "Ground")
             {
                 PlayerLion player = Player as PlayerLion;
@@ -27,6 +28,7 @@ public class LionJumpState : PlayerMoveState
         }
         else
         {
+            Debug.Log("In air");
             base.LogicUpdate();
         }
     }

@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     // Components
     public Rigidbody Rb { get; set; }
     public Collider Collider { get; set; }
+    public SpriteRenderer Sprite { get; set; }
 
     // State Machine
     public StateMachine StateMachine;
@@ -21,4 +22,11 @@ public class Player : MonoBehaviour
     public float VelocityPower;
     public float Acceleration;
     public float Decceleration;
+
+    void Awake()
+    {
+        Rb = GetComponent<Rigidbody>();
+        Collider = GetComponent<Collider>();
+        Sprite = GetComponentInChildren<SpriteRenderer>();
+    }
 }

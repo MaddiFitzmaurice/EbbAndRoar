@@ -10,13 +10,6 @@ public class PlayerLion : Player
     // State Machine 
     public LionJumpState JumpState { get; private set; }
     public LionMoveState MoveState { get; private set; } 
-    
-    // Start is called before the first frame update
-    void Awake()
-    {
-        Rb = GetComponent<Rigidbody>();
-        Collider = GetComponent<Collider>();
-    }
 
     void Start()
     {

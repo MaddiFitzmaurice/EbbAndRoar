@@ -5,11 +5,6 @@ using UnityEngine;
 public class PlayerHuman : Player
 {
     public HumanMoveState MoveState;
-
-    void Awake()
-    {
-        Rb = GetComponent<Rigidbody>();
-    }
     
     void Start()
     {
