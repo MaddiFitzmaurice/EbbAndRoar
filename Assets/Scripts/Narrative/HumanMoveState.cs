@@ -21,6 +21,8 @@ public class HumanMoveState : PlayerMoveState
         PathTrigger.PathTriggerEvent += PlayerPathHandler;
         _onPath = false;
         Player.CurrentData = Player.HumanData;
+        Player.IsLion = false;
+        Debug.Log("Human");
     }
 
     public override void Exit()
@@ -31,6 +33,11 @@ public class HumanMoveState : PlayerMoveState
     public override void LogicUpdate()
     {
         PlayerInput();
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Player.StateMachine.ChangeState(Player.L_MoveState);
+        }
     }
 
     public override void PhysicsUpdate()

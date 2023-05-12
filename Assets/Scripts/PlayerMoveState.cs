@@ -17,6 +17,15 @@ public class PlayerMoveState : BaseState
     public override void LogicUpdate()
     {
         GetXInput();
+
+        if (Player.IsLion)
+        {
+            Player.LionTimer += Time.deltaTime;
+        }
+        else 
+        {
+            Player.LionTimer = 0;
+        }
     }
 
     public override void PhysicsUpdate()

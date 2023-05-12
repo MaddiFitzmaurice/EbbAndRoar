@@ -36,6 +36,10 @@ public class Player : MonoBehaviour
     public float JumpHeight;
     public float LionTime;
 
+    // Lion Timer
+    [HideInInspector] public float LionTimer;
+    [HideInInspector] public bool IsLion;
+
     // Data Objects
     public PlayerData HumanData;
     public PlayerData LionData;

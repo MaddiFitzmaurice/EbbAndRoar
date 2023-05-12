@@ -13,6 +13,8 @@ public class LionMoveState : PlayerMoveState
     public override void Enter()
     {
         Player.CurrentData = Player.LionData;
+        Player.IsLion = true;
+        Debug.Log("Lion");
     }
 
     public override void Exit()
@@ -28,6 +30,11 @@ public class LionMoveState : PlayerMoveState
         if (Input.GetButtonDown("Jump") && Player.Rb.velocity.y == 0)
         {
             Player.StateMachine.ChangeState(Player.L_JumpState);
+        }
+
+        if (Player.LionTimer >= Player.LionTime)
+        {
+            Player.StateMachine.ChangeState(Player.H_MoveState);
         }
     }
 
