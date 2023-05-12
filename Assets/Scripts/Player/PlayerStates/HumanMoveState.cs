@@ -29,10 +29,10 @@ public class HumanMoveState : PlayerMoveState
         _onPath = false;
         _canTransform = false;
 
-        // Set Human Data
+        // Change Data
         Player.CurrentData = Player.HumanData;
-
-        // Reset Lion Data
+        Player.Sprite.sprite = Player.HumanSprite;
+        ChangeColliders();
         Player.IsLion = false;
         Player.LionTimer = 0;
 
@@ -117,5 +117,12 @@ public class HumanMoveState : PlayerMoveState
 
         Player.transform.position = currentPath.ConnectedPath.position;
         _onPath = false;
+    }
+
+    void ChangeColliders()
+    {
+        Player.H_Collider.enabled = true;
+        Player.L_Collider.enabled = false;
+        Player.L_SlipCollider.enabled = false;
     }
 }

@@ -12,8 +12,12 @@ public class LionMoveState : PlayerMoveState
 
     public override void Enter()
     {
+        // Change Data
         Player.CurrentData = Player.LionData;
+        Player.Sprite.sprite = Player.LionSprite;
+        ChangeColliders();
         Player.IsLion = true;
+
         Debug.Log("Lion");
     }
 
@@ -41,5 +45,12 @@ public class LionMoveState : PlayerMoveState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+    }
+
+    void ChangeColliders()
+    {
+        Player.H_Collider.enabled = false;
+        Player.L_Collider.enabled = true;
+        Player.L_SlipCollider.enabled = true;
     }
 }

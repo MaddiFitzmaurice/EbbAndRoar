@@ -9,6 +9,11 @@ public class Player : MonoBehaviour
     public Collider Collider { get; set; }
     public SpriteRenderer Sprite { get; set; }
 
+    // Colliders
+    public BoxCollider L_Collider;
+    public BoxCollider L_SlipCollider;
+    public CapsuleCollider H_Collider;
+
     // State Machine
     public StateMachine StateMachine;
 
@@ -20,6 +25,10 @@ public class Player : MonoBehaviour
     // Movement
     public float XInput { get; set; }
     public bool IsFacingRight { get; set; }
+
+    // Sprites
+    public Sprite LionSprite;
+    public Sprite HumanSprite;
 
     // Data
     [Header("Human State")]
@@ -41,9 +50,9 @@ public class Player : MonoBehaviour
     [HideInInspector] public bool IsLion;
 
     // Data Objects
-    public PlayerData HumanData;
-    public PlayerData LionData;
-    public PlayerData CurrentData;
+    public PlayerData HumanData { get; set; }
+    public PlayerData LionData { get; set; }
+    public PlayerData CurrentData { get; set; }
 
     void Awake()
     {
