@@ -12,7 +12,7 @@ public class Path : MonoBehaviour, Interactable
 
     public static Action<Path, bool> PathEvent;
 
-    public void OnPlayerInteract(Collider player, bool canInteract)
+    public void OnPlayerInteract(bool canInteract)
     {
         PathEvent?.Invoke(this, canInteract);
     }

@@ -18,7 +18,7 @@ public class NPC : MonoBehaviour, Interactable
         transform.rotation = Quaternion.Euler(0f, _mainCam.transform.rotation.eulerAngles.y, 0f);
     }
 
-    public void OnPlayerInteract(Collider player, bool canInteract)
+    public void OnPlayerInteract(bool canInteract)
     {
         _interactUI.gameObject.SetActive(canInteract);
     }

@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface Interactable
 {
-    public void OnPlayerInteract(Collider player, bool canInteract);
+    public void OnPlayerInteract(bool canInteract);
 }

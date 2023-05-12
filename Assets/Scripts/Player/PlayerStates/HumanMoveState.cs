@@ -11,6 +11,9 @@ public class HumanMoveState : PlayerMoveState
     bool _canMoveY;
     Path _path;
 
+    // Lion Transformation
+    bool _canTransform;
+
     public HumanMoveState(Player player) : base(player)
     {
 
@@ -18,17 +21,29 @@ public class HumanMoveState : PlayerMoveState
 
     public override void Enter()
     {
-        Path.PathEvent += PlayerPathHandler;
+        // Event Subscriptions
+        Path.PathEvent += PathEventHandler;
+        MagicPool.MagicPoolEvent += MagicPoolEventHandler; 
+
+        // Set Interactable Flags
         _onPath = false;
+        _canTransform = false;
+
+        // Set Human Data
         Player.CurrentData = Player.HumanData;
+
+        // Reset Lion Data
         Player.IsLion = false;
         Player.LionTimer = 0;
+
         Debug.Log("Human");
     }
 
     public override void Exit()
     {
-        Path.PathEvent -= PlayerPathHandler;
+        // Event Subscriptions
+        Path.PathEvent -= PathEventHandler;
+        MagicPool.MagicPoolEvent -= MagicPoolEventHandler; 
     }
 
     public override void LogicUpdate()
@@ -37,7 +52,11 @@ public class HumanMoveState : PlayerMoveState
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Player.StateMachine.ChangeState(Player.L_MoveState);
+            if (_canTransform)
+            {
+                _canTransform = false;
+                Player.StateMachine.ChangeState(Player.L_MoveState);
+            }
         }
     }
 
@@ -65,7 +84,12 @@ public class HumanMoveState : PlayerMoveState
     }
 
     // Interactable Handlers
-    void PlayerPathHandler(Path path, bool canMove)
+    void MagicPoolEventHandler(bool canTransform)
+    {
+        _canTransform = canTransform;
+    }
+
+    void PathEventHandler(Path path, bool canMove)
     {
         _canMoveY = canMove;
         _path = path;
