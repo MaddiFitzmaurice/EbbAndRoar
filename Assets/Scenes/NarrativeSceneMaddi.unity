@@ -1970,9 +1970,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1568686755}
-  - component: {fileID: 1568686756}
   - component: {fileID: 1568686758}
   - component: {fileID: 1568686757}
+  - component: {fileID: 1568686759}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -1996,22 +1996,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1568686756
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1568686754}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b2cedbb4a8d5fa4daeb1bd3299c633e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 7
-  VelocityPower: 2
-  Acceleration: 1.5
-  Decceleration: 2
 --- !u!136 &1568686757
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2062,6 +2046,28 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1568686759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1568686754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5dcc76aa50c829c43976174519cfc729, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  H_Speed: 7
+  H_VelocityPower: 1.5
+  H_Acceleration: 1.5
+  H_Decceleration: 2
+  L_Speed: 9
+  L_VelocityPower: 2
+  L_Acceleration: 1.5
+  L_Decceleration: 2
+  JumpHeight: 5
+  LionTime: 15
 --- !u!1 &1573414214
 GameObject:
   m_ObjectHideFlags: 0

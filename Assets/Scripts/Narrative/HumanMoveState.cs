@@ -11,7 +11,7 @@ public class HumanMoveState : PlayerMoveState
     bool _canMoveY;
     PathTrigger _path;
 
-    public HumanMoveState(PlayerHuman player) : base(player)
+    public HumanMoveState(Player player) : base(player)
     {
 
     }
@@ -20,6 +20,7 @@ public class HumanMoveState : PlayerMoveState
     {
         PathTrigger.PathTriggerEvent += PlayerPathHandler;
         _onPath = false;
+        Player.CurrentData = Player.HumanData;
     }
 
     public override void Exit()
@@ -78,7 +79,7 @@ public class HumanMoveState : PlayerMoveState
         while (Vector3.Distance(Player.transform.position, currentPath.ConnectedPath.position) > 0.1f)
         {
             Player.transform.position = Vector3.Lerp(Player.transform.position,
-                currentPath.ConnectedPath.position, Time.deltaTime * Player.Speed);
+                currentPath.ConnectedPath.position, Time.deltaTime * Player.H_Speed);
             yield return null;
         }
 

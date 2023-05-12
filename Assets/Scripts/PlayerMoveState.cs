@@ -27,17 +27,17 @@ public class PlayerMoveState : BaseState
     public void PlayerMovement()
     {
         // Calculate desired velocity
-        float targetVelocity = Player.XInput * Player.Speed;
+        float targetVelocity = Player.XInput * Player.CurrentData.Speed;
 
         // Find diff between desired velocity and current velocity
         float velocityDif = targetVelocity - Player.Rb.velocity.x;
 
         // Check whether to accel or deccel
-        float accelRate = (Mathf.Abs(targetVelocity) > 0.01f) ? Player.Acceleration :
-            Player.Decceleration;
+        float accelRate = (Mathf.Abs(targetVelocity) > 0.01f) ? Player.CurrentData.Acceleration :
+            Player.CurrentData.Decceleration;
 
         // Calc force by multiplying accel and velocity diff, and applying velocity power
-        float movement = Mathf.Pow(Mathf.Abs(velocityDif) * accelRate, Player.VelocityPower)
+        float movement = Mathf.Pow(Mathf.Abs(velocityDif) * accelRate, Player.CurrentData.VelocityPower)
             * Mathf.Sign(velocityDif);
 
         Player.Rb.AddForce(movement * Vector3.right);

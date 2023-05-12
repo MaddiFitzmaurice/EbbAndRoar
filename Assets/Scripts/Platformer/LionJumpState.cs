@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LionJumpState : PlayerMoveState
 {    
-    public LionJumpState(PlayerLion player) : base(player)
+    public LionJumpState(Player player) : base(player)
     {
 
     }
@@ -22,8 +22,7 @@ public class LionJumpState : PlayerMoveState
             Debug.Log("landed");
             if (hit.collider.tag == "Ground")
             {
-                PlayerLion player = Player as PlayerLion;
-                Player.StateMachine.ChangeState(player.MoveState);
+                Player.StateMachine.ChangeState(Player.L_MoveState);
             }
         }
         else
@@ -40,8 +39,7 @@ public class LionJumpState : PlayerMoveState
 
     void Jump()
     {
-        PlayerLion player = Player as PlayerLion;
-        float jumpForce = Mathf.Sqrt(player.JumpHeight * Physics.gravity.y * -2) * Player.Rb.mass;
+        float jumpForce = Mathf.Sqrt(Player.JumpHeight * Physics.gravity.y * -2) * Player.Rb.mass;
         Player.Rb.AddForce((Vector3.up + Vector3.forward).normalized * jumpForce, ForceMode.Impulse);
     }
 }

@@ -5,14 +5,14 @@ using System;
 
 public class LionMoveState : PlayerMoveState
 {    
-    public LionMoveState(PlayerLion player) : base(player)
+    public LionMoveState(Player player) : base(player)
     {
        
     }
 
     public override void Enter()
     {
-        
+        Player.CurrentData = Player.LionData;
     }
 
     public override void Exit()
@@ -27,8 +27,7 @@ public class LionMoveState : PlayerMoveState
         // Jump 
         if (Input.GetButtonDown("Jump") && Player.Rb.velocity.y == 0)
         {
-            PlayerLion player = Player as PlayerLion;
-            Player.StateMachine.ChangeState(player.JumpState);
+            Player.StateMachine.ChangeState(Player.L_JumpState);
         }
     }
 
