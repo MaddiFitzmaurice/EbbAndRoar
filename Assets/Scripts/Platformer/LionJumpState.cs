@@ -40,6 +40,6 @@ public class LionJumpState : PlayerMoveState
     void Jump()
     {
         float jumpForce = Mathf.Sqrt(Player.JumpHeight * Physics.gravity.y * -2) * Player.Rb.mass;
-        Player.Rb.AddForce((Vector3.up + Vector3.forward).normalized * jumpForce, ForceMode.Impulse);
+        Player.Rb.AddForce((Vector3.up + Vector3.right).normalized * jumpForce, ForceMode.Impulse);
     }
 }

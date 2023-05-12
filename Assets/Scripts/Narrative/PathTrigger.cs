@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public enum PathDirection { Up = 1, Down = -1}
+//public enum PathDirection { Up = 1, Down = -1}
 
 public class PathTrigger : MonoBehaviour
 {

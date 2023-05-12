@@ -9,7 +9,7 @@ public class HumanMoveState : PlayerMoveState
     // Path Movement
     bool _onPath;
     bool _canMoveY;
-    PathTrigger _path;
+    Path _path;
 
     public HumanMoveState(Player player) : base(player)
     {
@@ -18,16 +18,17 @@ public class HumanMoveState : PlayerMoveState
 
     public override void Enter()
     {
-        PathTrigger.PathTriggerEvent += PlayerPathHandler;
+        Path.PathEvent += PlayerPathHandler;
         _onPath = false;
         Player.CurrentData = Player.HumanData;
         Player.IsLion = false;
+        Player.LionTimer = 0;
         Debug.Log("Human");
     }
 
     public override void Exit()
     {
-        PathTrigger.PathTriggerEvent -= PlayerPathHandler;
+        Path.PathEvent -= PlayerPathHandler;
     }
 
     public override void LogicUpdate()
@@ -61,10 +62,10 @@ public class HumanMoveState : PlayerMoveState
                 }
             }
         }
-        
     }
 
-    void PlayerPathHandler(PathTrigger path, bool canMove)
+    // Interactable Handlers
+    void PlayerPathHandler(Path path, bool canMove)
     {
         _canMoveY = canMove;
         _path = path;
@@ -79,7 +80,7 @@ public class HumanMoveState : PlayerMoveState
         Player.StartCoroutine(IPathMove(_path));
     }
 
-    IEnumerator IPathMove(PathTrigger currentPath)
+    IEnumerator IPathMove(Path currentPath)
     {
         Player.transform.position = currentPath.transform.position;
 

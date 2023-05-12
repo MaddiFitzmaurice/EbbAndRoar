@@ -22,10 +22,8 @@ public class PlayerMoveState : BaseState
         {
             Player.LionTimer += Time.deltaTime;
         }
-        else 
-        {
-            Player.LionTimer = 0;
-        }
+
+        Debug.Log(Player.LionTimer);
     }
 
     public override void PhysicsUpdate()

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NPC : MonoBehaviour
+public class NPC : MonoBehaviour, Interactable
 {
     [SerializeField] private GameObject _interactUI;
     private Camera _mainCam;
@@ -18,8 +18,8 @@ public class NPC : MonoBehaviour
         transform.rotation = Quaternion.Euler(0f, _mainCam.transform.rotation.eulerAngles.y, 0f);
     }
 
-    public void OnPlayerInteract(Collider other, bool isActive)
+    public void OnPlayerInteract(Collider player, bool canInteract)
     {
-        _interactUI.gameObject.SetActive(isActive);
+        _interactUI.gameObject.SetActive(canInteract);
     }
 }

@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class InteractTrigger : MonoBehaviour
 {
-    private NPC _npc;
+    private Interactable _interactable;
 
     void Awake()
     {
-        _npc = GetComponentInParent<NPC>();
+        _interactable = GetComponentInParent<Interactable>();
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            _npc.OnPlayerInteract(other, true);
+            _interactable.OnPlayerInteract(other, true);
         }
     }
 
@@ -23,7 +23,7 @@ public class InteractTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _npc.OnPlayerInteract(other, false);
+            _interactable.OnPlayerInteract(other, false);
         }
     }
 }
