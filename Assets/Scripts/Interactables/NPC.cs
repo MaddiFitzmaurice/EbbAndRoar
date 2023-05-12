@@ -18,8 +18,14 @@ public class NPC : MonoBehaviour, Interactable
         transform.rotation = Quaternion.Euler(0f, _mainCam.transform.rotation.eulerAngles.y, 0f);
     }
 
-    public void OnPlayerInteract(bool canInteract)
+    public void OnPlayerInteract(Collider player, bool canInteract)
     {
-        _interactUI.gameObject.SetActive(canInteract);
+        bool isLion = player.GetComponent<Player>().IsLion;
+        
+        if (!isLion)
+        {
+            _interactUI.gameObject.SetActive(canInteract);
+            Interactable.InteractUIPromptEvent?.Invoke("Press E to talk.", canInteract);
+        }
     }
 }

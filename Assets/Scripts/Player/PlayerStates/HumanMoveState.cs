@@ -73,9 +73,7 @@ public class HumanMoveState : PlayerMoveState
 
             if (_canMoveY)
             {
-                float yInput = Input.GetAxisRaw("Vertical");
-
-                if (yInput == (int)_path.Direction)
+                if (Input.GetKeyDown(KeyCode.E))
                 {
                     PathMove();
                 }

@@ -12,8 +12,14 @@ public class Path : MonoBehaviour, Interactable
 
     public static Action<Path, bool> PathEvent;
 
-    public void OnPlayerInteract(bool canInteract)
+    public void OnPlayerInteract(Collider player, bool canInteract)
     {
-        PathEvent?.Invoke(this, canInteract);
+        bool isLion = player.GetComponent<Player>().IsLion;
+        
+        if (!isLion)
+        {
+            PathEvent?.Invoke(this, canInteract);
+            Interactable.InteractUIPromptEvent?.Invoke("Press E to change paths.", canInteract);
+        }
     }
 }

@@ -15,7 +15,7 @@ public class InteractTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _interactable.OnPlayerInteract(true);
+            _interactable.OnPlayerInteract(other, true);
         }
     }
 
@@ -23,7 +23,7 @@ public class InteractTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            _interactable.OnPlayerInteract(false);
+            _interactable.OnPlayerInteract(other, false);
         }
     }
 }
