@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public BoxCollider L_Collider;
     public BoxCollider L_SlipCollider;
     public CapsuleCollider H_Collider;
+    public BoxCollider GroundCheckCollider;
 
     // State Machine
     public StateMachine StateMachine;
@@ -24,6 +25,7 @@ public class Player : MonoBehaviour
     // Movement
     public float XInput { get; set; }
     public bool IsFacingRight { get; set; }
+    public bool IsGrounded {get; set; }
 
     // Sprites
     public Sprite LionSprite;
@@ -52,6 +54,12 @@ public class Player : MonoBehaviour
     public PlayerData HumanData { get; set; }
     public PlayerData LionData { get; set; }
     public PlayerData CurrentData { get; set; }
+
+    // Ground check testing
+    /*
+    public bool IsGrounded;
+    public RaycastHit hit;
+    */
 
     void Awake()
     {
@@ -89,4 +97,30 @@ public class Player : MonoBehaviour
     {
         StateMachine.CurrentState.PhysicsUpdate();
     }
+
+    // Jump groundcheck testing
+    /*public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+
+        //Check if there has been a hit yet
+        if (IsGrounded)
+        {
+            Debug.Log("IsGrounded");
+            //Draw a Ray forward from GameObject toward the hit
+            Gizmos.DrawRay(transform.position, Vector3.down * hit.distance);
+            //Draw a cube that extends to where the hit exists
+            Gizmos.DrawWireCube(transform.position + Vector3.down * hit.distance, GroundCheckCollider.bounds.extents * 2);
+        }
+        //If there hasn't been a hit yet, draw the ray at the maximum distance
+        else
+        {
+            Debug.Log("Is in air");
+            //Draw a Ray forward from GameObject toward the maximum distance
+            Gizmos.DrawRay(transform.position, Vector3.down * 1f);
+            //Draw a cube at the maximum distance
+            Gizmos.DrawWireCube(transform.position + Vector3.down * 1f, GroundCheckCollider.bounds.extents * 2);
+        }
+    }
+    */
 }

@@ -18,6 +18,8 @@ public class PlayerMoveState : BaseState
     {
         GetXInput();
 
+        Player.IsGrounded = GroundCheck();
+
         if (Player.IsLion)
         {
             Player.LionTimer += Time.deltaTime;
@@ -65,5 +67,11 @@ public class PlayerMoveState : BaseState
         }
 
         DirectionChangeEvent?.Invoke(Player.IsFacingRight);
+    }
+
+    protected bool GroundCheck()
+    {
+        return Physics.BoxCast(Player.transform.position, Player.GroundCheckCollider.bounds.extents * 2, Vector3.down,
+            out RaycastHit hit, Player.transform.rotation, 1f, LayerMask.GetMask("Walkable"));
     }
 }

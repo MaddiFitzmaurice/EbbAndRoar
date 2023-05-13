@@ -12,36 +12,26 @@ public class LionJumpState : PlayerMoveState
     public override void Enter()
     {
         Jump();
+        Debug.Log("Jump state");
     }
 
     public override void LogicUpdate()
-    {
-        Debug.Log(Player.Rb.velocity.y);
-        
-        if (Physics.BoxCast(Player.transform.position, Player.L_Collider.bounds.extents, Vector3.down,
-            out RaycastHit hit, Player.transform.rotation, 0.1f) && Player.Rb.velocity.y < 0.01f)
-        {
-            Debug.Log("landed");
-            if (hit.collider.tag == "Ground")
-            {
-                Player.StateMachine.ChangeState(Player.L_MoveState);
-            }
-        }
-        else
-        {
-            Debug.Log("In air");
-            base.LogicUpdate();
-        }
+    {        
+        base.LogicUpdate();
     }
 
     public override void PhysicsUpdate()
     {
+        if (Player.IsGrounded)
+        {
+            Player.StateMachine.ChangeState(Player.L_MoveState);
+        }
         base.PhysicsUpdate();
     }
 
     void Jump()
     {
         float jumpForce = Mathf.Sqrt(Player.JumpHeight * Physics.gravity.y * -2) * Player.Rb.mass;
-        Player.Rb.AddForce((Vector3.up + Vector3.right).normalized * jumpForce, ForceMode.Impulse);
+        Player.Rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
     }
 }

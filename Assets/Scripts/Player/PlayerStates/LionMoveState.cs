@@ -31,7 +31,7 @@ public class LionMoveState : PlayerMoveState
         base.LogicUpdate();
 
         // Jump 
-        if (Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump") && Player.IsGrounded)
         {
             Player.StateMachine.ChangeState(Player.L_JumpState);
         }
