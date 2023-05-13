@@ -17,7 +17,7 @@ public class MagicPool : MonoBehaviour, Interactable
         }
         else 
         {
-            Interactable.InteractUIPromptEvent?.Invoke("The pool seems unresponsive now...", canInteract);
+            Interactable.InteractUIPromptEvent?.Invoke("The water seems unresponsive now...", canInteract);
         }
     }
 }

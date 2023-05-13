@@ -31,11 +31,12 @@ public class LionMoveState : PlayerMoveState
         base.LogicUpdate();
 
         // Jump 
-        if (Input.GetButtonDown("Jump") && Player.Rb.velocity.y == 0)
+        if (Input.GetButtonDown("Jump"))
         {
             Player.StateMachine.ChangeState(Player.L_JumpState);
         }
 
+        // When Lion Time is up, change back to human
         if (Player.LionTimer >= Player.LionTime)
         {
             Player.StateMachine.ChangeState(Player.H_MoveState);

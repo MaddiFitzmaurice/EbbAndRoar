@@ -6,7 +6,6 @@ public class Player : MonoBehaviour
 {
     // Components
     public Rigidbody Rb { get; set; }
-    public Collider Collider { get; set; }
     public SpriteRenderer Sprite { get; set; }
 
     // Colliders
@@ -57,7 +56,6 @@ public class Player : MonoBehaviour
     void Awake()
     {
         Rb = GetComponent<Rigidbody>();
-        Collider = GetComponent<Collider>();
         Sprite = GetComponentInChildren<SpriteRenderer>();
     }
 

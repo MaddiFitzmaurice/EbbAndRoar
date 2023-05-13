@@ -600,7 +600,7 @@ GameObject:
   - component: {fileID: 120142674}
   - component: {fileID: 120142673}
   - component: {fileID: 120142672}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground4
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -998,7 +998,7 @@ GameObject:
   - component: {fileID: 477081648}
   - component: {fileID: 477081647}
   - component: {fileID: 477081646}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ramp2
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1619,7 +1619,7 @@ GameObject:
   - component: {fileID: 1170440083}
   - component: {fileID: 1170440082}
   - component: {fileID: 1170440081}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground1
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -1808,7 +1808,7 @@ GameObject:
   - component: {fileID: 1374000683}
   - component: {fileID: 1374000682}
   - component: {fileID: 1374000681}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground5
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -2474,7 +2474,7 @@ MonoBehaviour:
   L_Acceleration: 1.5
   L_Decceleration: 2
   JumpHeight: 5
-  LionTime: 15
+  LionTime: 10
   LionTimer: 0
   IsLion: 0
 --- !u!65 &1568686760
@@ -2677,7 +2677,7 @@ GameObject:
   - component: {fileID: 1834405307}
   - component: {fileID: 1834405306}
   - component: {fileID: 1834405305}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ground3
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -3111,7 +3111,7 @@ GameObject:
   - component: {fileID: 2087735241}
   - component: {fileID: 2087735240}
   - component: {fileID: 2087735239}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Ramp1
   m_TagString: Ground
   m_Icon: {fileID: 0}

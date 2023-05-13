@@ -16,8 +16,10 @@ public class LionJumpState : PlayerMoveState
 
     public override void LogicUpdate()
     {
-        if (Physics.BoxCast(Player.transform.position, Player.Collider.bounds.extents, Vector3.down,
-            out RaycastHit hit, Player.transform.rotation, 0.1f))
+        Debug.Log(Player.Rb.velocity.y);
+        
+        if (Physics.BoxCast(Player.transform.position, Player.L_Collider.bounds.extents, Vector3.down,
+            out RaycastHit hit, Player.transform.rotation, 0.1f) && Player.Rb.velocity.y < 0.01f)
         {
             Debug.Log("landed");
             if (hit.collider.tag == "Ground")
