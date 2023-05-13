@@ -791,7 +791,7 @@ GameObject:
   m_Component:
   - component: {fileID: 210093476}
   - component: {fileID: 210093477}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2295,7 +2295,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1472414546}
   - component: {fileID: 1472414547}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2358,7 +2358,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: cf205cd419cd6994d9bb986a66505710, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f8f1aeff7c0dc6b4db01aff4ce1dcc18, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2533,7 +2533,7 @@ GameObject:
   - component: {fileID: 1568686757}
   - component: {fileID: 1568686760}
   - component: {fileID: 1568686761}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}

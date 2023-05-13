@@ -56,10 +56,9 @@ public class Player : MonoBehaviour
     public PlayerData CurrentData { get; set; }
 
     // Ground check testing
-    /*
-    public bool IsGrounded;
+    
     public RaycastHit hit;
-    */
+    
 
     void Awake()
     {
@@ -99,14 +98,13 @@ public class Player : MonoBehaviour
     }
 
     // Jump groundcheck testing
-    /*public void OnDrawGizmos()
+    public void OnDrawGizmos()
     {
-        Gizmos.color = Color.blue;
-
         //Check if there has been a hit yet
         if (IsGrounded)
         {
-            Debug.Log("IsGrounded");
+            //Debug.Log("IsGrounded");
+            Gizmos.color = Color.blue;
             //Draw a Ray forward from GameObject toward the hit
             Gizmos.DrawRay(transform.position, Vector3.down * hit.distance);
             //Draw a cube that extends to where the hit exists
@@ -115,12 +113,13 @@ public class Player : MonoBehaviour
         //If there hasn't been a hit yet, draw the ray at the maximum distance
         else
         {
-            Debug.Log("Is in air");
+            //Debug.Log("Is in air");
+            Gizmos.color = Color.red;
             //Draw a Ray forward from GameObject toward the maximum distance
             Gizmos.DrawRay(transform.position, Vector3.down * 1f);
             //Draw a cube at the maximum distance
             Gizmos.DrawWireCube(transform.position + Vector3.down * 1f, GroundCheckCollider.bounds.extents * 2);
         }
     }
-    */
+    
 }

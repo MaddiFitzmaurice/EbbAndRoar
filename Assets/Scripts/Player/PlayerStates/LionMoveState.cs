@@ -18,7 +18,7 @@ public class LionMoveState : PlayerMoveState
         ChangeColliders();
         Player.IsLion = true;
 
-        Debug.Log("Lion");
+        Debug.Log("Lion Move State");
     }
 
     public override void Exit()

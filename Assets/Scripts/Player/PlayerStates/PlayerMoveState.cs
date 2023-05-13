@@ -18,8 +18,6 @@ public class PlayerMoveState : BaseState
     {
         GetXInput();
 
-        Player.IsGrounded = GroundCheck();
-
         if (Player.IsLion)
         {
             Player.LionTimer += Time.deltaTime;
@@ -29,6 +27,7 @@ public class PlayerMoveState : BaseState
     public override void PhysicsUpdate()
     {
         PlayerMovement();
+        Player.IsGrounded = GroundCheck();
     }
 
     public void PlayerMovement()
