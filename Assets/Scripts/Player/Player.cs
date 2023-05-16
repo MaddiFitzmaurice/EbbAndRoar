@@ -98,7 +98,7 @@ public class Player : MonoBehaviour
     }
 
     // Jump groundcheck testing
-    public void OnDrawGizmos()
+    /*public void OnDrawGizmos()
     {
         //Check if there has been a hit yet
         if (IsGrounded)
@@ -120,6 +120,5 @@ public class Player : MonoBehaviour
             //Draw a cube at the maximum distance
             Gizmos.DrawWireCube(transform.position + Vector3.down * 1f, GroundCheckCollider.bounds.extents * 2);
         }
-    }
-    
+    }*/
 }
