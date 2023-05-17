@@ -5,15 +5,22 @@ using System;
 
 public class Item : MonoBehaviour, Interactable
 {
-    public static Action<Item> ItemPickupEvent;
-    void Update()
+    public bool Found;
+    public bool Delivered;
+    public ItemType ItemType; 
+    public Sprite Sprite;
+    public static Action ItemPickupEvent;
+
+    void Start()
     {
-        
+        Found = false;
+        Delivered = false;
     }
 
     public void OnPlayerInteract(Collider player, bool canInteract)
     {
-        ItemPickupEvent?.Invoke(this);
+        Found = true;
+        ItemPickupEvent?.Invoke();
         this.gameObject.SetActive(false);
     }
 }

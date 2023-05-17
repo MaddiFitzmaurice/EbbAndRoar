@@ -556,7 +556,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _promptText: {fileID: 2046731101}
-  _items:
+  _itemsUI:
   - {fileID: 1604321260}
   - {fileID: 671309452}
   - {fileID: 1794270309}
@@ -1194,6 +1194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 908e780b054beb34db40ba761ecd8350, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _items:
+  - {fileID: 538709210}
 --- !u!1 &439960046
 GameObject:
   m_ObjectHideFlags: 0
@@ -1665,6 +1667,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d7156d295300f7244bca436d6b31caa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Found: 0
+  Delivered: 0
+  ItemType: 0
+  Sprite: {fileID: 28327143, guid: 86f80b7ecfb04cf4899f5471034c6ac5, type: 3}
 --- !u!1 &619652659
 GameObject:
   m_ObjectHideFlags: 0

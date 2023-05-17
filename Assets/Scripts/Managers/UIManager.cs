@@ -8,37 +8,25 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI _promptText;
 
-    [SerializeField] List<Image> _items;
-    List<UIItem> _UIItems;
-
-    private struct UIItem 
-    {
-        public bool ItemFound;
-        public Image Image;
-
-        public UIItem(bool itemFound, Image image)
-        {
-            this.ItemFound = itemFound;
-            this.Image = image;
-        }
-    }
+    [SerializeField] List<Image> _itemsUI;
+    List<Item> _items;
+    Vector4 _transparent = new Vector4(0, 0, 0, 50);
 
     void Start()
     {
         _promptText.gameObject.SetActive(false);
-        CreateUIItemsList();
     }
 
     void OnEnable()
     {
         Interactable.InteractUIPromptEvent += UpdatePromptUI;
-        Item.ItemPickupEvent += UpdateUIItemsList;
+        ItemManager.UpdateItemsCollectedEvent += UpdateUIItemsList;
     }
 
     void OnDisable()
     {
         Interactable.InteractUIPromptEvent -= UpdatePromptUI;
-        Item.ItemPickupEvent -= UpdateUIItemsList;
+        ItemManager.UpdateItemsCollectedEvent -= UpdateUIItemsList;
     }
 
     void UpdatePromptUI(string prompt, bool showPrompt)
@@ -47,25 +35,21 @@ public class UIManager : MonoBehaviour
         _promptText.text = prompt;
     }
 
-    void CreateUIItemsList()
+    void UpdateUIItemsList(List<Item> items)
     {
-        _UIItems = new List<UIItem>();
+        _items = items;
 
-        foreach (Image image in _items)
+        for (int i = 0; i < _items.Count; i++)
         {
-            _UIItems.Add(new UIItem(false, image));
-        }
-    }
-
-    void UpdateUIItemsList(Item item)
-    {
-        foreach (UIItem uiItem in _UIItems)
-        {
-            if (!uiItem.ItemFound)
+            if (_items[i].Found)
             {
-                uiItem.Image.sprite = item.gameObject.GetComponent<SpriteRenderer>().sprite;
-                uiItem.Image.color = Color.white;
-                break;
+                _itemsUI[i].sprite = _items[i].Sprite;
+                _itemsUI[i].color = Color.white;
+            }
+
+            if (_items[i].Delivered)
+            {
+                _itemsUI[i].color = _transparent;
             }
         }
     }
