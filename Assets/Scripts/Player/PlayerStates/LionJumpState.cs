@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class LionJumpState : PlayerMoveState
 {    
     private bool _applyDownForce;
     private float _jumpTimer;
     private float _bufferTime = 0.5f;
+
+    public static Action<bool> JumpEvent;
+    bool _isJumping;
 
     public LionJumpState(Player player) : base(player)
     {
@@ -16,6 +20,8 @@ public class LionJumpState : PlayerMoveState
     public override void Enter()
     {
         Jump();
+        _isJumping = true;
+        JumpEvent?.Invoke(_isJumping);
         _jumpTimer = 0;
         _applyDownForce = true;
         Debug.Log("Jump State");
@@ -29,15 +35,18 @@ public class LionJumpState : PlayerMoveState
 
     public override void PhysicsUpdate()
     {
+        // If player has landed
         if (Player.IsGrounded && _jumpTimer > _bufferTime)
         {
-            Debug.Log("Changing");
+            _isJumping = false;
+            JumpEvent?.Invoke(_isJumping);
             Player.StateMachine.ChangeState(Player.L_MoveState);
         }
 
+        // If player has passed height of their jump
         if (Player.Rb.velocity.y < 0 && _applyDownForce)
         {
-            Debug.Log("Down");
+            Debug.Log("Falling Down");
             //Player.Rb.AddForce(Vector3.down * 200f, ForceMode.Acceleration);
             _applyDownForce = false;
         }
