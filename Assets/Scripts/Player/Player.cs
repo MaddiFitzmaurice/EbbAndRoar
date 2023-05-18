@@ -46,6 +46,11 @@ public class Player : MonoBehaviour
     public float JumpHeight;
     public float LionTime;
 
+    [Header("Gravity Modifier")]
+    public Vector3 GravityNorm;
+    public Vector3 GravityUp;
+    public Vector3 GravityDown;
+
     // Lion Timer
     [HideInInspector] public float LionTimer;
     [HideInInspector] public bool IsLion;

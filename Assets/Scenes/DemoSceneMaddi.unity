@@ -3712,7 +3712,7 @@ MonoBehaviour:
   GroundCheckCollider: {fileID: 210093477}
   LionSprite: {fileID: 21300000, guid: cf205cd419cd6994d9bb986a66505710, type: 3}
   HumanSprite: {fileID: 21300000, guid: f8f1aeff7c0dc6b4db01aff4ce1dcc18, type: 3}
-  H_Speed: 7
+  H_Speed: 8
   H_VelocityPower: 1.5
   H_Acceleration: 1.5
   H_Decceleration: 2
@@ -3720,8 +3720,11 @@ MonoBehaviour:
   L_VelocityPower: 2
   L_Acceleration: 1.5
   L_Decceleration: 2
-  JumpHeight: 5
+  JumpHeight: 2.5
   LionTime: 15
+  GravityNorm: {x: 0, y: -9.81, z: 0}
+  GravityUp: {x: 0, y: -12, z: 0}
+  GravityDown: {x: 0, y: -25, z: 0}
   LionTimer: 0
   IsLion: 0
 --- !u!65 &1568686760

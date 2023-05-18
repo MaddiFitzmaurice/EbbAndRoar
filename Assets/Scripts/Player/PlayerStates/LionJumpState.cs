@@ -20,6 +20,7 @@ public class LionJumpState : PlayerMoveState
     public override void Enter()
     {
         Jump();
+        Physics.gravity = Player.GravityUp;
         _isJumping = true;
         JumpEvent?.Invoke(_isJumping);
         _jumpTimer = 0;
@@ -38,6 +39,7 @@ public class LionJumpState : PlayerMoveState
         // If player has landed
         if (Player.IsGrounded && _jumpTimer > _bufferTime)
         {
+            Physics.gravity = Player.GravityNorm;
             _isJumping = false;
             JumpEvent?.Invoke(_isJumping);
             Player.StateMachine.ChangeState(Player.L_MoveState);
@@ -47,7 +49,7 @@ public class LionJumpState : PlayerMoveState
         if (Player.Rb.velocity.y < 0 && _applyDownForce)
         {
             Debug.Log("Falling Down");
-            //Player.Rb.AddForce(Vector3.down * 200f, ForceMode.Acceleration);
+            Physics.gravity = Player.GravityDown;
             _applyDownForce = false;
         }
 
