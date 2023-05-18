@@ -73,7 +73,7 @@ public class CameraManager : MonoBehaviour
             _rightCam.Priority = 0;
             _rightJumpCam.Priority = 0;
         }
-        // Else if is facing elft and is jumping
+        // Else if is facing left and is jumping
         else 
         {
             _leftCam.Priority = 0;
