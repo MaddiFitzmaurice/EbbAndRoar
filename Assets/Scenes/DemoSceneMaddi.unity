@@ -183,6 +183,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: -1
   ConnectedPath: {fileID: 1551674650}
+  _UIPromptLion: The Lion is too large for this path.
+  _UIPromptHuman: Press E to change paths.
 --- !u!65 &2817501
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1831,6 +1833,8 @@ MonoBehaviour:
   Delivered: 0
   ItemType: 0
   Sprite: {fileID: 28327143, guid: 86f80b7ecfb04cf4899f5471034c6ac5, type: 3}
+  _UIPromptLion: 
+  _UIPromptHuman: 
 --- !u!1 &619652659
 GameObject:
   m_ObjectHideFlags: 0
@@ -2025,6 +2029,22 @@ PrefabInstance:
     - target: {fileID: 645835031190341876, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
       propertyPath: m_Name
       value: NPC1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
+      propertyPath: _UIPromptLion
+      value: Transform back into a Human first!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
+      propertyPath: _greetingLion
+      value: Get away from me!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
+      propertyPath: _UIPromptHuman
+      value: Press E to talk.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
+      propertyPath: _greetingHuman
+      value: Greetings!
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3117,6 +3137,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: -1
   ConnectedPath: {fileID: 2129958667}
+  _UIPromptLion: The Lion is too large for this path.
+  _UIPromptHuman: Press E to change paths.
 --- !u!114 &1401821503
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3349,6 +3371,22 @@ PrefabInstance:
       propertyPath: _interactUI
       value: 
       objectReference: {fileID: 1342808336}
+    - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
+      propertyPath: _UIPromptLion
+      value: Transform back into a Human first!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
+      propertyPath: _greetingLion
+      value: I'd slay you if I had my weapon, beast!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
+      propertyPath: _UIPromptHuman
+      value: Press E to talk.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
+      propertyPath: _greetingHuman
+      value: ... yes?
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3583,6 +3621,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 1
   ConnectedPath: {fileID: 2817498}
+  _UIPromptLion: The Lion is too large for this path.
+  _UIPromptHuman: Press E to change paths.
 --- !u!65 &1551674653
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4651,6 +4691,22 @@ PrefabInstance:
       propertyPath: _interactUI
       value: 
       objectReference: {fileID: 517209918}
+    - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
+      propertyPath: _UIPromptLion
+      value: Transform back into a Human first!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
+      propertyPath: _greetingLion
+      value: Arghhh!!!
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
+      propertyPath: _UIPromptHuman
+      value: Press E to talk.
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
+      propertyPath: _greetingHuman
+      value: Hello.
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5327,6 +5383,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Direction: 1
   ConnectedPath: {fileID: 1401821501}
+  _UIPromptLion: The Lion is too large for this path.
+  _UIPromptHuman: Press E to change paths.
 --- !u!114 &2129958670
 MonoBehaviour:
   m_ObjectHideFlags: 0

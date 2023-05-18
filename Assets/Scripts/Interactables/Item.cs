@@ -11,6 +11,10 @@ public class Item : MonoBehaviour, Interactable
     public Sprite Sprite;
     public static Action ItemPickupEvent;
 
+    [SerializeField] string _UIPromptLion;
+    [SerializeField] string _UIPromptHuman;
+    string _UIPromptText;
+
     void Start()
     {
         Found = false;
@@ -19,6 +23,7 @@ public class Item : MonoBehaviour, Interactable
 
     public void OnPlayerInteract(Collider player, bool canInteract)
     {
+        // Potentially restrict player to only pickup as human
         Found = true;
         ItemPickupEvent?.Invoke();
         this.gameObject.SetActive(false);
