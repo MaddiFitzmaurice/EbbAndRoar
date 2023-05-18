@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public LionMoveState L_MoveState;
     public LionJumpState L_JumpState;
     public HumanMoveState H_MoveState;
+    public HumanNarrativeState H_NarrativeState;
 
     // Movement
     public float XInput { get; set; }
@@ -82,6 +83,7 @@ public class Player : MonoBehaviour
         L_MoveState = new LionMoveState(this);
         L_JumpState = new LionJumpState(this);
         H_MoveState = new HumanMoveState(this);
+        H_NarrativeState = new HumanNarrativeState(this);
         StateMachine = new StateMachine(H_MoveState);
     }
 

@@ -9,20 +9,24 @@ public class CameraManager : MonoBehaviour
     [SerializeField] CinemachineVirtualCamera _leftCam;
     [SerializeField] CinemachineVirtualCamera _leftJumpCam;
     [SerializeField] CinemachineVirtualCamera _rightJumpCam;
+    [SerializeField] CinemachineVirtualCamera _narrativeCam;
 
     bool _isRightCam;
     bool _isJumpCam;
+    bool _isNarrativeCam;
 
     void OnEnable()
     {
         PlayerMoveState.DirectionChangeEvent += SwitchDirCameras;
         LionJumpState.JumpEvent += SwitchJumpCam;
+        HumanNarrativeState.NarrativeEvent += SwitchNarCameras;
     }
 
     void OnDisable()
     {
         PlayerMoveState.DirectionChangeEvent -= SwitchDirCameras;
         LionJumpState.JumpEvent -= SwitchJumpCam;
+        HumanNarrativeState.NarrativeEvent -= SwitchNarCameras;
     }
 
     void SwitchDirCameras(bool isFacingRight)
@@ -30,6 +34,16 @@ public class CameraManager : MonoBehaviour
         if (_isRightCam != isFacingRight)
         {
             _isRightCam = isFacingRight;
+
+            DecideCam();
+        }
+    }
+
+    void SwitchNarCameras(bool isNarrative)
+    {
+        if (_isNarrativeCam != isNarrative)
+        {
+            _isNarrativeCam = isNarrative;
 
             DecideCam();
         }
@@ -46,41 +60,56 @@ public class CameraManager : MonoBehaviour
 
     void DecideCam()
     {
-        // If is facing right and is not jumping
-        if (_isRightCam && !_isJumpCam)
+        if (_isNarrativeCam)
         {
-            _leftCam.Priority = 0;
-            _leftJumpCam.Priority = 0;
+            _narrativeCam.Priority = 1;
 
-            _rightCam.Priority = 1;
-            _rightJumpCam.Priority = 0;
-        }
-        // Else if is facing right and is jumping
-        else if (_isRightCam && _isJumpCam)
-        {
             _leftCam.Priority = 0;
-            _leftJumpCam.Priority = 0;
-
-            _rightCam.Priority = 0;
-            _rightJumpCam.Priority = 1;
-        }
-        // Else if is facing left and is not jumping
-        else if (!_isRightCam && !_isJumpCam)
-        {
-            _leftCam.Priority = 1;
             _leftJumpCam.Priority = 0;
 
             _rightCam.Priority = 0;
             _rightJumpCam.Priority = 0;
         }
-        // Else if is facing left and is jumping
         else 
         {
-            _leftCam.Priority = 0;
-            _leftJumpCam.Priority = 1;
+            _narrativeCam.Priority = 0;
 
-            _rightCam.Priority = 0;
-            _rightJumpCam.Priority = 0;
+            // If is facing right and is not jumping
+            if (_isRightCam && !_isJumpCam)
+            {
+                _leftCam.Priority = 0;
+                _leftJumpCam.Priority = 0;
+
+                _rightCam.Priority = 1;
+                _rightJumpCam.Priority = 0;
+            }
+            // Else if is facing right and is jumping
+            else if (_isRightCam && _isJumpCam)
+            {
+                _leftCam.Priority = 0;
+                _leftJumpCam.Priority = 0;
+
+                _rightCam.Priority = 0;
+                _rightJumpCam.Priority = 1;
+            }
+            // Else if is facing left and is not jumping
+            else if (!_isRightCam && !_isJumpCam)
+            {
+                _leftCam.Priority = 1;
+                _leftJumpCam.Priority = 0;
+
+                _rightCam.Priority = 0;
+                _rightJumpCam.Priority = 0;
+            }
+            // Else if is facing left and is jumping
+            else 
+            {
+                _leftCam.Priority = 0;
+                _leftJumpCam.Priority = 1;
+
+                _rightCam.Priority = 0;
+                _rightJumpCam.Priority = 0;
+            }
         }
     }
 }

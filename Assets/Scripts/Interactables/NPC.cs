@@ -26,6 +26,7 @@ public class NPC : MonoBehaviour, Interactable
     string _greetingText;
 
     public static Action<ItemType> CheckItemFound;
+    public static Action<bool> TalkEvent;
 
     void Start()
     {
@@ -51,6 +52,7 @@ public class NPC : MonoBehaviour, Interactable
 
             _greetingText = _greetingHuman;
             _UIPromptText = _UIPromptHuman;
+            TalkEvent?.Invoke(canInteract);
         }
         // If player is a lion
         else

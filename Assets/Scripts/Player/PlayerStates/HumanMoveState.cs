@@ -14,6 +14,9 @@ public class HumanMoveState : PlayerMoveState
     // Lion Transformation
     bool _canTransform;
 
+    // NPC Talking
+    bool _canTalk;
+
     public HumanMoveState(Player player) : base(player)
     {
 
@@ -23,11 +26,13 @@ public class HumanMoveState : PlayerMoveState
     {
         // Event Subscriptions
         Path.PathEvent += PathEventHandler;
-        MagicPool.MagicPoolEvent += MagicPoolEventHandler; 
+        MagicPool.MagicPoolEvent += MagicPoolEventHandler;
+        NPC.TalkEvent += NPCEventHandler;
 
         // Set Interactable Flags
         _onPath = false;
         _canTransform = false;
+        _canTalk = false;
 
         // Change Data
         Player.CurrentData = Player.HumanData;
@@ -44,18 +49,27 @@ public class HumanMoveState : PlayerMoveState
         // Event Subscriptions
         Path.PathEvent -= PathEventHandler;
         MagicPool.MagicPoolEvent -= MagicPoolEventHandler; 
+        NPC.TalkEvent -= NPCEventHandler;
     }
 
     public override void LogicUpdate()
     {
         PlayerInput();
 
+        // Interact logic
         if (Input.GetKeyDown(KeyCode.E))
         {
+            // If can transform into Lion
             if (_canTransform)
             {
                 _canTransform = false;
                 Player.StateMachine.ChangeState(Player.L_MoveState);
+            }
+
+            if (_canTalk)
+            {
+                _canTalk = false;
+                Player.StateMachine.ChangeState(Player.H_NarrativeState);
             }
         }
     }
@@ -91,6 +105,11 @@ public class HumanMoveState : PlayerMoveState
     {
         _canMoveY = canMove;
         _path = path;
+    }
+
+    void NPCEventHandler(bool canInteract)
+    {
+        _canTalk = canInteract;
     }
 
     void PathMove()
