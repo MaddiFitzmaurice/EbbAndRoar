@@ -27,7 +27,7 @@ public class HumanMoveState : PlayerMoveState
         // Event Subscriptions
         Path.PathEvent += PathEventHandler;
         MagicPool.MagicPoolEvent += MagicPoolEventHandler;
-        NPC.TalkEvent += NPCEventHandler;
+        NPC.StartNarrativeEvent += NPCEventHandler;
 
         // Set Interactable Flags
         _onPath = false;
@@ -49,7 +49,7 @@ public class HumanMoveState : PlayerMoveState
         // Event Subscriptions
         Path.PathEvent -= PathEventHandler;
         MagicPool.MagicPoolEvent -= MagicPoolEventHandler; 
-        NPC.TalkEvent -= NPCEventHandler;
+        NPC.StartNarrativeEvent -= NPCEventHandler;
     }
 
     public override void LogicUpdate()
@@ -107,7 +107,7 @@ public class HumanMoveState : PlayerMoveState
         _path = path;
     }
 
-    void NPCEventHandler(bool canInteract)
+    void NPCEventHandler(bool canInteract, Transform transform)
     {
         _canTalk = canInteract;
     }

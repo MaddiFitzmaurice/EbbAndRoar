@@ -15,10 +15,13 @@ public class CameraManager : MonoBehaviour
     bool _isJumpCam;
     bool _isNarrativeCam;
 
+    CinemachineTargetGroup _targetGroup;
+
     void OnEnable()
     {
         PlayerMoveState.DirectionChangeEvent += SwitchDirCameras;
         LionJumpState.JumpEvent += SwitchJumpCam;
+        NPC.StartNarrativeEvent += ChangeTargetGroup;
         HumanNarrativeState.NarrativeEvent += SwitchNarCameras;
     }
 
@@ -26,7 +29,18 @@ public class CameraManager : MonoBehaviour
     {
         PlayerMoveState.DirectionChangeEvent -= SwitchDirCameras;
         LionJumpState.JumpEvent -= SwitchJumpCam;
+        NPC.StartNarrativeEvent -= ChangeTargetGroup;
         HumanNarrativeState.NarrativeEvent -= SwitchNarCameras;
+    }
+
+    private void Start()
+    {
+        _targetGroup = GetComponentInChildren<CinemachineTargetGroup>();
+    }
+
+    void ChangeTargetGroup(bool flag, Transform npcTransform)
+    {
+        _targetGroup.m_Targets[1].target = npcTransform;
     }
 
     void SwitchDirCameras(bool isFacingRight)

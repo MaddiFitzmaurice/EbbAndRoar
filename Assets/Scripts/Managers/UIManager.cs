@@ -6,27 +6,44 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] TextMeshProUGUI _promptText;
+    [Header("UI Elements")]
+    [SerializeField] GameObject _gameUIPanel;
+    [SerializeField] GameObject _narrativeUIPanel;
 
+    // Gameplay UI
+    [Header("Gameplay UI")]
+    [SerializeField] TextMeshProUGUI _promptText;
     [SerializeField] List<Image> _itemsUI;
+    
+    // Item UI
     List<Item> _items;
     Vector4 _transparent = new Vector4(0, 0, 0, 50);
 
     void Start()
     {
         _promptText.gameObject.SetActive(false);
+        _narrativeUIPanel.SetActive(false);
+        _gameUIPanel.SetActive(false);   
     }
 
     void OnEnable()
     {
         Interactable.InteractUIPromptEvent += UpdatePromptUI;
         ItemManager.UpdateItemsCollectedEvent += UpdateUIItemsList;
+        HumanNarrativeState.NarrativeEvent += DisplayNarrativeUIPanel;
     }
 
     void OnDisable()
     {
         Interactable.InteractUIPromptEvent -= UpdatePromptUI;
         ItemManager.UpdateItemsCollectedEvent -= UpdateUIItemsList;
+        HumanNarrativeState.NarrativeEvent -= DisplayNarrativeUIPanel;
+    }
+
+    void DisplayNarrativeUIPanel(bool isActive)
+    {
+        _narrativeUIPanel.SetActive(isActive);
+        _gameUIPanel.SetActive(!isActive);
     }
 
     void UpdatePromptUI(string prompt, bool showPrompt)
