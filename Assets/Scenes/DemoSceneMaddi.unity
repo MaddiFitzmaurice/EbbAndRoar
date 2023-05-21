@@ -557,7 +557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2c40e37e41776d4a94981bff8a78f93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _gameUIPanel: {fileID: 789341485}
+  _itemsUIPanel: {fileID: 1146168011}
   _narrativeUIPanel: {fileID: 1405348458}
   _promptText: {fileID: 2046731101}
   _itemsUI:

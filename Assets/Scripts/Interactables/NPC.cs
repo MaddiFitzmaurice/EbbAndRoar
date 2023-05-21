@@ -127,7 +127,7 @@ public class NPC : MonoBehaviour, Interactable
 
     void HideGreeting(bool displayGreeting)
     {
-        if (_npcEventData.CanInteract)
+        if (_npcEventData.CanInteract && displayGreeting)
         {
             _interactText.text = _greetingText;
             _interactUI.gameObject.SetActive(!displayGreeting);

@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
 {
     #region UI Panels
     [Header("UI Panels")]
-    [SerializeField] GameObject _gameUIPanel;
+    [SerializeField] GameObject _itemsUIPanel;
     [SerializeField] GameObject _narrativeUIPanel;
     #endregion
 
@@ -58,7 +58,7 @@ public class UIManager : MonoBehaviour
     {
         _promptText.gameObject.SetActive(false);
         _narrativeUIPanel.SetActive(false);
-        _gameUIPanel.SetActive(true);   
+        _itemsUIPanel.SetActive(true);   
 
         SetupDialoguePanels();
     }
@@ -95,7 +95,10 @@ public class UIManager : MonoBehaviour
     void DisplayNarrativeUIPanel(bool isActive)
     {
         _narrativeUIPanel.SetActive(isActive);
-        _gameUIPanel.SetActive(!isActive);
+        _itemsUIPanel.SetActive(!isActive);
+
+        UpdatePromptUI("Press E to continue.", isActive);
+        
     }
 
     // Set panel data
