@@ -6,7 +6,8 @@ using System;
 public class HumanNarrativeState : BaseState
 {
     Player _player;
-    public static Action<bool> NarrativeEvent;
+    public static Action<bool> StartNarrativeEvent;
+    public static Action NarrativeInteractEvent;
 
     public HumanNarrativeState(Player player)
     {
@@ -16,20 +17,26 @@ public class HumanNarrativeState : BaseState
     public override void Enter()
     {
         Debug.Log("Entered narrative state");
-        NarrativeEvent?.Invoke(true);
+        StartNarrativeEvent?.Invoke(true);
     }
 
     public override void LogicUpdate()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            _player.StateMachine.ChangeState(_player.H_MoveState);
+            NarrativeInteractEvent?.Invoke();
+            //ExitNarrativeState();
         }
     }
 
     public override void Exit()
     {
         Debug.Log("Exited narrative state");
-        NarrativeEvent?.Invoke(false);
+        StartNarrativeEvent?.Invoke(false);
+    }
+
+    void ExitNarrativeState()
+    {
+            _player.StateMachine.ChangeState(_player.H_MoveState);
     }
 }

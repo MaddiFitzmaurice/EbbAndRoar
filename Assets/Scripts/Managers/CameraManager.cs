@@ -21,16 +21,16 @@ public class CameraManager : MonoBehaviour
     {
         PlayerMoveState.DirectionChangeEvent += SwitchDirCameras;
         LionJumpState.JumpEvent += SwitchJumpCam;
-        NPC.StartNarrativeEvent += ChangeTargetGroup;
-        HumanNarrativeState.NarrativeEvent += SwitchNarCameras;
+        NPC.SendNarrativeDataEvent += ChangeTargetGroup;
+        HumanNarrativeState.StartNarrativeEvent += SwitchNarCameras;
     }
 
     void OnDisable()
     {
         PlayerMoveState.DirectionChangeEvent -= SwitchDirCameras;
         LionJumpState.JumpEvent -= SwitchJumpCam;
-        NPC.StartNarrativeEvent -= ChangeTargetGroup;
-        HumanNarrativeState.NarrativeEvent -= SwitchNarCameras;
+        NPC.SendNarrativeDataEvent -= ChangeTargetGroup;
+        HumanNarrativeState.StartNarrativeEvent -= SwitchNarCameras;
     }
 
     private void Start()
@@ -38,9 +38,9 @@ public class CameraManager : MonoBehaviour
         _targetGroup = GetComponentInChildren<CinemachineTargetGroup>();
     }
 
-    void ChangeTargetGroup(bool flag, Transform npcTransform)
+    void ChangeTargetGroup(NPCEventData npcEventData)
     {
-        _targetGroup.m_Targets[1].target = npcTransform;
+        _targetGroup.m_Targets[1].target = npcEventData.Transform;
     }
 
     void SwitchDirCameras(bool isFacingRight)
