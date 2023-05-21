@@ -48,7 +48,6 @@ public class UIManager : MonoBehaviour
     #region Transparency Vectors
     // UI Transparency
     Vector4 _itemTransparency = new Vector4(0f, 0f, 0f, 50f);
-    Vector4 _panelTransparency = new Vector4(0f, 0f, 0f, 100f);
     #endregion
 
     void Start()
@@ -73,7 +72,7 @@ public class UIManager : MonoBehaviour
         Interactable.InteractUIPromptEvent -= UpdatePromptUI;
         ItemManager.UpdateItemsCollectedEvent -= UpdateUIItemsList;
         HumanNarrativeState.StartNarrativeEvent -= DisplayNarrativeUIPanel;
-        NarrativeManager.NarrativeUIEvent += UpdateNarrativeUIPanel;
+        NarrativeManager.NarrativeUIEvent -= UpdateNarrativeUIPanel;
     }
 
     void SetupDialoguePanels()
@@ -109,7 +108,7 @@ public class UIManager : MonoBehaviour
            panel = _leftDialoguePanel;
         }
 
-        panel.Image.color = (Vector4)data.PanelColour - _panelTransparency;
+        panel.Image.color = new Color(panel.Image.color.r, panel.Image.color.g, panel.Image.color.b, 0.4f);
         panel.Text.text = data.Dialogue;
     }
 

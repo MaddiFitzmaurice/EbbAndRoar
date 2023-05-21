@@ -29,6 +29,7 @@ public class NarrativeManager : MonoBehaviour
     // Narrative Event Data
     NarrativeUIData _narrativeUIData;
     public static Action<NarrativeUIData> NarrativeUIEvent;
+    public static Action EndOfNarrativeEvent;
 
     void OnEnable()
     {
@@ -68,7 +69,7 @@ public class NarrativeManager : MonoBehaviour
         }
         else
         {
-            //_dialogueText.text = "";
+            EndOfNarrativeEvent?.Invoke();
         }
     }
 

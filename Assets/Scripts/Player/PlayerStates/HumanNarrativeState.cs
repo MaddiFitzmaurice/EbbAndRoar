@@ -17,6 +17,8 @@ public class HumanNarrativeState : BaseState
     public override void Enter()
     {
         Debug.Log("Entered narrative state");
+        NarrativeManager.EndOfNarrativeEvent += ExitNarrativeState;
+
         StartNarrativeEvent?.Invoke(true);
     }
 
@@ -32,11 +34,12 @@ public class HumanNarrativeState : BaseState
     public override void Exit()
     {
         Debug.Log("Exited narrative state");
+        NarrativeManager.EndOfNarrativeEvent -= ExitNarrativeState;
         StartNarrativeEvent?.Invoke(false);
     }
 
     void ExitNarrativeState()
     {
-            _player.StateMachine.ChangeState(_player.H_MoveState);
+        _player.StateMachine.ChangeState(_player.H_MoveState);
     }
 }
