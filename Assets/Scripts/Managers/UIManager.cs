@@ -108,7 +108,7 @@ public class UIManager : MonoBehaviour
            panel = _leftDialoguePanel;
         }
 
-        panel.Image.color = new Color(panel.Image.color.r, panel.Image.color.g, panel.Image.color.b, 0.4f);
+        panel.Image.color = new Color(data.PanelColour.r, data.PanelColour.g, data.PanelColour.b, 0.4f);
         panel.Text.text = data.Dialogue;
     }
 

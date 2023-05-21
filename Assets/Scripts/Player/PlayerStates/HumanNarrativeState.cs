@@ -27,7 +27,6 @@ public class HumanNarrativeState : BaseState
         if (Input.GetKeyDown(KeyCode.E))
         {
             NarrativeInteractEvent?.Invoke();
-            //ExitNarrativeState();
         }
     }
 

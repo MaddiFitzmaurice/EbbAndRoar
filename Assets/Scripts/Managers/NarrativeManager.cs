@@ -24,7 +24,7 @@ public class NarrativeManager : MonoBehaviour
     Story _currentDialogue;
     bool _npcIsOnRightSide;
     Color _npcColour;
-    Color _playerColour = new Vector4(61f, 23f, 143f, 255f);
+    Color _playerColour = new Color(61/255f, 23/255f, 143/255f);
 
     // Narrative Event Data
     NarrativeUIData _narrativeUIData;
