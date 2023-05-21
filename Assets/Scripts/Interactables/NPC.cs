@@ -58,6 +58,16 @@ public class NPC : MonoBehaviour, Interactable
     public static Action<NPCEventData> SendNarrativeDataEvent;
     NPCEventData _npcEventData;
 
+    void OnEnable()
+    {
+        HumanNarrativeState.StartNarrativeEvent += HideGreeting;
+    }
+
+    void OnDisable()
+    {
+        HumanNarrativeState.StartNarrativeEvent -= HideGreeting;
+    }
+
     void Start()
     {
         _mainCam = Camera.main;
@@ -113,5 +123,14 @@ public class NPC : MonoBehaviour, Interactable
     {
         _interactText.text = _greetingText;
         _interactUI.gameObject.SetActive(displayGreeting);
+    }
+
+    void HideGreeting(bool displayGreeting)
+    {
+        if (_npcEventData.CanInteract)
+        {
+            _interactText.text = _greetingText;
+            _interactUI.gameObject.SetActive(!displayGreeting);
+        }
     }
 }

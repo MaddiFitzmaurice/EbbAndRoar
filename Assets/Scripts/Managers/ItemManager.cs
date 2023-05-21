@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public enum ItemType { Child, Tools }
+public enum ItemType { Child, Tools, Weapons }
 
 public class ItemManager : MonoBehaviour
 {

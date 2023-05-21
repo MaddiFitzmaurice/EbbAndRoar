@@ -2846,6 +2846,10 @@ PrefabInstance:
       value: 0.18039216
       objectReference: {fileID: 0}
     - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
+      propertyPath: _itemNeeded
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
       propertyPath: _UIPromptLion
       value: Transform back into a Human first!
       objectReference: {fileID: 0}
@@ -4605,6 +4609,10 @@ PrefabInstance:
       propertyPath: _interactUI
       value: 
       objectReference: {fileID: 1342808336}
+    - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
+      propertyPath: _itemNeeded
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6733520551029791442, guid: 256440ca5c5fe6544be67bee27f8ab91, type: 3}
       propertyPath: _UIPromptLion
       value: Transform back into a Human first!

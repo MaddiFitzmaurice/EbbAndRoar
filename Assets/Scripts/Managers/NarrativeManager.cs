@@ -34,12 +34,14 @@ public class NarrativeManager : MonoBehaviour
     void OnEnable()
     {
         NPC.SendNarrativeDataEvent += NPCEventDataHandler;
+        HumanNarrativeState.StartNarrativeEvent += StartDialogue;
         HumanNarrativeState.NarrativeInteractEvent += NextDialogue;
     }
 
     void OnDisable()
     {
         NPC.SendNarrativeDataEvent -= NPCEventDataHandler;
+        HumanNarrativeState.StartNarrativeEvent -= StartDialogue;
         HumanNarrativeState.NarrativeInteractEvent -= NextDialogue;
     }
 
@@ -69,6 +71,15 @@ public class NarrativeManager : MonoBehaviour
         else
         {
             EndOfNarrativeEvent?.Invoke();
+        }
+    }
+
+    // Initiate dialogue
+    void StartDialogue(bool start)
+    {
+        if (start)
+        {
+            NextDialogue();
         }
     }
 
