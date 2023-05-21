@@ -42,6 +42,10 @@ public class UIManager : MonoBehaviour
     DialoguePanel _leftDialoguePanel;
     #endregion
 
+    [Header("Narrative Dialogue Speed")]
+    [SerializeField] float _dialogueSpeed;
+    Coroutine _currentCoroutine;
+    
     // Item UI
     List<Item> _items;
 
@@ -110,7 +114,23 @@ public class UIManager : MonoBehaviour
 
         panel.Image.color = new Color(data.PanelColour.r, data.PanelColour.g, data.PanelColour.b, 0.4f);
         panel.Text.text = data.Dialogue;
+        _currentCoroutine = StartCoroutine(TypingEffect(data.Dialogue, panel));
     }
+
+    // Narrative UI Panel Functions
+    private IEnumerator TypingEffect(string line, DialoguePanel panel)
+    {
+        panel.Text.text = "";
+        int visibleChars = 0;
+
+        foreach (char letter in line.ToCharArray())
+        {
+            panel.Text.text += letter;
+            //PlayTalkingAudio(visibleChars, letter);
+            visibleChars++;
+            yield return new WaitForSeconds(_dialogueSpeed);
+        }
+    } 
 
     void ShowPanel(bool isRightPanel)
     {
@@ -118,6 +138,7 @@ public class UIManager : MonoBehaviour
         _rightDialoguePanel.Panel.SetActive(isRightPanel);
     }
 
+    // Game UI Panel Functions
     void UpdatePromptUI(string prompt, bool showPrompt)
     {
         _promptText.gameObject.SetActive(showPrompt);

@@ -566,6 +566,7 @@ MonoBehaviour:
   - {fileID: 1794270309}
   _rightDialogueObj: {fileID: 889996589}
   _leftDialogueObj: {fileID: 1923459101}
+  _dialogueSpeed: 0.05
 --- !u!1 &115803266
 GameObject:
   m_ObjectHideFlags: 0

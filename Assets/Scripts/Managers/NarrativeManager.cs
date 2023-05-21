@@ -65,7 +65,6 @@ public class NarrativeManager : MonoBehaviour
             string speaker = HandleTag(_currentDialogue.currentTags);
             SetSpeaker(speaker);
             NarrativeUIEvent?.Invoke(_narrativeUIData);
-            //_currentCoroutine = StartCoroutine(TypingEffect(line));
         }
         else
         {
