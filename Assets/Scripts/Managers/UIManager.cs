@@ -45,7 +45,7 @@ public class UIManager : MonoBehaviour
     [Header("Narrative Dialogue Speed")]
     [SerializeField] float _dialogueSpeed;
     Coroutine _currentCoroutine;
-    
+
     // Item UI
     List<Item> _items;
 
@@ -69,6 +69,7 @@ public class UIManager : MonoBehaviour
         ItemManager.UpdateItemsCollectedEvent += UpdateUIItemsList;
         HumanNarrativeState.StartNarrativeEvent += DisplayNarrativeUIPanel;
         NarrativeManager.NarrativeUIEvent += UpdateNarrativeUIPanel;
+        NarrativeManager.EndOfNarrativeEvent += ResetNarrativePanels;
     }
 
     void OnDisable()
@@ -77,6 +78,7 @@ public class UIManager : MonoBehaviour
         ItemManager.UpdateItemsCollectedEvent -= UpdateUIItemsList;
         HumanNarrativeState.StartNarrativeEvent -= DisplayNarrativeUIPanel;
         NarrativeManager.NarrativeUIEvent -= UpdateNarrativeUIPanel;
+        NarrativeManager.EndOfNarrativeEvent -= ResetNarrativePanels;
     }
 
     void SetupDialoguePanels()
@@ -99,7 +101,11 @@ public class UIManager : MonoBehaviour
     // Set panel data
     void UpdateNarrativeUIPanel(NarrativeUIData data)
     {
-        ShowPanel(data.UsePanelRightSide);
+        // Stop previous typing effect coroutine if player skips
+        if (_currentCoroutine != null)
+        {
+            StopCoroutine(_currentCoroutine);
+        }
 
         DialoguePanel panel;
 
@@ -113,7 +119,8 @@ public class UIManager : MonoBehaviour
         }
 
         panel.Image.color = new Color(data.PanelColour.r, data.PanelColour.g, data.PanelColour.b, 0.4f);
-        panel.Text.text = data.Dialogue;
+        //panel.Text.text = data.Dialogue;
+        ShowPanel(data.UsePanelRightSide);
         _currentCoroutine = StartCoroutine(TypingEffect(data.Dialogue, panel));
     }
 
@@ -136,6 +143,14 @@ public class UIManager : MonoBehaviour
     {
         _leftDialoguePanel.Panel.SetActive(!isRightPanel);
         _rightDialoguePanel.Panel.SetActive(isRightPanel);
+    }
+
+    void ResetNarrativePanels()
+    {
+        _leftDialoguePanel.Text.text = "";
+        _rightDialoguePanel.Text.text = "";
+        _leftDialoguePanel.Panel.SetActive(false);
+        _rightDialoguePanel.Panel.SetActive(false);
     }
 
     // Game UI Panel Functions
