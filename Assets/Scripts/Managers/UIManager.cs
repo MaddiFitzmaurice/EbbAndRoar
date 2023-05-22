@@ -132,27 +132,20 @@ public class UIManager : MonoBehaviour
     // Set panel data
     void UpdateNarrativeUIPanel(NarrativeUIData data)
     {
+        ResetChoicePanels();
+        
         // Stop previous typing effect coroutine if player skips
         if (_currentCoroutine != null)
         {
             StopCoroutine(_currentCoroutine);
         }
 
-        DialoguePanel panel;
-
         // Decide what panel to use
-        if (data.UsePanelRightSide)
-        {
-            panel = _rightDialoguePanel;
-        }
-        else
-        {
-           panel = _leftDialoguePanel;
-        }
+        DialoguePanel panel = data.UsePanelRightSide == true ? _rightDialoguePanel : _leftDialoguePanel;
 
-        // Set text and colour of panel
+        // Set text and colour of panel, then show chosen panel and start type effect
         panel.Image.color = new Color(data.PanelColour.r, data.PanelColour.g, data.PanelColour.b, 0.4f);
-        ShowPanel(data.UsePanelRightSide);
+        ShowDialoguePanel(data.UsePanelRightSide);
         _currentCoroutine = StartCoroutine(TypeDialogue(data, panel));
     }
 
@@ -183,24 +176,35 @@ public class UIManager : MonoBehaviour
         DisplayChoices(data.Choices, hasChoice);
     } 
 
-    void ShowPanel(bool isRightPanel)
+    // Show appropriate dialogue panel (left or right one)
+    void ShowDialoguePanel(bool isRightPanel)
     {
         _leftDialoguePanel.Panel.SetActive(!isRightPanel);
         _rightDialoguePanel.Panel.SetActive(isRightPanel);
     }
 
+    // Reset all narrative panels and deactivate them
     void ResetNarrativePanels()
     {
-        _leftDialoguePanel.Text.text = "";
-        _rightDialoguePanel.Text.text = "";
+        ResetDialoguePanels();
+        ResetChoicePanels();
+    }
+
+    void ResetChoicePanels()
+    {
         _choice1Text.text = "";
         _choice2Text.text = "";
-        _leftDialoguePanel.Panel.SetActive(false);
-        _rightDialoguePanel.Panel.SetActive(false);
         _choice1Obj.SetActive(false);
         _choice2Obj.SetActive(false);
     }
 
+    void ResetDialoguePanels()
+    {
+        _leftDialoguePanel.Text.text = "";
+        _rightDialoguePanel.Text.text = "";
+        _leftDialoguePanel.Panel.SetActive(false);
+        _rightDialoguePanel.Panel.SetActive(false);
+    }
     // Game UI Panel Functions
     void UpdatePromptUI(string prompt, bool showPrompt)
     {

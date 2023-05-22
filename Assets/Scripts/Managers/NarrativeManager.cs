@@ -77,6 +77,11 @@ public class NarrativeManager : MonoBehaviour
         }
     }
 
+    public void ChoiceSelected(int choiceIndex)
+    {
+        _currentDialogue.ChooseChoiceIndex(choiceIndex);
+    }
+
     // Initiate dialogue
     void StartDialogue(bool start)
     {
