@@ -8,12 +8,14 @@ public struct NarrativeUIData
 {
     public bool UsePanelRightSide;
     public string Dialogue;
+    public List<Choice> Choices;
     public Color PanelColour;
 
-    public NarrativeUIData(bool panelRightSide, string dialogue, Color colour)
+    public NarrativeUIData(bool panelRightSide, string dialogue, List<Choice> choices, Color colour)
     {
         UsePanelRightSide = panelRightSide;
         Dialogue = dialogue;
+        Choices = choices;
         PanelColour = colour;
     }
 }
@@ -47,7 +49,7 @@ public class NarrativeManager : MonoBehaviour
 
     void Start()
     {
-        _narrativeUIData = new NarrativeUIData(false, "", _playerColour);
+        _narrativeUIData = new NarrativeUIData(false, "", null, _playerColour);
     }
 
     // Set up new dialogue for UI
@@ -64,6 +66,7 @@ public class NarrativeManager : MonoBehaviour
         {
             string line = _currentDialogue.Continue();
             SetDialogue(line);
+            SetChoices(_currentDialogue.currentChoices);
             string speaker = HandleTag(_currentDialogue.currentTags);
             SetSpeaker(speaker);
             NarrativeUIEvent?.Invoke(_narrativeUIData);
@@ -86,6 +89,11 @@ public class NarrativeManager : MonoBehaviour
     void SetDialogue(string dialogue)
     {
         _narrativeUIData.Dialogue = dialogue;
+    }
+
+    void SetChoices(List<Choice> choices)
+    {
+        _narrativeUIData.Choices = choices;
     }
 
     void SetSpeaker(string speaker)

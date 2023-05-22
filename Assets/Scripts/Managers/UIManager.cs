@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using Ink.Runtime;
+using System;
 
 public struct DialoguePanel
 {
@@ -40,11 +42,16 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject _leftDialogueObj;
     DialoguePanel _rightDialoguePanel;
     DialoguePanel _leftDialoguePanel;
+    [SerializeField] GameObject _choice1Obj;
+    [SerializeField] GameObject _choice2Obj;
+    TextMeshProUGUI _choice1Text;
+    TextMeshProUGUI _choice2Text;
     #endregion
 
     [Header("Narrative Dialogue Speed")]
     [SerializeField] float _dialogueSpeed;
     Coroutine _currentCoroutine;
+    public static Action<bool> CanPressContinueEvent;
 
     // Item UI
     List<Item> _items;
@@ -90,6 +97,9 @@ public class UIManager : MonoBehaviour
 
         _leftDialoguePanel = new DialoguePanel(_leftDialogueObj, leftText, leftImage);
         _rightDialoguePanel = new DialoguePanel(_rightDialogueObj, rightText, rightImage);
+
+        _choice1Text = _choice1Obj.GetComponentInChildren<TextMeshProUGUI>();
+        _choice2Text = _choice2Obj.GetComponentInChildren<TextMeshProUGUI>();
     }
 
     void DisplayNarrativeUIPanel(bool isActive)
@@ -97,8 +107,26 @@ public class UIManager : MonoBehaviour
         _narrativeUIPanel.SetActive(isActive);
         _itemsUIPanel.SetActive(!isActive);
 
-        UpdatePromptUI("Press E to continue.", isActive);
-        
+        // Deactivate prompt UI until player can press continue
+        UpdatePromptUI("", false);
+    }
+
+    void DisplayChoices(List<Choice> choices, bool display)
+    {
+        if (display)
+        {
+            _choice1Text.text = choices[0].text;
+            _choice2Text.text = choices[1].text;
+
+            UpdatePromptUI("W/S to select. E to confirm.", true);
+        }
+        else 
+        {
+            UpdatePromptUI("Press E to continue.", true);
+        }
+
+        _choice1Obj.SetActive(display);
+        _choice2Obj.SetActive(display);
     }
 
     // Set panel data
@@ -112,6 +140,7 @@ public class UIManager : MonoBehaviour
 
         DialoguePanel panel;
 
+        // Decide what panel to use
         if (data.UsePanelRightSide)
         {
             panel = _rightDialoguePanel;
@@ -121,25 +150,37 @@ public class UIManager : MonoBehaviour
            panel = _leftDialoguePanel;
         }
 
+        // Set text and colour of panel
         panel.Image.color = new Color(data.PanelColour.r, data.PanelColour.g, data.PanelColour.b, 0.4f);
-        //panel.Text.text = data.Dialogue;
         ShowPanel(data.UsePanelRightSide);
-        _currentCoroutine = StartCoroutine(TypingEffect(data.Dialogue, panel));
+        _currentCoroutine = StartCoroutine(TypeDialogue(data, panel));
     }
 
     // Narrative UI Panel Functions
-    private IEnumerator TypingEffect(string line, DialoguePanel panel)
+    private IEnumerator TypeDialogue(NarrativeUIData data, DialoguePanel panel)
     {
+        // Stop player from pressing continue until dialogue is finished
+        CanPressContinueEvent?.Invoke(false);
+        UpdatePromptUI("", false);
+
         panel.Text.text = "";
         int visibleChars = 0;
 
-        foreach (char letter in line.ToCharArray())
+        // Print out characters one by one
+        foreach (char letter in data.Dialogue.ToCharArray())
         {
             panel.Text.text += letter;
             //PlayTalkingAudio(visibleChars, letter);
             visibleChars++;
             yield return new WaitForSeconds(_dialogueSpeed);
         }
+
+        // Allow player to press continue/select choice
+        CanPressContinueEvent?.Invoke(true);
+
+        // If choices are available, display them after typing has finished
+        bool hasChoice = data.Choices.Count != 0 ? true : false;
+        DisplayChoices(data.Choices, hasChoice);
     } 
 
     void ShowPanel(bool isRightPanel)
@@ -152,8 +193,12 @@ public class UIManager : MonoBehaviour
     {
         _leftDialoguePanel.Text.text = "";
         _rightDialoguePanel.Text.text = "";
+        _choice1Text.text = "";
+        _choice2Text.text = "";
         _leftDialoguePanel.Panel.SetActive(false);
         _rightDialoguePanel.Panel.SetActive(false);
+        _choice1Obj.SetActive(false);
+        _choice2Obj.SetActive(false);
     }
 
     // Game UI Panel Functions
