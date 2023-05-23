@@ -74,7 +74,8 @@ public class UIManager : MonoBehaviour
     void OnEnable()
     {
         Interactable.InteractUIPromptEvent += UpdatePromptUI;
-        ItemManager.UpdateItemsCollectedEvent += UpdateUIItemsList;
+        ItemManager.UpdateItemsFoundEvent += UpdateUIItemsFoundList;
+        ItemManager.UpdateItemsDeliveredEvent += UpdateUIItemsDeliveredList;
         HumanNarrativeState.StartNarrativeEvent += DisplayNarrativeUIPanel;
         NarrativeManager.NarrativeUIEvent += UpdateNarrativeUIPanel;
         NarrativeManager.EndOfNarrativeEvent += ResetNarrativePanels;
@@ -83,7 +84,8 @@ public class UIManager : MonoBehaviour
     void OnDisable()
     {
         Interactable.InteractUIPromptEvent -= UpdatePromptUI;
-        ItemManager.UpdateItemsCollectedEvent -= UpdateUIItemsList;
+        ItemManager.UpdateItemsFoundEvent -= UpdateUIItemsFoundList;
+        ItemManager.UpdateItemsDeliveredEvent -= UpdateUIItemsDeliveredList;
         HumanNarrativeState.StartNarrativeEvent -= DisplayNarrativeUIPanel;
         NarrativeManager.NarrativeUIEvent -= UpdateNarrativeUIPanel;
         NarrativeManager.EndOfNarrativeEvent -= ResetNarrativePanels;
@@ -223,7 +225,7 @@ public class UIManager : MonoBehaviour
     }
 
     // Update item list
-    void UpdateUIItemsList(List<Item> items)
+    void UpdateUIItemsFoundList(List<Item> items)
     {
         _items = items;
 
@@ -234,7 +236,13 @@ public class UIManager : MonoBehaviour
                 _itemsUI[i].sprite = _items[i].Sprite;
                 _itemsUI[i].color = Color.white;
             }
+        }
+    }
 
+    void UpdateUIItemsDeliveredList()
+    {
+        for (int i = 0; i < _items.Count; i++)
+        {
             if (_items[i].Delivered)
             {
                 _itemsUI[i].color = _itemTransparency;

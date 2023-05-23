@@ -63,6 +63,7 @@ public class NPC : MonoBehaviour, Interactable
 
     // Events
     public static Func<ItemType, bool> CheckItemFound;
+    public static Action<ItemType> ItemDeliveredEvent;
     public static Action<NPCEventData> SendNarrativeDataEvent;
     NPCEventData _npcEventData;
 
@@ -146,6 +147,7 @@ public class NPC : MonoBehaviour, Interactable
             else if (_npcEventData.CurrentDialogue == _itemFoundText)
             {
                 _infoGiven = true;
+                ItemDeliveredEvent?.Invoke(_itemNeeded);
             }
         }
        

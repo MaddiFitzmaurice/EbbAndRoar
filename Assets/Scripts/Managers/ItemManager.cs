@@ -8,23 +8,41 @@ public enum ItemType { Child, Tools, Weapons }
 public class ItemManager : MonoBehaviour
 {
     [SerializeField] List<Item> _items;
-    public static Action<List<Item>> UpdateItemsCollectedEvent;
+    public static Action<List<Item>> UpdateItemsFoundEvent;
+    public static Action UpdateItemsDeliveredEvent;
     
     void OnEnable()
     {
-        Item.ItemPickupEvent += UpdateItemsCollected;
+        Item.ItemPickupEvent += UpdateItemsFound;
         NPC.CheckItemFound += CheckItemFoundEvent;
+        NPC.ItemDeliveredEvent += UpdateItemsDelivered;
     }
 
     void OnDisable()
     {
-        Item.ItemPickupEvent -= UpdateItemsCollected;
+        Item.ItemPickupEvent -= UpdateItemsFound;
         NPC.CheckItemFound -= CheckItemFoundEvent;
+        NPC.ItemDeliveredEvent -= UpdateItemsDelivered;
     }
 
-    void UpdateItemsCollected()
+    void UpdateItemsFound()
     {
-        UpdateItemsCollectedEvent?.Invoke(_items);
+        UpdateItemsFoundEvent?.Invoke(_items);
+    }
+
+    void UpdateItemsDelivered(ItemType itemTypeFound)
+    {
+        foreach (Item item in _items)
+        {
+            if (item.ItemType == itemTypeFound)
+            {
+                if (item.Found)
+                {
+                    item.Delivered = true;
+                    UpdateItemsDeliveredEvent?.Invoke();
+                }
+            }
+        }
     }
 
     bool CheckItemFoundEvent(ItemType itemNeeded)
@@ -35,8 +53,7 @@ public class ItemManager : MonoBehaviour
             {
                 if (item.Found)
                 {
-                    item.Delivered = true;
-                    UpdateItemsCollected();
+                    UpdateItemsFound();
                     return true;
                 }
             }
