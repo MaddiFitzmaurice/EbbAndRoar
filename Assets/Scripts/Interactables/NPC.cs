@@ -42,7 +42,6 @@ public class NPC : MonoBehaviour, Interactable
     // Item Data
     [Header("Quest Item")]
     [SerializeField] ItemType _itemNeeded;
-    bool _hasItemNeeded;
 
     // Flavour Text
     [Header("Greeting Dialogue")]
@@ -52,28 +51,46 @@ public class NPC : MonoBehaviour, Interactable
 
     [Header("Quest Dialogue")]
     [SerializeField] TextAsset _introductionText;
+    [SerializeField] TextAsset _noItemText;
+    [SerializeField] TextAsset _itemFoundText;
+    [SerializeField] TextAsset _conclusionText;
+    
+    // Dialogue flags
+    bool _introDone;
+    bool _hasItem;
+    bool _infoGiven;
+    bool _isTalking;
 
     // Events
-    public static Action<ItemType> CheckItemFound;
+    public static Func<ItemType, bool> CheckItemFound;
     public static Action<NPCEventData> SendNarrativeDataEvent;
     NPCEventData _npcEventData;
 
     void OnEnable()
     {
         HumanNarrativeState.StartNarrativeEvent += HideGreeting;
+        NarrativeManager.EndOfNarrativeEvent += OnPlayerDialogueFinished;
     }
 
     void OnDisable()
     {
         HumanNarrativeState.StartNarrativeEvent -= HideGreeting;
+        NarrativeManager.EndOfNarrativeEvent -= OnPlayerDialogueFinished;
     }
 
     void Start()
     {
         _mainCam = Camera.main;
         _interactUI.gameObject.SetActive(false);
-        _hasItemNeeded = false;
+
+        _hasItem = false;
+        _introDone = false;
+        _infoGiven = false;
+        _isTalking = false;
+
         _interactText = _interactUI.GetComponentInChildren<TextMeshProUGUI>();
+
+        SetDialogue();
         _npcEventData = new NPCEventData(false, false, this.transform, _introductionText, _colour);
     }
 
@@ -92,7 +109,12 @@ public class NPC : MonoBehaviour, Interactable
         // If player is not a lion
         if (!isLion)
         {
-            CheckForFoundItem();
+            if (!_hasItem)
+            {
+                CheckForFoundItem();
+            }
+
+            SetDialogue();
 
             _greetingText = _greetingHuman;
             _UIPromptText = _UIPromptHuman;
@@ -107,15 +129,59 @@ public class NPC : MonoBehaviour, Interactable
             _UIPromptText = _UIPromptLion;
         }
 
+        _isTalking = true;
         DisplayGreeting(canInteract);
         Interactable.InteractUIPromptEvent?.Invoke(_UIPromptText, canInteract);
     }
 
+    void OnPlayerDialogueFinished()
+    {
+        if (_isTalking)
+        {
+            if (_npcEventData.CurrentDialogue == _introductionText)
+            {
+                Debug.Log("Intro done");
+                _introDone = true;
+            }
+            else if (_npcEventData.CurrentDialogue == _itemFoundText)
+            {
+                _infoGiven = true;
+            }
+        }
+       
+       _isTalking = false;
+    }
+
+    void SetDialogue()
+    {
+        // Set to intro dialogue if first meeting NPC
+        if (!_introDone && !_hasItem && !_infoGiven)
+        {
+            _npcEventData.CurrentDialogue = _introductionText;
+        }
+        // Set to no item dialogue if intro has been completed
+        else if (_introDone && !_hasItem && !_infoGiven)
+        {
+            _npcEventData.CurrentDialogue = _noItemText;
+        }
+        // Set to has item dialogue if item is in inventory
+        else if (_hasItem && !_infoGiven)
+        {
+            _npcEventData.CurrentDialogue = _itemFoundText;
+            _introDone = true;
+        }
+        // Set to conclusion dialogue after receiving information
+        else if (_hasItem && _infoGiven)
+        {
+            _npcEventData.CurrentDialogue = _conclusionText;
+        }
+    }
+
     void CheckForFoundItem()
     {
-        if (!_hasItemNeeded)
+        if (!_hasItem)
         {
-            CheckItemFound?.Invoke(_itemNeeded);
+            _hasItem = CheckItemFound.Invoke(_itemNeeded);
         }
     }
 

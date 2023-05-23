@@ -40,6 +40,19 @@ I can't blame them, really. It's sweet of the boy to see the good in everything.
 ...Even if he's wrong. #yellow
 
 And now he won't even come home! I can't tell if he's ignoring my calls or just can't hear them. #yellow
+
+    * I can keep an eye out for him, if you'd like? #purple
+        -> AcceptQuest
+    
+    * That's too bad. #purple
+        
+        Do you venture far from the village? I don't suppose you could look for my child while you're away? #yellow
+        
+        I can keep a lookout. #purple
+        -> AcceptQuest
+    
+=== AcceptQuest ===
+That would be wonderful, thank you kindly! #yellow
 -> DONE
         
 

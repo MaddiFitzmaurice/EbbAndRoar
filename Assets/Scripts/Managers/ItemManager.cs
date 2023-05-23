@@ -27,7 +27,7 @@ public class ItemManager : MonoBehaviour
         UpdateItemsCollectedEvent?.Invoke(_items);
     }
 
-    void CheckItemFoundEvent(ItemType itemNeeded)
+    bool CheckItemFoundEvent(ItemType itemNeeded)
     {
         foreach (Item item in _items)
         {
@@ -37,8 +37,11 @@ public class ItemManager : MonoBehaviour
                 {
                     item.Delivered = true;
                     UpdateItemsCollected();
+                    return true;
                 }
             }
         }
+
+        return false;
     }
 }

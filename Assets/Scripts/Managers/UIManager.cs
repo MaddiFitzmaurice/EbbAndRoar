@@ -46,6 +46,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject _choice2Obj;
     TextMeshProUGUI _choice1Text;
     TextMeshProUGUI _choice2Text;
+    Button _choice1Button;
     #endregion
 
     [Header("Narrative Dialogue Speed")]
@@ -88,6 +89,7 @@ public class UIManager : MonoBehaviour
         NarrativeManager.EndOfNarrativeEvent -= ResetNarrativePanels;
     }
 
+    // Cache elements of the dialogue panels on start
     void SetupDialoguePanels()
     {
         Image leftImage = _leftDialogueObj.GetComponent<Image>();
@@ -100,8 +102,10 @@ public class UIManager : MonoBehaviour
 
         _choice1Text = _choice1Obj.GetComponentInChildren<TextMeshProUGUI>();
         _choice2Text = _choice2Obj.GetComponentInChildren<TextMeshProUGUI>();
+        _choice1Button = _choice1Obj.GetComponent<Button>();
     }
 
+    // Display narrative UI if in narrative state
     void DisplayNarrativeUIPanel(bool isActive)
     {
         _narrativeUIPanel.SetActive(isActive);
@@ -111,10 +115,13 @@ public class UIManager : MonoBehaviour
         UpdatePromptUI("", false);
     }
 
+    // If choices available, display them
     void DisplayChoices(List<Choice> choices, bool display)
     {
         if (display)
         {
+            // Auto select first choice and set text
+            _choice1Button.Select();
             _choice1Text.text = choices[0].text;
             _choice2Text.text = choices[1].text;
 
@@ -129,7 +136,7 @@ public class UIManager : MonoBehaviour
         _choice2Obj.SetActive(display);
     }
 
-    // Set panel data
+    // Set panel data according to incoming narrative data
     void UpdateNarrativeUIPanel(NarrativeUIData data)
     {
         ResetChoicePanels();
@@ -149,7 +156,7 @@ public class UIManager : MonoBehaviour
         _currentCoroutine = StartCoroutine(TypeDialogue(data, panel));
     }
 
-    // Narrative UI Panel Functions
+    // Initiate typing effect and display prompt/choices after typing is done
     private IEnumerator TypeDialogue(NarrativeUIData data, DialoguePanel panel)
     {
         // Stop player from pressing continue until dialogue is finished
@@ -183,13 +190,14 @@ public class UIManager : MonoBehaviour
         _rightDialoguePanel.Panel.SetActive(isRightPanel);
     }
 
-    // Reset all narrative panels and deactivate them
+    // Reset all narrative UI elements and deactivate them
     void ResetNarrativePanels()
     {
         ResetDialoguePanels();
         ResetChoicePanels();
     }
 
+    // Resets choice panels and deactivates them
     void ResetChoicePanels()
     {
         _choice1Text.text = "";
@@ -198,6 +206,7 @@ public class UIManager : MonoBehaviour
         _choice2Obj.SetActive(false);
     }
 
+    // Resets dialogue panels and deactivates them
     void ResetDialoguePanels()
     {
         _leftDialoguePanel.Text.text = "";
@@ -205,13 +214,15 @@ public class UIManager : MonoBehaviour
         _leftDialoguePanel.Panel.SetActive(false);
         _rightDialoguePanel.Panel.SetActive(false);
     }
-    // Game UI Panel Functions
+    
+    // Update game UI prompt
     void UpdatePromptUI(string prompt, bool showPrompt)
     {
         _promptText.gameObject.SetActive(showPrompt);
         _promptText.text = prompt;
     }
 
+    // Update item list
     void UpdateUIItemsList(List<Item> items)
     {
         _items = items;
