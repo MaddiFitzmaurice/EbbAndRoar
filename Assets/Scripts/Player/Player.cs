@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public BoxCollider L_Collider;
     public BoxCollider L_SlipCollider;
     public CapsuleCollider H_Collider;
+    public CapsuleCollider H_SlipCollider;
     public BoxCollider GroundCheckCollider;
 
     // State Machine

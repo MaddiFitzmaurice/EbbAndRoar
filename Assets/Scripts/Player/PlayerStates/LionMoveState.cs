@@ -51,6 +51,7 @@ public class LionMoveState : PlayerMoveState
     void ChangeColliders()
     {
         Player.H_Collider.enabled = false;
+        Player.H_SlipCollider.enabled = false;
         Player.L_Collider.enabled = true;
         Player.L_SlipCollider.enabled = true;
     }

@@ -17,6 +17,9 @@ public class HumanMoveState : PlayerMoveState
     // NPC Talking
     bool _canTalk;
 
+    // Mechanism Interaction
+    bool _canOperateMech;
+
     public HumanMoveState(Player player) : base(player)
     {
 
@@ -33,6 +36,7 @@ public class HumanMoveState : PlayerMoveState
         _onPath = false;
         _canTransform = false;
         _canTalk = false;
+        _canOperateMech = false;
 
         // Change Data
         Player.CurrentData = Player.HumanData;
@@ -139,6 +143,7 @@ public class HumanMoveState : PlayerMoveState
     void ChangeColliders()
     {
         Player.H_Collider.enabled = true;
+        Player.H_SlipCollider.enabled = true;
         Player.L_Collider.enabled = false;
         Player.L_SlipCollider.enabled = false;
     }
