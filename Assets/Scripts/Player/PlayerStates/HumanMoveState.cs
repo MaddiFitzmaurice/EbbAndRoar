@@ -20,6 +20,8 @@ public class HumanMoveState : PlayerMoveState
     // Mechanism Interaction
     bool _canOperateMech;
 
+    public static Action OperatedMechEvent;
+
     public HumanMoveState(Player player) : base(player)
     {
 
@@ -31,6 +33,7 @@ public class HumanMoveState : PlayerMoveState
         Path.PathEvent += PathEventHandler;
         MagicPool.MagicPoolEvent += MagicPoolEventHandler;
         NPC.SendNarrativeDataEvent += NPCEventHandler;
+        Mechanism.MechanismEvent += MechanismEventHandler;
 
         // Set Interactable Flags
         _onPath = false;
@@ -54,6 +57,7 @@ public class HumanMoveState : PlayerMoveState
         Path.PathEvent -= PathEventHandler;
         MagicPool.MagicPoolEvent -= MagicPoolEventHandler; 
         NPC.SendNarrativeDataEvent -= NPCEventHandler;
+        Mechanism.MechanismEvent -= MechanismEventHandler;
     }
 
     public override void LogicUpdate()
@@ -74,6 +78,12 @@ public class HumanMoveState : PlayerMoveState
             {
                 _canTalk = false;
                 Player.StateMachine.ChangeState(Player.H_NarrativeState);
+            }
+
+            if (_canOperateMech)
+            {
+                _canOperateMech = false;
+                OperatedMechEvent?.Invoke();
             }
         }
     }
@@ -109,6 +119,11 @@ public class HumanMoveState : PlayerMoveState
     {
         _canMoveY = canMove;
         _path = path;
+    }
+
+    void MechanismEventHandler(bool canOperateMech)
+    {
+        _canOperateMech = canOperateMech;
     }
 
     void NPCEventHandler(NPCEventData npcEventData)
