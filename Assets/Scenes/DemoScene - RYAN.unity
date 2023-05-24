@@ -2648,7 +2648,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 505609198}
   m_LocalRotation: {x: 0.08713504, y: 0.021731881, z: -0.001901294, w: 0.9959577}
-  m_LocalPosition: {x: 17.492647, y: 9.117724, z: -11.758057}
+  m_LocalPosition: {x: 15.806648, y: 9.117724, z: -11.758057}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2716,7 +2716,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 535022456}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.624214, y: 5.99633, z: 3}
+  m_LocalPosition: {x: 17.664549, y: 5.9204006, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6304,7 +6304,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419804783}
   m_LocalRotation: {x: 0.08713504, y: 0.021731881, z: -0.001901294, w: 0.9959577}
-  m_LocalPosition: {x: 17.492647, y: 9.117724, z: -11.758057}
+  m_LocalPosition: {x: 15.806648, y: 9.117724, z: -11.758057}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6337,7 +6337,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1472414545}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.41, y: 0.2, z: -0.13}
+  m_LocalPosition: {x: 0, y: 0.12, z: 0}
   m_LocalScale: {x: 0.2, y: 0.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6385,12 +6385,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f8f1aeff7c0dc6b4db01aff4ce1dcc18, type: 3}
+  m_Sprite: {fileID: -2122347603, guid: c35adbe45ccd18b40a48a3be1e14df71, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 13.61, y: 11.45}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -6951,7 +6951,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1568686754}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 18.137, y: 5.013, z: 3}
+  m_LocalPosition: {x: 16.451, y: 5.013, z: 3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6982,9 +6982,9 @@ CapsuleCollider:
   m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.5
-  m_Height: 2.2
+  m_Height: 1.8
   m_Direction: 1
-  m_Center: {x: 0, y: 0.106, z: 0}
+  m_Center: {x: 0, y: -0.1, z: 0}
 --- !u!54 &1568686758
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7028,8 +7028,8 @@ MonoBehaviour:
   L_SlipCollider: {fileID: 1568686761}
   H_Collider: {fileID: 1568686757}
   GroundCheckCollider: {fileID: 210093477}
-  LionSprite: {fileID: 21300000, guid: cf205cd419cd6994d9bb986a66505710, type: 3}
-  HumanSprite: {fileID: 21300000, guid: f8f1aeff7c0dc6b4db01aff4ce1dcc18, type: 3}
+  LionSprite: {fileID: -1119789190, guid: 9a00497c44c9bcb449b6b5db89522795, type: 3}
+  HumanSprite: {fileID: -2122347603, guid: c35adbe45ccd18b40a48a3be1e14df71, type: 3}
   H_Speed: 8
   H_VelocityPower: 1.5
   H_Acceleration: 1.5
@@ -7064,8 +7064,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2, y: 1.9, z: 1}
-  m_Center: {x: 0, y: -0.05, z: 0}
+  m_Size: {x: 2, y: 2.1, z: 1}
+  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!65 &1568686761
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7085,8 +7085,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 2.1, y: 1.8, z: 1}
-  m_Center: {x: 0, y: -0.05, z: 0}
+  m_Size: {x: 2.1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0.05, z: 0}
 --- !u!1 &1573414214
 GameObject:
   m_ObjectHideFlags: 0
@@ -7392,7 +7392,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1709388904}
   m_LocalRotation: {x: 0.08715578, y: 0, z: 0, w: 0.9961947}
-  m_LocalPosition: {x: 18.843431, y: 8.5644865, z: -12.885091}
+  m_LocalPosition: {x: 17.994257, y: 8.5644865, z: -12.885091}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7932,7 +7932,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 300, y: 1, z: 1}
+  m_Size: {x: 300, y: 1, z: 50}
   m_Center: {x: 0, y: -5, z: 0}
 --- !u!114 &1818509703
 MonoBehaviour:
