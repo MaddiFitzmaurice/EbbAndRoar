@@ -14,6 +14,7 @@ public abstract class LionBaseJumpState : PlayerState
 
     public override void Enter()
     {
+        Player.Sprite.sprite = Player.LionJumpSprite;
         Jump();
         Physics.gravity = Player.GravityUp;
         JumpEvent?.Invoke(true);

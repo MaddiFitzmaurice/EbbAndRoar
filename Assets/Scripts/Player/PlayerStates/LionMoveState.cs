@@ -10,6 +10,7 @@ public class LionMoveState : PlayerState
     public override void Enter()
     {
         Debug.Log("Lion Move State");
+        Player.Sprite.sprite = Player.LionSprite;
     }
 
     public override void Exit()

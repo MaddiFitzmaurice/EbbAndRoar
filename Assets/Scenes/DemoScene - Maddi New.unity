@@ -8908,6 +8908,7 @@ MonoBehaviour:
   - {fileID: 383005897}
   GroundCheckCollider: {fileID: 210093477}
   LionSprite: {fileID: 772722877, guid: 3fb646077c6a0b94f95b79bb1c1db11d, type: 3}
+  LionJumpSprite: {fileID: -166072619, guid: 236de2ee18e771543a2fb1e4cfb932cd, type: 3}
   HumanSprite: {fileID: -2122347603, guid: c35adbe45ccd18b40a48a3be1e14df71, type: 3}
   H_Speed: 8
   H_VelocityPower: 1.5
