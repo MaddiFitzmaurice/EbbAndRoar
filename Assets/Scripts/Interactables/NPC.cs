@@ -102,7 +102,7 @@ public class NPC : MonoBehaviour, Interactable
 
     public void OnPlayerInteract(Collider player, bool canInteract)
     {
-        bool isLion = player.GetComponent<Player>().IsLion;
+        bool isLion = player.GetComponentInParent<Player>().IsLion;
 
         // Find out what side of the player the NPC is on
         _npcEventData.IsOnRightSide = player.transform.position.x > transform.position.x ? false : true;

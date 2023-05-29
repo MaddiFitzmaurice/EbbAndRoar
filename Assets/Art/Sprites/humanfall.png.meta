@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9a00497c44c9bcb449b6b5db89522795
+guid: 5ed64e67e0eec534db495370c9932363
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,22 +107,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: newlion_0
+      name: maincharacterjump_0
       rect:
         serializedVersion: 2
-        x: 295
-        y: 37
-        width: 1361
-        height: 1145
-      alignment: 9
-      pivot: {x: 0.4917663, y: 0.5}
+        x: 396
+        y: 293
+        width: 1059
+        height: 861
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 75f73a21ad6299e4e8e3101dd2d8818c
-      internalID: -1119789190
+      spriteID: 8ab010a374b986a4dbaf5e4ea86f419e
+      internalID: 841919276
       vertices: []
       indices: 
       edges: []
@@ -130,7 +130,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: be55858e25d229a4a842cc222a2aa593
+    spriteID: eacb409e1f8cdca4ea40557a36d9fb1e
     internalID: 0
     vertices: []
     indices: 
@@ -138,7 +138,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      newlion_0: -1119789190
+      maincharacterjump_0: 841919276
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

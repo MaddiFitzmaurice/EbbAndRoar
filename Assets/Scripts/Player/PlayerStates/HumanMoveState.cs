@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using Unity.VisualScripting;
 
-public class HumanMoveState : PlayerMoveState
+public class HumanMoveState : PlayerState
 {
     // Path Movement
     bool _onPath;
@@ -36,17 +36,9 @@ public class HumanMoveState : PlayerMoveState
         Mechanism.MechanismEvent += MechanismEventHandler;
 
         // Set Interactable Flags
-        _onPath = false;
-        _canTransform = false;
-        _canTalk = false;
-        _canOperateMech = false;
+        ResetInteractableFlags();
 
-        // Change Data
-        Player.CurrentData = Player.HumanData;
-        Player.Sprite.sprite = Player.HumanSprite;
-        ChangeColliders();
-        Player.IsLion = false;
-        Player.LionTimer = 0;
+        ChangeToLion(false);
 
         Debug.Log("Human");
     }
@@ -71,7 +63,7 @@ public class HumanMoveState : PlayerMoveState
             if (_canTransform)
             {
                 _canTransform = false;
-                Player.StateMachine.ChangeState(Player.L_MoveState);
+                Player.StateMachine.ChangeState(Player.L_IdleState);
             }
 
             if (_canTalk)
@@ -107,6 +99,14 @@ public class HumanMoveState : PlayerMoveState
                 }
             }
         }
+    }
+
+    void ResetInteractableFlags()
+    {
+        _onPath = false;
+        _canTransform = false;
+        _canTalk = false;
+        _canOperateMech = false;
     }
 
     // Interactable Handlers
@@ -153,13 +153,5 @@ public class HumanMoveState : PlayerMoveState
 
         Player.transform.position = currentPath.ConnectedPath.position;
         _onPath = false;
-    }
-
-    void ChangeColliders()
-    {
-        Player.H_Collider.enabled = true;
-        Player.H_SlipCollider.enabled = true;
-        Player.L_Collider.enabled = false;
-        Player.L_SlipCollider.enabled = false;
     }
 }

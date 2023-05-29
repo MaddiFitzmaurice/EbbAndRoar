@@ -33,7 +33,7 @@ public class Mechanism : MonoBehaviour, Interactable
 
     public void OnPlayerInteract(Collider player, bool canInteract)
     {
-        bool isLion = player.GetComponent<Player>().IsLion;
+        bool isLion = player.GetComponentInParent<Player>().IsLion;
 
         if (!isLion)
         {
@@ -55,7 +55,6 @@ public class Mechanism : MonoBehaviour, Interactable
 
     IEnumerator PlatformMovement()
     {
-        Debug.Log("Huh");
         _mechanismPlatform.transform.localPosition = _activatedPosition;
         yield return new WaitForSeconds(_timeActive);
         _mechanismPlatform.transform.localPosition = _deactivatedPosition;

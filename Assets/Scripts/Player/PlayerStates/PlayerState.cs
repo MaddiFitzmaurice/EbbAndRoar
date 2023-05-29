@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class PlayerMoveState : BaseState
+public class PlayerState : BaseState
 {
     public static Action<bool> DirectionChangeEvent;
 
     protected Player Player;
 
-    public PlayerMoveState(Player player)
+    public PlayerState(Player player)
     {
         Player = player;
     }
@@ -17,17 +17,12 @@ public class PlayerMoveState : BaseState
     public override void LogicUpdate()
     {
         GetXInput();
-
-        if (Player.IsLion)
-        {
-            Player.LionTimer += Time.deltaTime;
-        }
+        Player.IsGrounded = GroundCheck();
     }
 
     public override void PhysicsUpdate()
     {
         PlayerMovement();
-        Player.IsGrounded = GroundCheck();
     }
 
     public void PlayerMovement()
@@ -53,24 +48,53 @@ public class PlayerMoveState : BaseState
     {
         Player.XInput = Input.GetAxisRaw("Horizontal");
 
-        // Check facing direction and update camera blend
+        // Check facing direction and update what it influences
+        // Right facing
         if (Player.XInput == 1)
         {
             Player.IsFacingRight = true;
-            Player.Sprite.flipX = false;
+            Player.transform.right = Vector3.right;
         }
+        // Left facing
         else if (Player.XInput == -1)
         {
             Player.IsFacingRight = false;
-            Player.Sprite.flipX = true;
+            Player.transform.right = Vector3.left;
         }
 
         DirectionChangeEvent?.Invoke(Player.IsFacingRight);
     }
 
+    // Change Player Data, Sprite, and Colliders
+    protected void ChangeToLion(bool isLion)
+    {
+        foreach (Collider collider in Player.L_Colliders)
+        {
+            collider.enabled = isLion;
+        }
+
+        foreach (Collider collider in Player.H_Colliders)
+        {
+            collider.enabled = !isLion;
+        }
+
+        if (isLion)
+        {
+            Player.IsLion = true;
+            Player.CurrentData = Player.LionData;
+            Player.Sprite.sprite = Player.LionSprite;
+        }
+        else 
+        {
+            Player.IsLion = false;
+            Player.CurrentData = Player.HumanData;
+            Player.Sprite.sprite = Player.HumanSprite;
+        }
+    }
+
     protected bool GroundCheck()
     {
-        return Physics.BoxCast(Player.transform.position, Player.GroundCheckCollider.bounds.extents * 2, Vector3.down,
-            out RaycastHit hit, Player.transform.rotation, 1f, LayerMask.GetMask("Walkable"));
+        return Physics.BoxCast(Player.L_Colliders[1].gameObject.transform.position, Player.GroundCheckCollider.bounds.extents * 2, Vector3.down,
+            out RaycastHit hit, Player.transform.rotation, 0.7f, LayerMask.GetMask("Walkable"));
     }
 }

@@ -19,16 +19,16 @@ public class CameraManager : MonoBehaviour
 
     void OnEnable()
     {
-        PlayerMoveState.DirectionChangeEvent += SwitchDirCameras;
-        LionJumpState.JumpEvent += SwitchJumpCam;
+        PlayerState.DirectionChangeEvent += SwitchDirCameras;
+        LionMoveJumpState.JumpEvent += SwitchJumpCam;
         NPC.SendNarrativeDataEvent += ChangeTargetGroup;
         HumanNarrativeState.StartNarrativeEvent += SwitchNarCameras;
     }
 
     void OnDisable()
     {
-        PlayerMoveState.DirectionChangeEvent -= SwitchDirCameras;
-        LionJumpState.JumpEvent -= SwitchJumpCam;
+        PlayerState.DirectionChangeEvent -= SwitchDirCameras;
+        LionMoveJumpState.JumpEvent -= SwitchJumpCam;
         NPC.SendNarrativeDataEvent -= ChangeTargetGroup;
         HumanNarrativeState.StartNarrativeEvent -= SwitchNarCameras;
     }

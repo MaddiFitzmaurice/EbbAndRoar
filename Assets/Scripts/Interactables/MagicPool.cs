@@ -12,7 +12,7 @@ public class MagicPool : MonoBehaviour, Interactable
 
     public void OnPlayerInteract(Collider player, bool canInteract)
     {
-        bool isLion = player.GetComponent<Player>().IsLion;
+        bool isLion = player.GetComponentInParent<Player>().IsLion;
 
         if (!isLion)
         {

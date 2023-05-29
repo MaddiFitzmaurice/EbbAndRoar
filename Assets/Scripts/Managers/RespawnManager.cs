@@ -20,9 +20,13 @@ public class RespawnManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Player"))
+        Player player = other.GetComponentInParent<Player>();
+        
+        if (player.gameObject.CompareTag("Player"))
         { 
-            other.gameObject.transform.position = _currentRespawnPoint;
+            // Reset gravity
+            Physics.gravity = player.GravityNorm;
+            player.gameObject.transform.position = _currentRespawnPoint;
         }
     }
 

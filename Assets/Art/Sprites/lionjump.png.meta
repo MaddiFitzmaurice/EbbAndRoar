@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f8f1aeff7c0dc6b4db01aff4ce1dcc18
+guid: 236de2ee18e771543a2fb1e4cfb932cd
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -105,18 +105,40 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: maincharacterlionjump_0
+      rect:
+        serializedVersion: 2
+        x: 39
+        y: 433
+        width: 1633
+        height: 755
+      alignment: 9
+      pivot: {x: 0.6, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d129056e9e5f5564fbe8e95b6f7e487a
+      internalID: -166072619
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    spriteID: b701b0a259222364b9fb8fcd34597af7
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      maincharacterlionjump_0: -166072619
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
