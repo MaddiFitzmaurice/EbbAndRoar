@@ -32,6 +32,7 @@ public class NPC : MonoBehaviour, Interactable
     [Header("UI Interact Prompt")]
     [SerializeField] private GameObject _greetingUI;
     [SerializeField] private GameObject _questUI;
+    [SerializeField] private GameObject _interactUI;
     private TextMeshProUGUI _interactText;
     [SerializeField] string _UIPromptLion;
     [SerializeField] string _UIPromptHuman;
@@ -115,6 +116,7 @@ public class NPC : MonoBehaviour, Interactable
             _greetingText = _greetingHuman;
             _UIPromptText = _UIPromptHuman;
 
+            _interactUI.SetActive(canInteract);
             _npcEventData.CanInteract = canInteract;
             SendNarrativeDataEvent?.Invoke(_npcEventData);
         }
@@ -198,6 +200,7 @@ public class NPC : MonoBehaviour, Interactable
         if (_npcEventData.CanInteract && displayGreeting)
         {
             _interactText.text = _greetingText;
+            _interactUI.SetActive(!displayGreeting);
             _greetingUI.gameObject.SetActive(!displayGreeting);
             _questUI.gameObject.SetActive(!displayGreeting);
         }

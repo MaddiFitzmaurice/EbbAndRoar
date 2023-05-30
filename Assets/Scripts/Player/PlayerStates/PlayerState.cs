@@ -136,6 +136,5 @@ public class PlayerState : BaseState
     public void MagicPoolEventHandler(bool canTransform)
     {
         _canTransform = canTransform;
-        Debug.Log(_canTransform);
     }
 }

@@ -11,8 +11,14 @@ public class Path : MonoBehaviour, Interactable
     public Transform ConnectedPath;
     [SerializeField] string _UIPromptLion;
     [SerializeField] string _UIPromptHuman;
+    [SerializeField] GameObject _interactUI;
     string _UIPromptText;
     public static Action<Path, bool> PathEvent;
+
+    void Start()
+    {
+        _interactUI.SetActive(false);
+    }
 
     public void OnPlayerInteract(Collider player, bool canInteract)
     {
@@ -21,6 +27,7 @@ public class Path : MonoBehaviour, Interactable
         // If is Human
         if (!isLion)
         {
+            _interactUI.SetActive(canInteract);
             _UIPromptText = _UIPromptHuman;
             PathEvent?.Invoke(this, canInteract);
         }
@@ -30,6 +37,6 @@ public class Path : MonoBehaviour, Interactable
             _UIPromptText = _UIPromptLion;
         }
 
-        Interactable.InteractUIPromptEvent?.Invoke(_UIPromptText, canInteract);
+        //Interactable.InteractUIPromptEvent?.Invoke(_UIPromptText, canInteract);
     }
 }
