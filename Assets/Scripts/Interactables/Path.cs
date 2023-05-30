@@ -36,7 +36,5 @@ public class Path : MonoBehaviour, Interactable
         {
             _UIPromptText = _UIPromptLion;
         }
-
-        //Interactable.InteractUIPromptEvent?.Invoke(_UIPromptText, canInteract);
     }
 }

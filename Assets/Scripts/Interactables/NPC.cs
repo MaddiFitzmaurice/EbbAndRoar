@@ -33,9 +33,7 @@ public class NPC : MonoBehaviour, Interactable
     [SerializeField] private GameObject _greetingUI;
     [SerializeField] private GameObject _questUI;
     [SerializeField] private GameObject _interactUI;
-    private TextMeshProUGUI _interactText;
-    [SerializeField] string _UIPromptLion;
-    [SerializeField] string _UIPromptHuman;
+    private TextMeshProUGUI _greetingText;
     string _UIPromptText;
     
     // Billboarding
@@ -46,10 +44,8 @@ public class NPC : MonoBehaviour, Interactable
     [SerializeField] ItemType _itemNeeded;
 
     // Flavour Text
-    [Header("Greeting Dialogue")]
-    [SerializeField] string _greetingLion;
-    [SerializeField] string _greetingHuman;
-    string _greetingText;
+    [Header("Greeting Lion Dialogue")]
+    [SerializeField] string _greetingLionText;
 
     [Header("Quest Dialogue")]
     [SerializeField] TextAsset _introductionText;
@@ -113,9 +109,6 @@ public class NPC : MonoBehaviour, Interactable
 
             SetDialogue();
 
-            _greetingText = _greetingHuman;
-            _UIPromptText = _UIPromptHuman;
-
             _interactUI.SetActive(canInteract);
             _npcEventData.CanInteract = canInteract;
             SendNarrativeDataEvent?.Invoke(_npcEventData);
@@ -123,23 +116,23 @@ public class NPC : MonoBehaviour, Interactable
         // If player is a lion
         else
         {
-            _greetingText = _greetingLion;
-            _UIPromptText = _UIPromptLion;
+            _greetingUI.SetActive(canInteract);
         }
 
         _isTalking = true;
         DisplayGreeting(canInteract);
-        Interactable.InteractUIPromptEvent?.Invoke(_UIPromptText, canInteract);
     }
 
     void OnPlayerDialogueFinished()
     {
         if (_isTalking)
         {
+            // Signals introduction has been completed
             if (_npcEventData.CurrentDialogue == _introductionText)
             {
                 _introDone = true;
             }
+            // Signals quest has been completed
             else if (_npcEventData.CurrentDialogue == _itemFoundText)
             {
                 _infoGiven = true;
@@ -185,10 +178,8 @@ public class NPC : MonoBehaviour, Interactable
     }
 
     void DisplayGreeting(bool displayGreeting)
-    {
-        _interactText.text = _greetingText;
-        _greetingUI.gameObject.SetActive(displayGreeting);
-        
+    {        
+        // Deactivate quest icon and reactivate if quest has not been completed
         if (!_infoGiven)
         {
             _questUI.gameObject.SetActive(!displayGreeting);
@@ -199,7 +190,6 @@ public class NPC : MonoBehaviour, Interactable
     {
         if (_npcEventData.CanInteract && displayGreeting)
         {
-            _interactText.text = _greetingText;
             _interactUI.SetActive(!displayGreeting);
             _greetingUI.gameObject.SetActive(!displayGreeting);
             _questUI.gameObject.SetActive(!displayGreeting);
@@ -218,6 +208,7 @@ public class NPC : MonoBehaviour, Interactable
     {
         _greetingUI.gameObject.SetActive(false);
         _questUI.gameObject.SetActive(true);
-        _interactText = _greetingUI.GetComponentInChildren<TextMeshProUGUI>();
+        _greetingText = _greetingUI.GetComponentInChildren<TextMeshProUGUI>();
+        _greetingText.text = _greetingLionText;
     }
 }

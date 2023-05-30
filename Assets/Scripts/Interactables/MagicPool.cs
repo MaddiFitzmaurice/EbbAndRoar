@@ -5,6 +5,9 @@ using System;
 
 public class MagicPool : MonoBehaviour, Interactable
 {
+    [SerializeField] GameObject _interactUI;
+
+    // Events
     public static Action<bool> MagicPoolEvent;
     public static Action<Vector3> NewRespawnPointEvent;
 
@@ -14,14 +17,7 @@ public class MagicPool : MonoBehaviour, Interactable
     {
         bool isLion = player.GetComponentInParent<Player>().IsLion;
 
-        if (!isLion)
-        {
-            Interactable.InteractUIPromptEvent?.Invoke("Press E to transform into a Lion.", canInteract);
-        }
-        else 
-        {
-            Interactable.InteractUIPromptEvent?.Invoke("Press E to transform into a Human.", canInteract);
-        }
+        _interactUI.SetActive(canInteract);
         
         MagicPoolEvent?.Invoke(canInteract);
 
