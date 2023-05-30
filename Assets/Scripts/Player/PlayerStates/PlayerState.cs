@@ -8,15 +8,28 @@ public class PlayerState : BaseState
     public static Action<bool> DirectionChangeEvent;
 
     protected Player Player;
+    bool _canTransform;
 
     public PlayerState(Player player)
     {
         Player = player;
+        MagicPool.MagicPoolEvent += MagicPoolEventHandler;
+    }
+
+    ~PlayerState()
+    {
+        MagicPool.MagicPoolEvent -= MagicPoolEventHandler;
+    }
+
+    public override void Enter()
+    {
+        _canTransform = false;
     }
 
     public override void LogicUpdate()
     {
         GetXInput();
+        TransformForm();
         Player.IsGrounded = GroundCheck();
     }
 
@@ -96,5 +109,32 @@ public class PlayerState : BaseState
     {
         return Physics.BoxCast(Player.L_Colliders[1].gameObject.transform.position, Player.GroundCheckCollider.bounds.extents * 2, Vector3.down,
             out RaycastHit hit, Player.transform.rotation, 0.7f, LayerMask.GetMask("Walkable"));
+    }
+
+    public void TransformForm()
+    {
+        // Interact logic
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            // If can transform
+            if (_canTransform)
+            {
+                // If is not lion
+                if (!Player.IsLion)
+                {
+                    Player.StateMachine.ChangeState(Player.L_IdleState);
+                }
+                // If is lion
+                else 
+                {
+                    Player.StateMachine.ChangeState(Player.H_MoveState);
+                }
+            }
+        }
+    }
+
+    void MagicPoolEventHandler(bool canTransform)
+    {
+        _canTransform = canTransform;
     }
 }

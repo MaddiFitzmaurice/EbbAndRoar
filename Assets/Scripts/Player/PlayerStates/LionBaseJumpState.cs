@@ -14,7 +14,6 @@ public abstract class LionBaseJumpState : PlayerState
 
     public override void Enter()
     {
-        Player.Sprite.sprite = Player.LionJumpSprite;
         Jump();
         Physics.gravity = Player.GravityUp;
         JumpEvent?.Invoke(true);
@@ -38,7 +37,7 @@ public abstract class LionBaseJumpState : PlayerState
         // If player has passed height of their jump
         if (Player.Rb.velocity.y < 0)
         {
-            Physics.gravity = Player.GravityDown;
+            Physics.gravity = Player.GravityDown;            
         }
 
         // If player has landed

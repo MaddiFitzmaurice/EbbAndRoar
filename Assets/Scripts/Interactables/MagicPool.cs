@@ -16,13 +16,14 @@ public class MagicPool : MonoBehaviour, Interactable
 
         if (!isLion)
         {
-            MagicPoolEvent?.Invoke(canInteract);
-            Interactable.InteractUIPromptEvent?.Invoke("Press E to transform.", canInteract);
+            Interactable.InteractUIPromptEvent?.Invoke("Press E to transform into a Lion.", canInteract);
         }
         else 
         {
-            Interactable.InteractUIPromptEvent?.Invoke("The water seems unresponsive now...", canInteract);
+            Interactable.InteractUIPromptEvent?.Invoke("Press E to transform into a Human.", canInteract);
         }
+        
+        MagicPoolEvent?.Invoke(canInteract);
 
         // Update current respawn point to magic pool
         NewRespawnPointEvent?.Invoke(this.transform.position + _spawnPointOffset);

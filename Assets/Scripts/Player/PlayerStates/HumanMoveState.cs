@@ -11,14 +11,14 @@ public class HumanMoveState : PlayerState
     bool _canMoveY;
     Path _path;
 
-    // Lion Transformation
-    bool _canTransform;
-
     // NPC Talking
     bool _canTalk;
 
     // Mechanism Interaction
     bool _canOperateMech;
+
+    // Falling
+    bool _isFalling;
 
     public static Action OperatedMechEvent;
 
@@ -26,12 +26,11 @@ public class HumanMoveState : PlayerState
     {
 
     }
-
-    public override void Enter()
+    
+    public override void Enter() 
     {
         // Event Subscriptions
         Path.PathEvent += PathEventHandler;
-        MagicPool.MagicPoolEvent += MagicPoolEventHandler;
         NPC.SendNarrativeDataEvent += NPCEventHandler;
         Mechanism.MechanismEvent += MechanismEventHandler;
 
@@ -39,6 +38,7 @@ public class HumanMoveState : PlayerState
         ResetInteractableFlags();
 
         ChangeToLion(false);
+        _isFalling = false;
 
         Debug.Log("Human");
     }
@@ -47,7 +47,6 @@ public class HumanMoveState : PlayerState
     {
         // Event Subscriptions
         Path.PathEvent -= PathEventHandler;
-        MagicPool.MagicPoolEvent -= MagicPoolEventHandler; 
         NPC.SendNarrativeDataEvent -= NPCEventHandler;
         Mechanism.MechanismEvent -= MechanismEventHandler;
     }
@@ -55,17 +54,12 @@ public class HumanMoveState : PlayerState
     public override void LogicUpdate()
     {
         PlayerInput();
+        IsFalling();
+        TransformForm();
 
         // Interact logic
         if (Input.GetKeyDown(KeyCode.E))
         {
-            // If can transform into Lion
-            if (_canTransform)
-            {
-                _canTransform = false;
-                Player.StateMachine.ChangeState(Player.L_IdleState);
-            }
-
             if (_canTalk)
             {
                 _canTalk = false;
@@ -104,15 +98,8 @@ public class HumanMoveState : PlayerState
     void ResetInteractableFlags()
     {
         _onPath = false;
-        _canTransform = false;
         _canTalk = false;
         _canOperateMech = false;
-    }
-
-    // Interactable Handlers
-    void MagicPoolEventHandler(bool canTransform)
-    {
-        _canTransform = canTransform;
     }
 
     void PathEventHandler(Path path, bool canMove)
@@ -153,5 +140,19 @@ public class HumanMoveState : PlayerState
 
         Player.transform.position = currentPath.ConnectedPath.position;
         _onPath = false;
+    }
+
+    void IsFalling()
+    {
+        if (Player.Rb.velocity.y < -1f && !_isFalling && !GroundCheck())
+        {
+            _isFalling = true;
+            Player.Sprite.sprite = Player.HumanFallingSprite;
+        }
+        else if (Player.Rb.velocity.y >= -1f && _isFalling && GroundCheck()) 
+        {
+            _isFalling = false;
+            Player.Sprite.sprite = Player.HumanSprite;
+        }
     }
 }

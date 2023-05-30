@@ -6,7 +6,9 @@ using UnityEngine;
 
 public class RespawnManager : MonoBehaviour
 {
-    Vector3 _currentRespawnPoint;
+    // Default spawn point to start of tutorial if somehow player doesn't
+    // pass through a magic pool before dying
+    Vector3 _currentRespawnPoint = new Vector3(-128.3f, 11.6f, 0);
 
     private void OnEnable()
     {

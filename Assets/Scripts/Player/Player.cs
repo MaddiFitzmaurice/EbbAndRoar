@@ -31,8 +31,11 @@ public class Player : MonoBehaviour
 
     // Sprites
     public Sprite LionSprite;
-    public Sprite LionJumpSprite;
+    public Sprite LionMoveJumpSprite;
+    public Sprite LionIdleJumpUpSprite;
+    public Sprite LionIdleJumpDownSprite;
     public Sprite HumanSprite;
+    public Sprite HumanFallingSprite;
 
     // Data
     [Header("Human State")]

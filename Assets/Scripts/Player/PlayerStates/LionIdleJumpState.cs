@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class LionIdleJumpState : LionBaseJumpState
 {
-    Vector3 _idleJumpDir = new Vector3(0.5f, 1f, 0f);
+    Vector3 _idleJumpDir = new Vector3(0.2f, 1f, 0f);
 
     public LionIdleJumpState(Player player) : base (player) {}
 
     public override void Enter()
     {
+        Player.Sprite.sprite = Player.LionIdleJumpUpSprite;
         Debug.Log("Idle Jump");
         base.Enter();
     }
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+
+        if (Player.Rb.velocity.y < 0.1f && !GroundCheck())
+        {
+            Player.Sprite.sprite = Player.LionIdleJumpDownSprite;           
+        }
     }
 
     public override void PhysicsUpdate()
