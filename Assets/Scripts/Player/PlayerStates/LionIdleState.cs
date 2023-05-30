@@ -42,7 +42,6 @@ public class LionIdleState : PlayerState
         {
             _inputBufferTimer += Time.deltaTime;
         }
-        
     }
 
     public override void PhysicsUpdate() {}
