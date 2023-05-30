@@ -30,7 +30,8 @@ public class NPC : MonoBehaviour, Interactable
 
     // Interaction
     [Header("UI Interact Prompt")]
-    [SerializeField] private GameObject _interactUI;
+    [SerializeField] private GameObject _greetingUI;
+    [SerializeField] private GameObject _questUI;
     private TextMeshProUGUI _interactText;
     [SerializeField] string _UIPromptLion;
     [SerializeField] string _UIPromptHuman;
@@ -82,15 +83,9 @@ public class NPC : MonoBehaviour, Interactable
     void Start()
     {
         _mainCam = Camera.main;
-        _interactUI.gameObject.SetActive(false);
-
-        _hasItem = false;
-        _introDone = false;
-        _infoGiven = false;
-        _isTalking = false;
-
-        _interactText = _interactUI.GetComponentInChildren<TextMeshProUGUI>();
-
+        
+        UISetup();
+        ResetFlags();
         SetDialogue();
         _npcEventData = new NPCEventData(false, false, this.transform, _introductionText, _colour);
     }
@@ -141,7 +136,6 @@ public class NPC : MonoBehaviour, Interactable
         {
             if (_npcEventData.CurrentDialogue == _introductionText)
             {
-                Debug.Log("Intro done");
                 _introDone = true;
             }
             else if (_npcEventData.CurrentDialogue == _itemFoundText)
@@ -190,7 +184,12 @@ public class NPC : MonoBehaviour, Interactable
     void DisplayGreeting(bool displayGreeting)
     {
         _interactText.text = _greetingText;
-        _interactUI.gameObject.SetActive(displayGreeting);
+        _greetingUI.gameObject.SetActive(displayGreeting);
+        
+        if (!_hasItem)
+        {
+            _questUI.gameObject.SetActive(!displayGreeting);
+        }
     }
 
     void HideGreeting(bool displayGreeting)
@@ -198,7 +197,22 @@ public class NPC : MonoBehaviour, Interactable
         if (_npcEventData.CanInteract && displayGreeting)
         {
             _interactText.text = _greetingText;
-            _interactUI.gameObject.SetActive(!displayGreeting);
+            _greetingUI.gameObject.SetActive(!displayGreeting);
         }
+    }
+
+    void ResetFlags()
+    {
+        _hasItem = false;
+        _introDone = false;
+        _infoGiven = false;
+        _isTalking = false;
+    }
+
+    void UISetup()
+    {
+        _greetingUI.gameObject.SetActive(false);
+        _questUI.gameObject.SetActive(true);
+        _interactText = _greetingUI.GetComponentInChildren<TextMeshProUGUI>();
     }
 }
