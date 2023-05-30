@@ -142,6 +142,7 @@ public class NPC : MonoBehaviour, Interactable
             {
                 _infoGiven = true;
                 ItemDeliveredEvent?.Invoke(_itemNeeded);
+                _questUI.SetActive(false);
             }
         }
        
@@ -186,7 +187,7 @@ public class NPC : MonoBehaviour, Interactable
         _interactText.text = _greetingText;
         _greetingUI.gameObject.SetActive(displayGreeting);
         
-        if (!_hasItem)
+        if (!_infoGiven)
         {
             _questUI.gameObject.SetActive(!displayGreeting);
         }
@@ -198,6 +199,7 @@ public class NPC : MonoBehaviour, Interactable
         {
             _interactText.text = _greetingText;
             _greetingUI.gameObject.SetActive(!displayGreeting);
+            _questUI.gameObject.SetActive(!displayGreeting);
         }
     }
 
