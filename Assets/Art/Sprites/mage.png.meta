@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: de31960c01900144e87fe5d09ea3b941
+guid: bdac084c55dd2fb49844565ff22b0c79
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -107,22 +107,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: verticaljumpup_0
+      name: mage_0
       rect:
         serializedVersion: 2
-        x: 98
-        y: 291
-        width: 1231
-        height: 1385
-      alignment: 9
-      pivot: {x: 0.5, y: 0.4}
+        x: 629
+        y: 145
+        width: 501
+        height: 1123
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8d7464d10244d594db173bc01c44fac9
-      internalID: -1110581824
+      spriteID: e926fd091049f1f44a7ac7c30d2e1632
+      internalID: -1903118301
       vertices: []
       indices: 
       edges: []
@@ -130,7 +130,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: d0f253a2668b39f44b233e4d478c3597
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -138,7 +138,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      verticaljumpup_0: -1110581824
+      mage_0: -1903118301
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

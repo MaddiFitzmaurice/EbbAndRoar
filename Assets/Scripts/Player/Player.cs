@@ -11,6 +11,9 @@ public class Player : MonoBehaviour
     // Colliders
     public List<BoxCollider> L_Colliders;
     public List<CapsuleCollider> H_Colliders;
+    public List<BoxCollider> LLJ_Colliders;
+    public List<BoxCollider> LHJU_Colliders;
+    public List<BoxCollider> LHJD_Colliders;
     public BoxCollider GroundCheckCollider;
 
     // State Machine
