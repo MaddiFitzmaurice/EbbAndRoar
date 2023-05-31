@@ -10,7 +10,7 @@ public class LionIdleJumpState : LionBaseJumpState
 
     public override void Enter()
     {
-        Player.Sprite.sprite = Player.LionIdleJumpUpSprite;
+        ChangeForms(FormType.UpJump);
         Debug.Log("Idle Jump");
         base.Enter();
     }
@@ -20,7 +20,7 @@ public class LionIdleJumpState : LionBaseJumpState
 
         if (Player.Rb.velocity.y < 0.1f && !GroundCheck())
         {
-            Player.Sprite.sprite = Player.LionIdleJumpDownSprite;           
+            ChangeForms(FormType.DownJump);           
         }
     }
 

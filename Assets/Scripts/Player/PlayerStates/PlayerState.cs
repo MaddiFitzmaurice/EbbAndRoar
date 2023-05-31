@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+public enum FormType { Human, Lion, Leap, UpJump, DownJump }
+
 public class PlayerState : BaseState
 {
     public static Action<bool> DirectionChangeEvent;
@@ -79,30 +81,54 @@ public class PlayerState : BaseState
     }
 
     // Change Player Data, Sprite, and Colliders
-    protected void ChangeToLion(bool isLion)
+    protected void ChangeForms(FormType formType)
     {
-        foreach (Collider collider in Player.L_Colliders)
-        {
-            collider.enabled = isLion;
-        }
+        ResetColliders();
 
-        foreach (Collider collider in Player.H_Colliders)
-        {
-            collider.enabled = !isLion;
-        }
-
-        if (isLion)
-        {
-            Player.IsLion = true;
-            Player.CurrentData = Player.LionData;
-            Player.Sprite.sprite = Player.LionSprite;
-        }
-        else 
+        if (formType == FormType.Human)
         {
             Player.IsLion = false;
             Player.CurrentData = Player.HumanData;
             Player.Sprite.sprite = Player.HumanSprite;
+            Player.HumanColliders.SetActive(true);
         }
+        else if (formType == FormType.Lion)
+        {
+            Player.IsLion = true;
+            Player.CurrentData = Player.LionData;
+            Player.Sprite.sprite = Player.LionSprite;
+            Player.LionColliders.SetActive(true);
+        }
+        else if (formType == FormType.Leap)
+        {
+            Player.IsLion = true;
+            Player.CurrentData = Player.LionData;
+            Player.Sprite.sprite = Player.LionMoveJumpSprite;
+            Player.LeapColliders.SetActive(true);
+        }
+        else if (formType == FormType.UpJump)
+        {
+            Player.IsLion = true;
+            Player.CurrentData = Player.LionData;
+            Player.Sprite.sprite = Player.LionIdleJumpUpSprite;
+            Player.HighJumpUpColliders.SetActive(true);
+        }
+        else if (formType == FormType.DownJump)
+        {
+            Player.IsLion = true;
+            Player.CurrentData = Player.LionData;
+            Player.Sprite.sprite = Player.LionIdleJumpDownSprite;
+            Player.HighJumpDownColliders.SetActive(true);
+        }
+    }
+
+    void ResetColliders()
+    {
+        Player.HumanColliders.SetActive(false);
+        Player.LionColliders.SetActive(false);
+        Player.LeapColliders.SetActive(false);
+        Player.HighJumpUpColliders.SetActive(false);
+        Player.HighJumpDownColliders.SetActive(false);
     }
 
     protected bool GroundCheck()

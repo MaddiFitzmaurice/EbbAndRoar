@@ -9,7 +9,7 @@ public class LionMoveJumpState : LionBaseJumpState
 
     public override void Enter()
     {   
-        Player.Sprite.sprite = Player.LionMoveJumpSprite;
+        ChangeForms(FormType.Leap);
         Debug.Log("Move Jump");
         base.Enter();
     }

@@ -16,6 +16,12 @@ public class Player : MonoBehaviour
     public List<BoxCollider> LHJD_Colliders;
     public BoxCollider GroundCheckCollider;
 
+    public GameObject HumanColliders;
+    public GameObject LionColliders;
+    public GameObject LeapColliders;
+    public GameObject HighJumpUpColliders;
+    public GameObject HighJumpDownColliders;
+
     // State Machine
     public StateMachine StateMachine;
 
@@ -91,7 +97,7 @@ public class Player : MonoBehaviour
         L_IdleJumpState = new LionIdleJumpState(this);
         H_MoveState = new HumanMoveState(this);
         H_NarrativeState = new HumanNarrativeState(this);
-        StateMachine = new StateMachine(H_MoveState);
+        StateMachine = new StateMachine(L_IdleState);
     }
 
     void DataSetup()

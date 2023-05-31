@@ -37,7 +37,7 @@ public class HumanMoveState : PlayerState
         // Set Interactable Flags
         ResetInteractableFlags();
 
-        ChangeToLion(false);
+        ChangeForms(FormType.Human);
         _isFalling = false;
 
         Debug.Log("Human");

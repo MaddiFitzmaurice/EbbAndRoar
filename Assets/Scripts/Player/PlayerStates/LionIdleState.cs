@@ -13,7 +13,7 @@ public class LionIdleState : PlayerState
     {
         Debug.Log("Lion Idle");
         Player.Rb.velocity = Vector3.zero;
-        ChangeToLion(true);
+        ChangeForms(FormType.Lion);
         _inputBufferTimer = 0;
     }
 
