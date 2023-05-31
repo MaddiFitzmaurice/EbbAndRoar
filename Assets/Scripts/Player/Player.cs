@@ -9,18 +9,14 @@ public class Player : MonoBehaviour
     public SpriteRenderer Sprite { get; set; }
 
     // Colliders
-    public List<BoxCollider> L_Colliders;
-    public List<CapsuleCollider> H_Colliders;
-    public List<BoxCollider> LLJ_Colliders;
-    public List<BoxCollider> LHJU_Colliders;
-    public List<BoxCollider> LHJD_Colliders;
+    [Header("Colliders")]
     public BoxCollider GroundCheckCollider;
-
     public GameObject HumanColliders;
     public GameObject LionColliders;
     public GameObject LeapColliders;
     public GameObject HighJumpUpColliders;
     public GameObject HighJumpDownColliders;
+    public Collider LionBodyRefCollider;
 
     // State Machine
     public StateMachine StateMachine;
@@ -39,6 +35,7 @@ public class Player : MonoBehaviour
     public bool IsGrounded {get; set; }
 
     // Sprites
+    [Header("Sprites")]
     public Sprite LionSprite;
     public Sprite LionMoveJumpSprite;
     public Sprite LionIdleJumpUpSprite;
@@ -127,9 +124,9 @@ public class Player : MonoBehaviour
             //Debug.Log("IsGrounded");
             Gizmos.color = Color.blue;
             //Draw a Ray forward from GameObject toward the hit
-            Gizmos.DrawRay(L_Colliders[1].gameObject.transform.position, Vector3.down * hit.distance);
+            Gizmos.DrawRay(LionBodyRefCollider.gameObject.transform.position, Vector3.down * hit.distance);
             //Draw a cube that extends to where the hit exists
-            Gizmos.DrawWireCube(L_Colliders[1].gameObject.transform.position + Vector3.down * hit.distance, GroundCheckCollider.bounds.extents * 2);
+            Gizmos.DrawWireCube(LionBodyRefCollider.gameObject.transform.position + Vector3.down * hit.distance, GroundCheckCollider.bounds.extents * 2);
         }
         //If there hasn't been a hit yet, draw the ray at the maximum distance
         else
@@ -137,9 +134,9 @@ public class Player : MonoBehaviour
             //Debug.Log("Is in air");
             Gizmos.color = Color.red;
             //Draw a Ray forward from GameObject toward the maximum distance
-            Gizmos.DrawRay(L_Colliders[1].gameObject.transform.position, Vector3.down * 0.7f);
+            Gizmos.DrawRay(LionBodyRefCollider.gameObject.transform.position, Vector3.down * 0.7f);
             //Draw a cube at the maximum distance
-            Gizmos.DrawWireCube(L_Colliders[1].gameObject.transform.position + Vector3.down * 0.7f, GroundCheckCollider.bounds.extents * 2);
+            Gizmos.DrawWireCube(LionBodyRefCollider.gameObject.transform.position + Vector3.down * 0.7f, GroundCheckCollider.bounds.extents * 2);
         }
     }
     

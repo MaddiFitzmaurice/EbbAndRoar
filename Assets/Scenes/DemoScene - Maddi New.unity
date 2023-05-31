@@ -2179,7 +2179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &189242698
 Transform:
   m_ObjectHideFlags: 0
@@ -13563,30 +13563,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5dcc76aa50c829c43976174519cfc729, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  L_Colliders:
-  - {fileID: 531289736}
-  - {fileID: 854464704}
-  - {fileID: 741477037}
-  H_Colliders:
-  - {fileID: 1165594033}
-  - {fileID: 383005897}
-  LLJ_Colliders:
-  - {fileID: 562998717}
-  - {fileID: 1527418610}
-  - {fileID: 106388075}
-  LHJU_Colliders:
-  - {fileID: 45156513}
-  - {fileID: 304750732}
-  LHJD_Colliders:
-  - {fileID: 381409210}
-  - {fileID: 2031766958}
-  - {fileID: 125823303}
   GroundCheckCollider: {fileID: 210093477}
   HumanColliders: {fileID: 1475682351}
   LionColliders: {fileID: 189242697}
   LeapColliders: {fileID: 596473374}
   HighJumpUpColliders: {fileID: 1413404984}
   HighJumpDownColliders: {fileID: 486526566}
+  LionBodyRefCollider: {fileID: 854464704}
   LionSprite: {fileID: 772722877, guid: 3fb646077c6a0b94f95b79bb1c1db11d, type: 3}
   LionMoveJumpSprite: {fileID: -166072619, guid: 236de2ee18e771543a2fb1e4cfb932cd, type: 3}
   LionIdleJumpUpSprite: {fileID: -1110581824, guid: de31960c01900144e87fe5d09ea3b941, type: 3}

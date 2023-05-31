@@ -133,7 +133,7 @@ public class PlayerState : BaseState
 
     protected bool GroundCheck()
     {
-        return Physics.BoxCast(Player.L_Colliders[1].gameObject.transform.position, Player.GroundCheckCollider.bounds.extents * 2, Vector3.down,
+        return Physics.BoxCast(Player.LionBodyRefCollider.gameObject.transform.position, Player.GroundCheckCollider.bounds.extents * 2, Vector3.down,
             out RaycastHit hit, Player.transform.rotation, 0.7f, LayerMask.GetMask("Walkable"));
     }
 
