@@ -68,8 +68,10 @@ public class Mechanism : MonoBehaviour, Interactable
         
         foreach (Sprite sprite in _timerSprites)
         {
-            yield return new WaitForSeconds(_timeActive / _timerSprites.Count);
             _spriteRenderer.sprite = sprite;
+            yield return new WaitForSeconds(_timeActive / (_timerSprites.Count - 1));
         }
+
+        _spriteRenderer.sprite = _timerSprites[_timerSprites.Count - 1];
     }
 }
