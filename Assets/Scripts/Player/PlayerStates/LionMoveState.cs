@@ -4,12 +4,15 @@ using UnityEngine;
 using System;
 
 public class LionMoveState : PlayerState
-{    
+{   
+    bool _isFalling;
+     
     public LionMoveState(Player player) : base(player) {}
 
     public override void Enter()
     {
         base.Enter();
+        _isFalling = false;
         ChangeForms(FormType.Lion);
     }
 
@@ -20,6 +23,8 @@ public class LionMoveState : PlayerState
 
     public override void LogicUpdate()
     {
+        IsFalling();
+
         // Jump 
         if (Input.GetButtonDown("Jump") && Player.IsGrounded)
         {
@@ -37,5 +42,19 @@ public class LionMoveState : PlayerState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+    }
+
+    void IsFalling()
+    {
+        if (Player.Rb.velocity.y < -1f && !_isFalling && !GroundCheck())
+        {
+            _isFalling = true;
+            Player.Sprite.sprite = Player.LionIdleJumpDownSprite;
+        }
+        else if (Player.Rb.velocity.y >= -1f && _isFalling && GroundCheck()) 
+        {
+            _isFalling = false;
+            Player.Sprite.sprite = Player.LionSprite;
+        }
     }
 }

@@ -41,10 +41,12 @@ public class PlayerNarrativeState : BaseState
 
     void ExitNarrativeState()
     {
+        // If player is not lion
         if (!_player.IsLion)
         {
             _player.StateMachine.ChangeState(_player.H_MoveState);
         }
+        // If player is lion
         else 
         {
             _player.StateMachine.ChangeState(_player.L_IdleState);

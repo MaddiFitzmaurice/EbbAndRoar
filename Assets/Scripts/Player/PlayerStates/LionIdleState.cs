@@ -6,12 +6,14 @@ public class LionIdleState : PlayerState
 {
     float _inputBufferTime = 0.1f;
     float _inputBufferTimer;
+    bool _isFalling;
 
     public LionIdleState(Player player) : base(player) {}
 
     public override void Enter()
     {
         base.Enter();
+        _isFalling = false;
         Player.Rb.velocity = Vector3.zero;
         ChangeForms(FormType.Lion);
         _inputBufferTimer = 0;
@@ -25,6 +27,7 @@ public class LionIdleState : PlayerState
     public override void LogicUpdate()
     {
         base.LogicUpdate();
+        IsFalling();
 
         // Jump 
         if (Input.GetButtonDown("Jump") && Player.IsGrounded)
@@ -50,4 +53,18 @@ public class LionIdleState : PlayerState
     }
 
     public override void PhysicsUpdate() {}
+
+    void IsFalling()
+    {
+        if (Player.Rb.velocity.y < -1f && !_isFalling && !GroundCheck())
+        {
+            _isFalling = true;
+            Player.Sprite.sprite = Player.LionIdleJumpDownSprite;
+        }
+        else if (Player.Rb.velocity.y >= -1f && _isFalling && GroundCheck()) 
+        {
+            _isFalling = false;
+            Player.Sprite.sprite = Player.LionSprite;
+        }
+    }
 }

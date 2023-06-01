@@ -47,7 +47,8 @@ public class Mage : MonoBehaviour, Interactable
         _introTrigger.SetActive(true);
         _conclusionTrigger.SetActive(false);
         _moveToEndGameTrigger.SetActive(false);
-        _mageEventData = new NPCEventData(false, false, this.transform, _introductionText, _colour);
+        _mageEventData = new NPCEventData(false, false, _pos1Start, _introductionText, _colour);
+        transform.position = _pos1Start.position;
     }
 
     public void OnPlayerInteract(Collider player, bool canInteract)
@@ -55,20 +56,29 @@ public class Mage : MonoBehaviour, Interactable
         // If conversations have not been completed
         if (canInteract)
         {
-            if (!_introDone || !_conclusionDone)
-            {
             _mageEventData.CanInteract = canInteract;
             _mageEventData.IsOnRightSide = player.transform.position.x > transform.position.x ? false : true;
 
-            Debug.Log("SendData");
-            NPC.SendNarrativeDataEvent?.Invoke(_mageEventData);
-            MageEvent?.Invoke(true);
+            if (!_introDone || !_conclusionDone)
+            {   
+                // If intro is done, keep camera off of Mage since Mage moves off screen
+                if (!_introDone)
+                {
+                    _mageEventData.Transform = _pos1Start;
+                }  
+                // Keep camera on Mage
+                else
+                {
+                    _mageEventData.Transform = transform;
+                }
+                NPC.SendNarrativeDataEvent?.Invoke(_mageEventData);
+                MageEvent?.Invoke(true);
             }
             // If conversation is completed and player exits tutorial level
             else 
             {
-            // Move Mage to endgame area
-            transform.position = _finalPos.position;
+                // Move Mage to endgame area
+                transform.position = _finalPos.position;
             }
         }
     }

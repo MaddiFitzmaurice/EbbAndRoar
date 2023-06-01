@@ -11,10 +11,17 @@ public class PlayerState : BaseState
 
     protected Player Player;
     bool _canTransform;
+    
+    Collider[] _humanColliders;
+    Collider[] _lionColliders;
+    Collider[] _leapColliders;
+    Collider[] _jumpUpColliders;
+    Collider[] _jumpDownColliders;
 
     public PlayerState(Player player)
     {
         Player = player;
+        SetUpColliders();
     }
 
     public override void Enter()
@@ -92,45 +99,62 @@ public class PlayerState : BaseState
             Player.IsLion = false;
             Player.CurrentData = Player.HumanData;
             Player.Sprite.sprite = Player.HumanSprite;
-            Player.HumanColliders.SetActive(true);
+            ToggleFormColliders(_humanColliders, true);
         }
         else if (formType == FormType.Lion)
         {
             Player.IsLion = true;
             Player.CurrentData = Player.LionData;
             Player.Sprite.sprite = Player.LionSprite;
-            Player.LionColliders.SetActive(true);
+            ToggleFormColliders(_lionColliders, true);
         }
         else if (formType == FormType.Leap)
         {
             Player.IsLion = true;
             Player.CurrentData = Player.LionData;
             Player.Sprite.sprite = Player.LionMoveJumpSprite;
-            Player.LeapColliders.SetActive(true);
+            ToggleFormColliders(_leapColliders, true);
         }
         else if (formType == FormType.UpJump)
         {
             Player.IsLion = true;
             Player.CurrentData = Player.LionData;
             Player.Sprite.sprite = Player.LionIdleJumpUpSprite;
-            Player.HighJumpUpColliders.SetActive(true);
+            ToggleFormColliders(_jumpUpColliders, true);
         }
         else if (formType == FormType.DownJump)
         {
             Player.IsLion = true;
             Player.CurrentData = Player.LionData;
             Player.Sprite.sprite = Player.LionIdleJumpDownSprite;
-            Player.HighJumpDownColliders.SetActive(true);
+            ToggleFormColliders(_jumpDownColliders, true);
         }
+    }
+
+    void SetUpColliders()
+    {
+        _humanColliders = Player.HumanColliders.GetComponentsInChildren<Collider>();
+        _lionColliders = Player.LionColliders.GetComponentsInChildren<Collider>();
+        _leapColliders = Player.LeapColliders.GetComponentsInChildren<Collider>();
+        _jumpUpColliders = Player.HighJumpUpColliders.GetComponentsInChildren<Collider>();
+        _jumpDownColliders = Player.HighJumpDownColliders.GetComponentsInChildren<Collider>();
     }
 
     void ResetColliders()
     {
-        Player.HumanColliders.SetActive(false);
-        Player.LionColliders.SetActive(false);
-        Player.LeapColliders.SetActive(false);
-        Player.HighJumpUpColliders.SetActive(false);
-        Player.HighJumpDownColliders.SetActive(false);
+        ToggleFormColliders(_humanColliders, false);
+        ToggleFormColliders(_lionColliders, false);
+        ToggleFormColliders(_leapColliders, false);
+        ToggleFormColliders(_jumpUpColliders, false);
+        ToggleFormColliders(_jumpDownColliders, false);
+    }
+
+    void ToggleFormColliders(Collider[] colliders, bool toggle)
+    {
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            colliders[i].enabled = toggle;
+        }
     }
 
     protected bool GroundCheck()
@@ -168,10 +192,12 @@ public class PlayerState : BaseState
     
     void MageEventHandler(bool active)
     {
+        // If mage event started, change to narrative state
         if (active)
         {
             Player.StateMachine.ChangeState(Player.NarrativeState);
         }
+        // Else, change back to which ever form player was last in
         else if (!active && Player.IsLion)
         {
             Player.StateMachine.ChangeState(Player.L_IdleState);
