@@ -31,7 +31,7 @@ public class UIManager : MonoBehaviour
     #region Gameplay UI
     // Gameplay UI
     [Header("Gameplay UI Elements")]
-    [SerializeField] TextMeshProUGUI _promptText;
+    [SerializeField] GameObject _continueUI;
     [SerializeField] List<Image> _itemsUI;
     #endregion
 
@@ -44,6 +44,7 @@ public class UIManager : MonoBehaviour
     DialoguePanel _leftDialoguePanel;
     [SerializeField] GameObject _choice1Obj;
     [SerializeField] GameObject _choice2Obj;
+    [SerializeField] GameObject _selectPanel;
     TextMeshProUGUI _choice1Text;
     TextMeshProUGUI _choice2Text;
     Button _choice1Button;
@@ -64,7 +65,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        _promptText.gameObject.SetActive(false);
+        _continueUI.SetActive(false);
         _narrativeUIPanel.SetActive(false);
         _itemsUIPanel.SetActive(true);   
 
@@ -73,7 +74,7 @@ public class UIManager : MonoBehaviour
 
     void OnEnable()
     {
-        Interactable.InteractUIPromptEvent += UpdatePromptUI;
+        Interactable.InteractUIPromptEvent += ToggleContinueUI;
         ItemManager.UpdateItemsFoundEvent += UpdateUIItemsFoundList;
         ItemManager.UpdateItemsDeliveredEvent += UpdateUIItemsDeliveredList;
         PlayerNarrativeState.StartNarrativeEvent += DisplayNarrativeUIPanel;
@@ -83,7 +84,7 @@ public class UIManager : MonoBehaviour
 
     void OnDisable()
     {
-        Interactable.InteractUIPromptEvent -= UpdatePromptUI;
+        Interactable.InteractUIPromptEvent -= ToggleContinueUI;
         ItemManager.UpdateItemsFoundEvent -= UpdateUIItemsFoundList;
         ItemManager.UpdateItemsDeliveredEvent -= UpdateUIItemsDeliveredList;
         PlayerNarrativeState.StartNarrativeEvent -= DisplayNarrativeUIPanel;
@@ -114,7 +115,7 @@ public class UIManager : MonoBehaviour
         _itemsUIPanel.SetActive(!isActive);
 
         // Deactivate prompt UI until player can press continue
-        UpdatePromptUI("", false);
+        ToggleContinueUI(false);
     }
 
     // If choices available, display them
@@ -126,14 +127,14 @@ public class UIManager : MonoBehaviour
             _choice1Button.Select();
             _choice1Text.text = choices[0].text;
             _choice2Text.text = choices[1].text;
-
-            UpdatePromptUI("W/S to select. E to confirm.", true);
+            _selectPanel.SetActive(true);
         }
         else 
         {
-            UpdatePromptUI("Press E to continue.", true);
+            _selectPanel.SetActive(false);
         }
 
+        ToggleContinueUI(true);
         _choice1Obj.SetActive(display);
         _choice2Obj.SetActive(display);
     }
@@ -163,7 +164,7 @@ public class UIManager : MonoBehaviour
     {
         // Stop player from pressing continue until dialogue is finished
         CanPressContinueEvent?.Invoke(false);
-        UpdatePromptUI("", false);
+        ToggleContinueUI(false);
 
         panel.Text.text = "";
         int visibleChars = 0;
@@ -206,6 +207,7 @@ public class UIManager : MonoBehaviour
         _choice2Text.text = "";
         _choice1Obj.SetActive(false);
         _choice2Obj.SetActive(false);
+        _selectPanel.SetActive(false);
     }
 
     // Resets dialogue panels and deactivates them
@@ -217,11 +219,10 @@ public class UIManager : MonoBehaviour
         _rightDialoguePanel.Panel.SetActive(false);
     }
     
-    // Update game UI prompt
-    void UpdatePromptUI(string prompt, bool showPrompt)
+    // Toggle Continue UI
+    void ToggleContinueUI(bool toggle)
     {
-        _promptText.gameObject.SetActive(showPrompt);
-        _promptText.text = prompt;
+        _continueUI.SetActive(toggle);
     }
 
     // Update item list
