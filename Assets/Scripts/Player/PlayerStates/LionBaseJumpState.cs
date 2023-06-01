@@ -49,7 +49,6 @@ public abstract class LionBaseJumpState : PlayerState
         // If player has landed
         if (Player.IsGrounded && _jumpTimer > _bufferTime)
         {
-            Debug.Log("Landed");
             Physics.gravity = Player.GravityNorm;
             JumpEvent?.Invoke(false);
             Player.StateMachine.ChangeState(Player.L_IdleState);

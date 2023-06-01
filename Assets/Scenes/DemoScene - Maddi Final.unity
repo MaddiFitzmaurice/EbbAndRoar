@@ -527,7 +527,7 @@ GameObject:
   - component: {fileID: 45156513}
   m_Layer: 3
   m_Name: LionHJUHeadCollider
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1324,7 +1324,7 @@ GameObject:
   - component: {fileID: 106388075}
   m_Layer: 3
   m_Name: LionLeapHeadCollider
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1709,7 +1709,7 @@ GameObject:
   - component: {fileID: 125823303}
   m_Layer: 3
   m_Name: LionHJDFeetCollider
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3482,7 +3482,7 @@ GameObject:
   - component: {fileID: 383005897}
   m_Layer: 3
   m_Name: HumanSlipCollider
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4632,7 +4632,7 @@ GameObject:
   - component: {fileID: 531289736}
   m_Layer: 3
   m_Name: LionHeadCollider
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6237,7 +6237,7 @@ GameObject:
   - component: {fileID: 741477037}
   m_Layer: 3
   m_Name: LionBodySlipCollider
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13244,7 +13244,7 @@ GameObject:
   - component: {fileID: 1527418610}
   m_Layer: 3
   m_Name: LionLeapBodySlipCollider
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -17341,7 +17341,7 @@ GameObject:
   - component: {fileID: 2031766958}
   m_Layer: 3
   m_Name: LionHJDFeetSlipCollider (1)
-  m_TagString: Player
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

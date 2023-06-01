@@ -11,7 +11,6 @@ public class LionIdleJumpState : LionBaseJumpState
     public override void Enter()
     {
         ChangeForms(FormType.UpJump);
-        Debug.Log("Idle Jump");
         base.Enter();
     }
 

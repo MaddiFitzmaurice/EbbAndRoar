@@ -40,8 +40,6 @@ public class HumanMoveState : PlayerState
 
         ChangeForms(FormType.Human);
         _isFalling = false;
-
-        Debug.Log("Human");
     }
 
     public override void Exit()

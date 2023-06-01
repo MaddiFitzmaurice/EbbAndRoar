@@ -17,7 +17,6 @@ public class PlayerNarrativeState : BaseState
 
     public override void Enter()
     {
-        Debug.Log("Entered narrative state");
         NarrativeManager.EndOfNarrativeEvent += ExitNarrativeState;
         UIManager.CanPressContinueEvent += CanPressContinueEventHandler;
 
@@ -34,7 +33,6 @@ public class PlayerNarrativeState : BaseState
 
     public override void Exit()
     {
-        Debug.Log("Exited narrative state");
         NarrativeManager.EndOfNarrativeEvent -= ExitNarrativeState;
         UIManager.CanPressContinueEvent -= CanPressContinueEventHandler;
 

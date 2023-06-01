@@ -53,20 +53,23 @@ public class Mage : MonoBehaviour, Interactable
     public void OnPlayerInteract(Collider player, bool canInteract)
     {
         // If conversations have not been completed
-        if (!_introDone || !_conclusionDone)
+        if (canInteract)
         {
+            if (!_introDone || !_conclusionDone)
+            {
             _mageEventData.CanInteract = canInteract;
             _mageEventData.IsOnRightSide = player.transform.position.x > transform.position.x ? false : true;
 
             Debug.Log("SendData");
             NPC.SendNarrativeDataEvent?.Invoke(_mageEventData);
             MageEvent?.Invoke(true);
-        }
-        // If conversation is completed and player exits tutorial level
-        else 
-        {
+            }
+            // If conversation is completed and player exits tutorial level
+            else 
+            {
             // Move Mage to endgame area
             transform.position = _finalPos.position;
+            }
         }
     }
 

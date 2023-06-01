@@ -55,7 +55,6 @@ public class NarrativeManager : MonoBehaviour
     // Set up new dialogue for UI
     void NPCEventDataHandler(NPCEventData npcEventData)
     {
-        Debug.Log(">>>>");
         _currentDialogue = new Story(npcEventData.CurrentDialogue.text);
         _npcIsOnRightSide = npcEventData.IsOnRightSide;
         _npcColour = npcEventData.Colour;
