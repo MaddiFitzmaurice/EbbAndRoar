@@ -58,6 +58,7 @@ public class Mage : MonoBehaviour, Interactable
             _mageEventData.CanInteract = canInteract;
             _mageEventData.IsOnRightSide = player.transform.position.x > transform.position.x ? false : true;
 
+            Debug.Log("SendData");
             NPC.SendNarrativeDataEvent?.Invoke(_mageEventData);
             MageEvent?.Invoke(true);
         }

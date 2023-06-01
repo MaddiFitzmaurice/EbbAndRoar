@@ -1,3 +1,3 @@
 Hello #mage
 
-gon getchu #player
+gon getchu #purple

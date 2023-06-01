@@ -16,7 +16,7 @@ public class PlayerState : BaseState
     {
         Player = player;
     }
-    
+
     public override void Enter()
     {
         _canTransform = false;
@@ -168,7 +168,6 @@ public class PlayerState : BaseState
     
     void MageEventHandler(bool active)
     {
-        Debug.Log("Oh no");
         if (active)
         {
             Player.StateMachine.ChangeState(Player.NarrativeState);

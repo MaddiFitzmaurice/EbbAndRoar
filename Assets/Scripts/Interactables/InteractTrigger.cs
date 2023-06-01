@@ -15,6 +15,7 @@ public class InteractTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("WTF");
             _interactable.OnPlayerInteract(other, true);
         }
     }
