@@ -67,13 +67,13 @@ public class NPC : MonoBehaviour, Interactable
 
     void OnEnable()
     {
-        HumanNarrativeState.StartNarrativeEvent += HideGreeting;
+        PlayerNarrativeState.StartNarrativeEvent += HideGreeting;
         NarrativeManager.EndOfNarrativeEvent += OnPlayerDialogueFinished;
     }
 
     void OnDisable()
     {
-        HumanNarrativeState.StartNarrativeEvent -= HideGreeting;
+        PlayerNarrativeState.StartNarrativeEvent -= HideGreeting;
         NarrativeManager.EndOfNarrativeEvent -= OnPlayerDialogueFinished;
     }
 

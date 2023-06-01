@@ -9,11 +9,15 @@ public class LionMoveState : PlayerState
 
     public override void Enter()
     {
+        base.Enter();
         Debug.Log("Lion Move State");
         ChangeForms(FormType.Lion);
     }
 
-    public override void Exit() {}
+    public override void Exit() 
+    {
+        base.Exit();
+    }
 
     public override void LogicUpdate()
     {

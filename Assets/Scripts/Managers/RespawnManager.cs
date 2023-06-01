@@ -8,7 +8,8 @@ public class RespawnManager : MonoBehaviour
 {
     // Default spawn point to start of tutorial if somehow player doesn't
     // pass through a magic pool before dying
-    Vector3 _currentRespawnPoint = new Vector3(-128.3f, 11.6f, 0);
+    [SerializeField] Transform _tutorialSpawn;
+    Vector3 _currentRespawnPoint;
 
     private void OnEnable()
     {
@@ -18,6 +19,11 @@ public class RespawnManager : MonoBehaviour
     private void OnDisable()
     {
         MagicPool.NewRespawnPointEvent -= NewRespawnPointEventHandler;
+    }
+
+    void Start()
+    {
+        _currentRespawnPoint = _tutorialSpawn.position;
     }
 
     private void OnTriggerEnter(Collider other)

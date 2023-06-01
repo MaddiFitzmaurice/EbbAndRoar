@@ -23,9 +23,14 @@ public class Item : MonoBehaviour, Interactable
 
     public void OnPlayerInteract(Collider player, bool canInteract)
     {
-        // Potentially restrict player to only pickup as human
-        Found = true;
-        ItemPickupEvent?.Invoke();
-        this.gameObject.SetActive(false);
+        bool isLion = player.GetComponentInParent<Player>().IsLion;
+
+        // Only pickup if not Lion
+        if (!isLion)
+        {
+            Found = true;
+            ItemPickupEvent?.Invoke();
+            this.gameObject.SetActive(false);
+        }
     }
 }

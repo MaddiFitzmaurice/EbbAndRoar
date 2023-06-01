@@ -36,15 +36,15 @@ public class NarrativeManager : MonoBehaviour
     void OnEnable()
     {
         NPC.SendNarrativeDataEvent += NPCEventDataHandler;
-        HumanNarrativeState.StartNarrativeEvent += StartDialogue;
-        HumanNarrativeState.NarrativeInteractEvent += NextDialogue;
+        PlayerNarrativeState.StartNarrativeEvent += StartDialogue;
+        PlayerNarrativeState.NarrativeInteractEvent += NextDialogue;
     }
 
     void OnDisable()
     {
         NPC.SendNarrativeDataEvent -= NPCEventDataHandler;
-        HumanNarrativeState.StartNarrativeEvent -= StartDialogue;
-        HumanNarrativeState.NarrativeInteractEvent -= NextDialogue;
+        PlayerNarrativeState.StartNarrativeEvent -= StartDialogue;
+        PlayerNarrativeState.NarrativeInteractEvent -= NextDialogue;
     }
 
     void Start()
@@ -154,6 +154,10 @@ public class NarrativeManager : MonoBehaviour
             else if (speaker == "red")
             {
                 return "red";
+            }
+            else if (speaker == "mage")
+            {
+                return "mage";
             }
         }
 

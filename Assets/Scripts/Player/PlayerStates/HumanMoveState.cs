@@ -28,7 +28,8 @@ public class HumanMoveState : PlayerState
     }
     
     public override void Enter() 
-    {
+    {   
+        base.Enter();
         // Event Subscriptions
         Path.PathEvent += PathEventHandler;
         NPC.SendNarrativeDataEvent += NPCEventHandler;
@@ -45,6 +46,7 @@ public class HumanMoveState : PlayerState
 
     public override void Exit()
     {
+        base.Exit();
         // Event Subscriptions
         Path.PathEvent -= PathEventHandler;
         NPC.SendNarrativeDataEvent -= NPCEventHandler;
@@ -63,7 +65,7 @@ public class HumanMoveState : PlayerState
             if (_canTalk)
             {
                 _canTalk = false;
-                Player.StateMachine.ChangeState(Player.H_NarrativeState);
+                Player.StateMachine.ChangeState(Player.NarrativeState);
             }
 
             if (_canOperateMech)

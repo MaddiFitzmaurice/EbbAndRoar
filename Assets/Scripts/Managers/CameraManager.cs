@@ -22,7 +22,7 @@ public class CameraManager : MonoBehaviour
         PlayerState.DirectionChangeEvent += SwitchDirCameras;
         LionMoveJumpState.JumpEvent += SwitchJumpCam;
         NPC.SendNarrativeDataEvent += ChangeTargetGroup;
-        HumanNarrativeState.StartNarrativeEvent += SwitchNarCameras;
+        PlayerNarrativeState.StartNarrativeEvent += SwitchNarCameras;
     }
 
     void OnDisable()
@@ -30,7 +30,7 @@ public class CameraManager : MonoBehaviour
         PlayerState.DirectionChangeEvent -= SwitchDirCameras;
         LionMoveJumpState.JumpEvent -= SwitchJumpCam;
         NPC.SendNarrativeDataEvent -= ChangeTargetGroup;
-        HumanNarrativeState.StartNarrativeEvent -= SwitchNarCameras;
+        PlayerNarrativeState.StartNarrativeEvent -= SwitchNarCameras;
     }
 
     private void Start()

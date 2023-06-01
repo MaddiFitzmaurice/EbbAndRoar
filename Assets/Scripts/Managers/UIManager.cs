@@ -76,7 +76,7 @@ public class UIManager : MonoBehaviour
         Interactable.InteractUIPromptEvent += UpdatePromptUI;
         ItemManager.UpdateItemsFoundEvent += UpdateUIItemsFoundList;
         ItemManager.UpdateItemsDeliveredEvent += UpdateUIItemsDeliveredList;
-        HumanNarrativeState.StartNarrativeEvent += DisplayNarrativeUIPanel;
+        PlayerNarrativeState.StartNarrativeEvent += DisplayNarrativeUIPanel;
         NarrativeManager.NarrativeUIEvent += UpdateNarrativeUIPanel;
         NarrativeManager.EndOfNarrativeEvent += ResetNarrativePanels;
     }
@@ -86,7 +86,7 @@ public class UIManager : MonoBehaviour
         Interactable.InteractUIPromptEvent -= UpdatePromptUI;
         ItemManager.UpdateItemsFoundEvent -= UpdateUIItemsFoundList;
         ItemManager.UpdateItemsDeliveredEvent -= UpdateUIItemsDeliveredList;
-        HumanNarrativeState.StartNarrativeEvent -= DisplayNarrativeUIPanel;
+        PlayerNarrativeState.StartNarrativeEvent -= DisplayNarrativeUIPanel;
         NarrativeManager.NarrativeUIEvent -= UpdateNarrativeUIPanel;
         NarrativeManager.EndOfNarrativeEvent -= ResetNarrativePanels;
     }

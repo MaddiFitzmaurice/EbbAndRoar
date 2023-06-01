@@ -11,10 +11,16 @@ public class LionIdleState : PlayerState
 
     public override void Enter()
     {
+        base.Enter();
         Debug.Log("Lion Idle");
         Player.Rb.velocity = Vector3.zero;
         ChangeForms(FormType.Lion);
         _inputBufferTimer = 0;
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
     }
 
     public override void LogicUpdate()

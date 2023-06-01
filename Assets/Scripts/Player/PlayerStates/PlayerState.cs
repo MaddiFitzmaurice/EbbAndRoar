@@ -15,17 +15,19 @@ public class PlayerState : BaseState
     public PlayerState(Player player)
     {
         Player = player;
-        MagicPool.MagicPoolEvent += MagicPoolEventHandler;
     }
-
-    ~PlayerState()
-    {
-        MagicPool.MagicPoolEvent -= MagicPoolEventHandler;
-    }
-
+    
     public override void Enter()
     {
         _canTransform = false;
+        MagicPool.MagicPoolEvent += MagicPoolEventHandler;
+        Mage.MageEvent += MageEventHandler;
+    }
+
+    public override void Exit()
+    {
+        MagicPool.MagicPoolEvent -= MagicPoolEventHandler;
+        Mage.MageEvent -= MageEventHandler;
     }
 
     public override void LogicUpdate()
@@ -162,5 +164,22 @@ public class PlayerState : BaseState
     public void MagicPoolEventHandler(bool canTransform)
     {
         _canTransform = canTransform;
+    }
+    
+    void MageEventHandler(bool active)
+    {
+        Debug.Log("Oh no");
+        if (active)
+        {
+            Player.StateMachine.ChangeState(Player.NarrativeState);
+        }
+        else if (!active && Player.IsLion)
+        {
+            Player.StateMachine.ChangeState(Player.L_IdleState);
+        }
+        else if (!active && !Player.IsLion)
+        {
+            Player.StateMachine.ChangeState(Player.H_MoveState);
+        }
     }
 }

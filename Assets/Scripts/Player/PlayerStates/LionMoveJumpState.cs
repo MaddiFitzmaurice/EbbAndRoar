@@ -14,6 +14,11 @@ public class LionMoveJumpState : LionBaseJumpState
         base.Enter();
     }
 
+    public override void Exit()
+    {
+        base.Exit();
+    }
+
     public override void LogicUpdate()
     {
         base.LogicUpdate();

@@ -14,10 +14,16 @@ public abstract class LionBaseJumpState : PlayerState
 
     public override void Enter()
     {
+        base.Enter();
         Jump();
         Physics.gravity = Player.GravityUp;
         JumpEvent?.Invoke(true);
         _jumpTimer = 0;
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
     }
 
     public override void LogicUpdate()

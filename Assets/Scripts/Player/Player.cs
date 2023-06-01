@@ -27,7 +27,7 @@ public class Player : MonoBehaviour
     public LionIdleState L_IdleState;
     public LionIdleJumpState L_IdleJumpState;
     public HumanMoveState H_MoveState;
-    public HumanNarrativeState H_NarrativeState;
+    public PlayerNarrativeState NarrativeState;
 
     // Movement
     public float XInput { get; set; }
@@ -93,7 +93,7 @@ public class Player : MonoBehaviour
         L_IdleState = new LionIdleState(this);
         L_IdleJumpState = new LionIdleJumpState(this);
         H_MoveState = new HumanMoveState(this);
-        H_NarrativeState = new HumanNarrativeState(this);
+        NarrativeState = new PlayerNarrativeState(this);
         StateMachine = new StateMachine(L_IdleState);
     }
 
@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
     }
 
     // Jump groundcheck testing
-    
+    /*
     public void OnDrawGizmos()
     {
         //Check if there has been a hit yet
@@ -139,5 +139,5 @@ public class Player : MonoBehaviour
             Gizmos.DrawWireCube(LionBodyRefCollider.gameObject.transform.position + Vector3.down * 0.7f, GroundCheckCollider.bounds.extents * 2);
         }
     }
-    
+    */
 }
