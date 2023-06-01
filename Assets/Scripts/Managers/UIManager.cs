@@ -72,6 +72,14 @@ public class UIManager : MonoBehaviour
         SetupDialoguePanels();
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+
     void OnEnable()
     {
         Interactable.InteractUIPromptEvent += ToggleContinueUI;

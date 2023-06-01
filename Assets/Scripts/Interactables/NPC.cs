@@ -34,7 +34,6 @@ public class NPC : MonoBehaviour, Interactable
     [SerializeField] private GameObject _questUI;
     [SerializeField] private GameObject _interactUI;
     private TextMeshProUGUI _greetingText;
-    string _UIPromptText;
     
     // Billboarding
     private Camera _mainCam;
@@ -119,7 +118,7 @@ public class NPC : MonoBehaviour, Interactable
             _greetingUI.SetActive(canInteract);
         }
 
-        _isTalking = true;
+        _isTalking = canInteract;
         DisplayGreeting(canInteract);
     }
 

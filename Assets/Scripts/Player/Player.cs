@@ -8,6 +8,9 @@ public class Player : MonoBehaviour
     public Rigidbody Rb { get; set; }
     public SpriteRenderer Sprite { get; set; }
 
+    [Header("Start Position")]
+    [SerializeField] Vector3 _startPos;
+
     // Colliders
     [Header("Colliders")]
     public BoxCollider GroundCheckCollider;
@@ -82,6 +85,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        transform.position = _startPos;
         DataSetup();
         StateMachineSetup();
     }

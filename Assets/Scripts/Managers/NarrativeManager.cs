@@ -159,6 +159,10 @@ public class NarrativeManager : MonoBehaviour
             {
                 return "mage";
             }
+            else if (speaker == "child")
+            {
+                return "child";
+            }
         }
 
         return null;

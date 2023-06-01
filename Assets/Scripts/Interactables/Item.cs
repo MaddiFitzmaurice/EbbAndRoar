@@ -10,9 +10,6 @@ public class Item : MonoBehaviour, Interactable
     public ItemType ItemType; 
     public Sprite Sprite;
     public static Action ItemPickupEvent;
-
-    [SerializeField] string _UIPromptLion;
-    [SerializeField] string _UIPromptHuman;
     string _UIPromptText;
 
     void Start()

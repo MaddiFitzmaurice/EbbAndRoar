@@ -10,12 +10,15 @@ public class ItemManager : MonoBehaviour
     [SerializeField] List<Item> _items;
     public static Action<List<Item>> UpdateItemsFoundEvent;
     public static Action UpdateItemsDeliveredEvent;
+    public static Action ChildReturnedHomeEvent;
+    public static Action AllItemsDeliveredEvent;
     
     void OnEnable()
     {
         Item.ItemPickupEvent += UpdateItemsFound;
         NPC.CheckItemFound += CheckItemFoundEvent;
         NPC.ItemDeliveredEvent += UpdateItemsDelivered;
+        Child.ChildEvent += ChildEventHandler;
     }
 
     void OnDisable()
@@ -23,6 +26,7 @@ public class ItemManager : MonoBehaviour
         Item.ItemPickupEvent -= UpdateItemsFound;
         NPC.CheckItemFound -= CheckItemFoundEvent;
         NPC.ItemDeliveredEvent -= UpdateItemsDelivered;
+        Child.ChildEvent -= ChildEventHandler;
     }
 
     void UpdateItemsFound()
@@ -32,6 +36,12 @@ public class ItemManager : MonoBehaviour
 
     void UpdateItemsDelivered(ItemType itemTypeFound)
     {
+        // Child returns home
+        if (itemTypeFound == ItemType.Child)
+        {
+            ChildReturnedHomeEvent?.Invoke();
+        }
+        
         foreach (Item item in _items)
         {
             if (item.ItemType == itemTypeFound)
@@ -43,6 +53,8 @@ public class ItemManager : MonoBehaviour
                 }
             }
         }
+
+        CheckAllItemsDelivered();
     }
 
     bool CheckItemFoundEvent(ItemType itemNeeded)
@@ -60,5 +72,30 @@ public class ItemManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    void CheckAllItemsDelivered()
+    {
+        foreach (Item item in _items)
+        {
+            if (item.Delivered == false)
+            {
+                return;
+            }
+        }
+
+        AllItemsDeliveredEvent?.Invoke();
+    }
+
+    // Activate child as an item instead of an NPC
+    void ChildEventHandler()
+    {
+        foreach (Item item in _items)
+        {
+            if (item.ItemType == ItemType.Child)
+            {
+                item.gameObject.SetActive(true);
+            }
+        }
     }
 }
