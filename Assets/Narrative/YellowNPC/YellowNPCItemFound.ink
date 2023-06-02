@@ -1,14 +1,18 @@
 ->ItemFound
 
 === ItemFound ===
-My baby you found them! #yellow
+My boy! You found him! #yellow
 
-I can’t believe what this wizard has done to you, I will never let you leave my sight again. #yellow
+I can’t believe what this mage has done to you, my boy. I'll never let you leave my sight again. #yellow
 
-I don’t know how I could possibly repay you, I tried to tell them not to mess with the water but I never thought the wizard would go this far. #yellow
+I don’t know how I could possibly repay you. #yellow
 
-Do you know where I could find the wizard? #purple
+Do you know where I could find the mage? #purple
 
-Yes. #yellow
+...I might. #yellow
+
+I saw a shadowy figure earlier, creeping down into the dark under the village. It could have been the mage.
+
+I'm not sure, but if you go looking for them... be safe. 
 
 -> DONE

@@ -1,7 +1,7 @@
 -> Introduction
 
 === Introduction ===
-Oh, you’re a new one. I haven’t seen you before, have I? #yellow
+You're a new face around here. #yellow
 
 Welcome, welcome. What can I do for you? #yellow
 
@@ -20,9 +20,9 @@ Welcome, welcome. What can I do for you? #yellow
         -> AskForMage
         
 === AskForMage ===
-Oh… That damn mage. #yellow
+The mage? #yellow
     
-Why are you looking for them? #yellow
+Why are you looking for them? They bring nothing but bad fortune. #yellow
 
     * I need something from them. #purple
         -> AskForHelp
@@ -31,15 +31,17 @@ Why are you looking for them? #yellow
         -> AskForHelp
 
 === AskForHelp ===
-Everyone knows magic shouldn’t be messed with. Not like they do. It’ll only bring bad things… #yellow
+Everyone wants the mage for something. It's either to learn from their power, or to get revenge for something they've done. #yellow
 
-Even my own child idolises them. A foolish child. #yellow
+You know, my own son is the same.   #yellow
 
-I can't blame them, really. It's sweet of the boy to see the good in everything. #yellow
+He's always been so interested in magic, and it's not his fault the mage is the only example of a magic user around here.  #yellow
 
-...Even if he's wrong. #yellow
+My foolish boy was so curious, he ran after the mage the second he saw them. #yellow
 
-And now he won't even come home! I can't tell if he's ignoring my calls or just can't hear them. #yellow
+I couldn't stop him before he did, and now he won't come home. #yellow
+
+I can't tell if he's ignoring me, can't hear me, or just... can't make it home. #yellow
 
     * I can keep an eye out for him, if you'd like? #purple
         -> AcceptQuest
@@ -48,11 +50,11 @@ And now he won't even come home! I can't tell if he's ignoring my calls or just 
         
         Do you venture far from the village? I don't suppose you could look for my child while you're away? #yellow
         
-        I can keep a lookout. #purple
+        I can look out for him. #purple
         -> AcceptQuest
     
 === AcceptQuest ===
-That would be wonderful, thank you kindly! #yellow
+Really? Thank you so much! #yellow
 -> DONE
         
 
