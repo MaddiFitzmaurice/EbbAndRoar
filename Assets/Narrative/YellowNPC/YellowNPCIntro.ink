@@ -11,7 +11,7 @@ Welcome, welcome. What can I do for you? #yellow
         
         Get some rest, before you get to wherever you’re going. #yellow
         
-        Where are you off to then, traveller? #yellow
+        Where exactly are you off to, traveller? #yellow
         
         I'm looking for the mage. #purple
         -> AskForMage
@@ -22,7 +22,7 @@ Welcome, welcome. What can I do for you? #yellow
 === AskForMage ===
 The mage? #yellow
     
-Why are you looking for them? They bring nothing but bad fortune. #yellow
+Why are you looking for them? They're nothing but bad luck. #yellow
 
     * I need something from them. #purple
         -> AskForHelp
@@ -31,11 +31,15 @@ Why are you looking for them? They bring nothing but bad fortune. #yellow
         -> AskForHelp
 
 === AskForHelp ===
-Everyone wants the mage for something. It's either to learn from their power, or to get revenge for something they've done. #yellow
+Everyone wants the mage for something. #yellow
+
+It's either to learn from them and their power, or just to get revenge for something they've done. #yellow
 
 You know, my own son is the same.   #yellow
 
-He's always been so interested in magic, and it's not his fault the mage is the only example of a magic user around here.  #yellow
+He's always been so interested in magic... #yellow
+
+It's not his fault the mage is the only half decent example of a magic user around here.  #yellow
 
 My foolish boy was so curious, he ran after the mage the second he saw them. #yellow
 
@@ -48,7 +52,7 @@ I can't tell if he's ignoring me, can't hear me, or just... can't make it home. 
     
     * That's too bad. #purple
         
-        Do you venture far from the village? I don't suppose you could look for my child while you're away? #yellow
+        Do you travel far from the village? I don't suppose you could look for my child while you're out there? #yellow
         
         I can look out for him. #purple
         -> AcceptQuest
