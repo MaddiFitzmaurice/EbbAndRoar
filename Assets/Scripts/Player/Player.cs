@@ -85,6 +85,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        Cursor.visible = false;
         transform.position = _startPos;
         DataSetup();
         StateMachineSetup();
