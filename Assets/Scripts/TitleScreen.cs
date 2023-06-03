@@ -5,6 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreen : MonoBehaviour
 {
+
+    void Start()
+    {
+        Cursor.visible = false;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))

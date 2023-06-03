@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine.UI;
 using Ink.Runtime;
 using System;
+using UnityEngine.SceneManagement;
 
 public struct DialoguePanel
 {
@@ -76,7 +77,7 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            Application.Quit();
+            SceneManager.LoadScene(0);
         }
     }
 
@@ -162,7 +163,7 @@ public class UIManager : MonoBehaviour
         DialoguePanel panel = data.UsePanelRightSide == true ? _rightDialoguePanel : _leftDialoguePanel;
 
         // Set text and colour of panel, then show chosen panel and start type effect
-        panel.Image.color = new Color(data.PanelColour.r, data.PanelColour.g, data.PanelColour.b, 0.4f);
+        panel.Image.color = data.PanelColour;
         ShowDialoguePanel(data.UsePanelRightSide);
         _currentCoroutine = StartCoroutine(TypeDialogue(data, panel));
     }

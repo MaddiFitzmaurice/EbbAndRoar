@@ -611,11 +611,8 @@ MonoBehaviour:
   _greetingUI: {fileID: 0}
   _questUI: {fileID: 0}
   _interactUI: {fileID: 1397379267}
-  _UIPromptLion: 
-  _UIPromptHuman: 
   _itemNeeded: 0
-  _greetingLion: 
-  _greetingHuman: 
+  _greetingLionText: 
   _introductionText: {fileID: 0}
   _noItemText: {fileID: 0}
   _itemFoundText: {fileID: 0}
@@ -799,7 +796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.03773582, g: 0.030081857, b: 0.030081857, a: 0.44705883}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

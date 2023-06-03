@@ -6,12 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/DemoScene - RYAN.unity
-    guid: 4458fae6eb08c9a499a993c776127456
+    path: 
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Title.unity
     guid: 553bf92a647226e49a980b079b4fbdfc
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/DemoScene - Maddi Final.unity
     guid: cf12b2645ef989448986b0c05e719107
+  - enabled: 1
+    path: Assets/Scenes/DemoScene - Em.unity
+    guid: fa66b120eab8c204a8f5d17fc03887c7
   m_configObjects: {}
