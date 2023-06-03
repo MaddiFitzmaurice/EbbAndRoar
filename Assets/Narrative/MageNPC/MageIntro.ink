@@ -1,6 +1,6 @@
 You... I know you. #mage
 
-The fool you are, and you actually made it down here? #mage
+The fool you are, and you actually made it here? #mage
 
 Haven't you learned your lesson not to interfere with me? #mage
 
