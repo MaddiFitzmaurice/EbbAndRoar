@@ -87,6 +87,7 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         transform.position = _startPos;
         Sprite.sortingLayerName = "Z0";
