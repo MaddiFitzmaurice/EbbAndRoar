@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
     // Sprites
     [Header("Sprites")]
     public Sprite LionSprite;
+    public Sprite LionWalkingSprite;
     public Sprite LionMoveJumpSprite;
     public Sprite LionIdleJumpUpSprite;
     public Sprite LionIdleJumpDownSprite;

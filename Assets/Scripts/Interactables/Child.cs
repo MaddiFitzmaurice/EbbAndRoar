@@ -29,6 +29,9 @@ public class Child : MonoBehaviour, Interactable
     [SerializeField] TextAsset _childText;
     bool _isTalking;
 
+    // Components
+    SpriteRenderer _spriteRenderer;
+
     // Event
     public static Action ChildEvent;
 
@@ -48,6 +51,8 @@ public class Child : MonoBehaviour, Interactable
 
     void Start()
     {        
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _spriteRenderer.sortingLayerName = "Z0";
         UISetup();
         transform.position = _startPos.position;
         _npcEventData = new NPCEventData(false, false, _startPos, _childText, _colour);
@@ -119,6 +124,7 @@ public class Child : MonoBehaviour, Interactable
     void ReturnHome()
     {
         transform.position = _endPos.position;
+        _spriteRenderer.sortingLayerName = "Z3";
         _questUI.SetActive(false);
         _greetingUI.SetActive(false);
         _interactUI.SetActive(false);
