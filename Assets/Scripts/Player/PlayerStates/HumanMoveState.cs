@@ -130,18 +130,31 @@ public class HumanMoveState : PlayerState
     IEnumerator IPathMove(Path currentPath)
     {
         Player.transform.position = currentPath.transform.position;
+        Vector3 startPos = Player.transform.position;
+        float elapsedTime = 0;
+
+        if (currentPath.ConnectedPath.position.z < currentPath.transform.position.z)
+        {
+            ChangeSortingLayer(currentPath);
+        }
 
         while (Vector3.Distance(Player.transform.position, currentPath.ConnectedPath.position) > 0.1f)
         {
-            Player.transform.position = Vector3.Lerp(Player.transform.position,
-                currentPath.ConnectedPath.position, Time.deltaTime * Player.H_Speed);
+            Player.transform.position = Vector3.Lerp(startPos,
+                currentPath.ConnectedPath.position, elapsedTime / Player.PathMoveDuration);
+
+            elapsedTime += Time.deltaTime;
+
             yield return null;
         }
 
         Player.transform.position = currentPath.ConnectedPath.position;
         _onPath = false;
 
-        ChangeSortingLayer();
+        if (currentPath.ConnectedPath.position.z > currentPath.transform.position.z)
+        {
+            ChangeSortingLayer(currentPath);
+        }
     }
 
     void IsFalling()
@@ -158,17 +171,19 @@ public class HumanMoveState : PlayerState
         }
     }
 
-    void ChangeSortingLayer()
+    void ChangeSortingLayer(Path currentPath)
     {
-        if (Player.transform.position.z == 0)
+        if (currentPath.ConnectedPath.position.z == 0)
         {
+            Debug.Log("0");
             Player.Sprite.sortingLayerName = "Z0";
         }
-        else if (Player.transform.position.z == 3)
+        else if (currentPath.ConnectedPath.position.z == 3)
         {
+            Debug.Log("3");
             Player.Sprite.sortingLayerName = "Z3";
         }
-        else if (Player.transform.position.z == 6)
+        else if (currentPath.ConnectedPath.position.z == 6)
         {
             Player.Sprite.sortingLayerName = "Z6";
         }

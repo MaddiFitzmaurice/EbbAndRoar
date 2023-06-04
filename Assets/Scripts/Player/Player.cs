@@ -53,6 +53,7 @@ public class Player : MonoBehaviour
     public float H_VelocityPower;
     public float H_Acceleration;
     public float H_Decceleration;
+    public float PathMoveDuration;
 
     [Header("Lion State")]
     public float L_Speed;
