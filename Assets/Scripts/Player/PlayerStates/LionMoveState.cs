@@ -6,6 +6,7 @@ using System;
 public class LionMoveState : PlayerState
 {   
     bool _isFalling;
+    float _timer;
      
     public LionMoveState(Player player) : base(player) {}
 
@@ -24,6 +25,11 @@ public class LionMoveState : PlayerState
     public override void LogicUpdate()
     {
         IsFalling();
+
+        if (!_isFalling)
+        {
+            WalkCycle();
+        }
 
         // Jump 
         if (Input.GetButtonDown("Jump") && Player.IsGrounded)
@@ -55,6 +61,31 @@ public class LionMoveState : PlayerState
         {
             _isFalling = false;
             ChangeForms(FormType.Lion);
+        }
+    }
+
+    void WalkCycle()
+    {
+        if (_timer > Player.WalkCycleTime)
+        {
+            _timer = 0;
+            ChangeWalkSprite();
+        }
+        else 
+        {
+            _timer += Time.deltaTime;
+        }
+    }
+
+    void ChangeWalkSprite()
+    {
+        if (Player.Sprite.sprite == Player.LionSprite)
+        {
+            Player.Sprite.sprite = Player.LionWalkingSprite;
+        }
+        else 
+        {
+            Player.Sprite.sprite = Player.LionSprite;
         }
     }
 }

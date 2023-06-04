@@ -61,6 +61,7 @@ public class Player : MonoBehaviour
     public float L_Decceleration;
     public float IdleJumpHeight;
     public float MoveJumpHeight;
+    public float WalkCycleTime;
 
     [Header("Gravity Modifier")]
     public Vector3 GravityNorm;
