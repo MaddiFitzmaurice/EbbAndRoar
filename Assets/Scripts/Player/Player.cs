@@ -74,7 +74,6 @@ public class Player : MonoBehaviour
     public PlayerData CurrentData { get; set; }
 
     // Ground check testing
-    
     public RaycastHit hit { get; set; }
     
     void Awake()
@@ -87,6 +86,7 @@ public class Player : MonoBehaviour
     {
         Cursor.visible = false;
         transform.position = _startPos;
+        Sprite.sortingLayerName = "Z0";
         DataSetup();
         StateMachineSetup();
     }

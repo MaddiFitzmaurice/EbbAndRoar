@@ -23,6 +23,9 @@ public class Mage : MonoBehaviour, Interactable
     [SerializeField] Transform _pos2;
     [SerializeField] Transform _finalPos;
 
+    // Components
+    SpriteRenderer _spriteRenderer;
+
     // Flags
     bool _introDone;
     bool _conclusionDone;
@@ -42,6 +45,8 @@ public class Mage : MonoBehaviour, Interactable
 
     void Start()
     {
+        _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        _spriteRenderer.sortingLayerName = "Z0";
         _introDone = false;
         _conclusionDone = false;
         _introTrigger.SetActive(true);
@@ -79,6 +84,7 @@ public class Mage : MonoBehaviour, Interactable
             {
                 // Move Mage to endgame area
                 transform.position = _finalPos.position;
+                _spriteRenderer.sortingLayerName = "Z6";
             }
         }
     }
@@ -100,7 +106,6 @@ public class Mage : MonoBehaviour, Interactable
             _conclusionDone = true;
             _conclusionTrigger.SetActive(false);
             _moveToEndGameTrigger.SetActive(true);
-            // Signal player can move again
         }
     }
 
@@ -119,6 +124,5 @@ public class Mage : MonoBehaviour, Interactable
 
         // Place Mage at tutorial end pos
         transform.position = _pos2.position;
-        // Send event that player can now move
     }
 }

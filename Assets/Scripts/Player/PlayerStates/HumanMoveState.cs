@@ -140,6 +140,8 @@ public class HumanMoveState : PlayerState
 
         Player.transform.position = currentPath.ConnectedPath.position;
         _onPath = false;
+
+        ChangeSortingLayer();
     }
 
     void IsFalling()
@@ -153,6 +155,22 @@ public class HumanMoveState : PlayerState
         {
             _isFalling = false;
             Player.Sprite.sprite = Player.HumanSprite;
+        }
+    }
+
+    void ChangeSortingLayer()
+    {
+        if (Player.transform.position.z == 0)
+        {
+            Player.Sprite.sortingLayerName = "Z0";
+        }
+        else if (Player.transform.position.z == 3)
+        {
+            Player.Sprite.sortingLayerName = "Z3";
+        }
+        else if (Player.transform.position.z == 6)
+        {
+            Player.Sprite.sortingLayerName = "Z6";
         }
     }
 }
