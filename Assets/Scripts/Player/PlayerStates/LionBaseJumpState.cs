@@ -5,8 +5,8 @@ using System;
 
 public abstract class LionBaseJumpState : PlayerState
 {    
-    private float _jumpTimer;
-    private float _bufferTime = 0.5f;
+    protected float JumpTimer;
+    protected float BufferTime = 0.5f;
 
     public static Action<bool> JumpEvent;
 
@@ -18,17 +18,18 @@ public abstract class LionBaseJumpState : PlayerState
         Jump();
         Physics.gravity = Player.GravityUp;
         JumpEvent?.Invoke(true);
-        _jumpTimer = 0;
+        JumpTimer = 0;
     }
 
     public override void Exit()
     {
+        ChangeForms(FormType.Lion);
         base.Exit();
     }
 
     public override void LogicUpdate()
     {        
-        _jumpTimer += Time.deltaTime;
+        JumpTimer += Time.deltaTime;
         Player.IsGrounded = GroundCheck();
     }
 
@@ -46,13 +47,7 @@ public abstract class LionBaseJumpState : PlayerState
             Physics.gravity = Player.GravityDown;            
         }
 
-        // If player has landed
-        if (Player.IsGrounded && _jumpTimer > _bufferTime)
-        {
-            Physics.gravity = Player.GravityNorm;
-            JumpEvent?.Invoke(false);
-            Player.StateMachine.ChangeState(Player.L_IdleState);
-        }
+        
     }
 
     protected abstract void Jump();

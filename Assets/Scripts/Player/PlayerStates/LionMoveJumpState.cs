@@ -26,6 +26,14 @@ public class LionMoveJumpState : LionBaseJumpState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+
+        // If player has landed
+        if (Player.IsGrounded && JumpTimer > BufferTime)
+        {
+            Physics.gravity = Player.GravityNorm;
+            JumpEvent?.Invoke(false);
+            Player.StateMachine.ChangeState(Player.L_MoveState);
+        }
     }
 
     protected override void Jump()

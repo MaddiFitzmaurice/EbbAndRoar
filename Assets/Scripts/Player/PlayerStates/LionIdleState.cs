@@ -59,12 +59,12 @@ public class LionIdleState : PlayerState
         if (Player.Rb.velocity.y < -1f && !_isFalling && !GroundCheck())
         {
             _isFalling = true;
-            Player.Sprite.sprite = Player.LionIdleJumpDownSprite;
+            ChangeForms(FormType.DownJump);
         }
         else if (Player.Rb.velocity.y >= -1f && _isFalling && GroundCheck()) 
         {
             _isFalling = false;
-            Player.Sprite.sprite = Player.LionSprite;
+            ChangeForms(FormType.Lion);
         }
     }
 }

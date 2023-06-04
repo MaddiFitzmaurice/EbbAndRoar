@@ -32,6 +32,14 @@ public class LionIdleJumpState : LionBaseJumpState
     public override void PhysicsUpdate()
     {
         base.PhysicsUpdate();
+
+        // If player has landed
+        if (Player.IsGrounded && JumpTimer > BufferTime)
+        {
+            Physics.gravity = Player.GravityNorm;
+            JumpEvent?.Invoke(false);
+            Player.StateMachine.ChangeState(Player.L_IdleState);
+        }
     }
 
     protected override void Jump()
