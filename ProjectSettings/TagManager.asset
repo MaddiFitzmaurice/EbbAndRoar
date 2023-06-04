@@ -48,6 +48,12 @@ TagManager:
   - name: Midground
     uniqueID: 1317777191
     locked: 0
-  - name: Foreground
+  - name: Z6
     uniqueID: 272295795
+    locked: 0
+  - name: Z3
+    uniqueID: 296236195
+    locked: 0
+  - name: Z0
+    uniqueID: 2909635523
     locked: 0

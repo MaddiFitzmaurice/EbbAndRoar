@@ -19,7 +19,7 @@ public class PlayerNarrativeState : BaseState
     {
         NarrativeManager.EndOfNarrativeEvent += ExitNarrativeState;
         UIManager.CanPressContinueEvent += CanPressContinueEventHandler;
-
+        _player.Rb.velocity = Vector3.zero;
         StartNarrativeEvent?.Invoke(true);
     }
 
